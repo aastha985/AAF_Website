@@ -1,0 +1,72 @@
+.white-line{
+    margin:0;
+    padding:0;
+    border: 0.001px solid rgb(99, 99, 99);
+}
+.footer{
+    background-color: black;
+    color:white;
+    z-index: 1;
+    position: relative;
+    padding: 2rem;
+    padding-top: 7rem;
+}
+.footer2{
+    background-color: black;
+    color:white;
+    z-index: 1;
+    position: relative;
+    padding: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.bot2{
+    padding-bottom:15vh;
+}
+.fs{
+    margin-bottom: 1.5rem;
+}
+.fs2{
+    font-size: 90%;
+    text-align:justify;
+}
+.fs3{
+    display:inline-block;
+}
+.fa-map-marker-alt{
+    margin-right:0.5rem;
+    font-size: 90%;
+}
+.fa-envelope{
+    margin-right:0.5rem;
+    font-size: 90%;
+}
+.fa-external-link-square-alt{
+    margin-right:0.5rem;
+    font-size: 90%;
+}
+#fb{
+    color:blue;
+}
+#tweet{
+    color:rgb(1, 236, 253);
+}
+#insta{
+    color:red;
+}
+#tele{
+    color:blue;
+}
+#yt{
+    color:red;
+}
+#lin{
+    color:rgb(1, 236, 253);
+}
+#logo2{
+    height:70px;
+}
+#center{
+    font-size:0.9rem;
+    text-align: center;
+}

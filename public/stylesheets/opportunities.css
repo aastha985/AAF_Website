@@ -1,0 +1,56 @@
+body{
+	font-family: 'Poppins', sans-serif;
+}
+.jumbotron{
+	background: url("https://i.imgur.com/XO4btez.jpg") no-repeat;
+	background-position: center;
+	background-size: cover;
+	border-radius:0;
+	padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+	height: 80vh;
+}
+.opph{
+	text-align:center;
+	margin-top:20vh;
+	color: #fff;
+}
+.txt1{
+	text-shadow: 2px 2px 32px black;
+	font-size:1.3rem;
+}
+.heading{
+	
+    text-shadow: 2px 2px 32px black;
+	font-size:4rem;
+}
+.card-img{
+	height: 50vh;
+}
+.card{
+	border:0 !important;
+	padding:0 !important;
+}
+.card-title{
+	text-align:center;
+	margin-top: 17vh;
+	text-shadow: 2px 2px 32px black;
+}
+@media (max-width:992px){
+	.heading{
+		font-size:2.5rem;
+	}
+	.txt1{
+		font-size:1rem;
+	}
+}
+@media (max-width:540px){
+	.heading{
+		font-size:2rem;
+		margin-top:-5vh;
+	}
+	.txt1{
+		font-size:1rem;
+	}
+}

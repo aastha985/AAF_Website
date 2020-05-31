@@ -1,0 +1,86 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+/* fixed social*/
+#fixed-social {
+    position: fixed;
+    top: 0vh;
+    z-index: 3;
+    position: relative;
+ }
+
+ #fixed-social a {
+    color: #fff;
+    display: block;
+    height: 40px;
+    position: relative;
+    text-align: center;
+     line-height: 40px;
+    width: 40px;
+    margin-bottom: 1px;
+    z-index: 3;
+ }
+ #fixed-social a:hover>span{
+     visibility: visible;
+   left: 41px;
+   opacity: 1;
+ } 
+ #fixed-social a span {
+     line-height: 40px;
+     left: 60px;
+     position: absolute;
+     text-align: center;
+     width: 120px;
+     visibility: hidden;
+     transition-duration: 0.5s;
+     z-index: 3;
+     opacity: 0;
+ }
+  .fixed-facebook{
+      background-color: #3b5998;
+  }
+  .fixed-facebook span{
+     background-color: #3b5998;
+  }
+  .fixed-twitter{
+     background-color: #00acee;
+ 
+  }
+  .fixed-twitter span{
+      background-color: #00acee;
+  }
+  .fixed-telegram{
+     background-color: #0088cc;
+ 
+  }
+  .fixed-telegram span{
+      background-color: #0088cc;
+  }
+  .fixed-linkedin{
+     background-color: #0e76a8;
+ 
+  }
+  .fixed-linkedin span{
+      background-color: #0e76a8;
+  }
+  .fixed-instagrem{
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+ 
+  }
+  .fixed-instagrem span{
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  }
+  .fixed-yt{
+     background-color: #c4302b;
+ 
+  }
+  .fixed-yt span{
+      background-color: #c4302b;
+  }
+ /*end fixed social*/
+@media (max-width:768px){
+    #fixed-social {
+        top: 10vh;
+    }
+
+}
