@@ -1,0 +1,16 @@
+.jumbotron{
+	background: url("https://imgur.com/VCgIJwS.jpg") no-repeat;
+	background-position: center;
+	background-size: cover;
+	border-radius:0;
+	padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+	height: 30vh;
+}
+a.nav-link{
+	color:black!important;
+}
+a.navbar-brand{
+	color:black!important;
+}

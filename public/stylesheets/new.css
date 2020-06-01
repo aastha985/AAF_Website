@@ -1,0 +1,37 @@
+body{
+	background-color:#f8f9fa;
+}
+#p1{
+	font-size: 1.2rem;
+	margin-bottom: 1.3rem;
+}
+#oh1{
+	padding-top:5vh;
+}
+#oh2{
+	opacity:0;
+}
+.btn:hover{
+	border: 2px solid #A53692;
+}
+.asterisk{
+	color:red;
+}
+@media (max-width:992px){
+	#oh1{
+		opacity:0;
+	}
+	#oh2{
+		opacity:1;
+		margin-bottom: 1rem;
+	}
+	#p1{
+		font-size:1rem;
+	}
+}
+@media (max-width:540px){
+	#oh2{
+		font-size: 1.5rem;
+	}
+	
+}
