@@ -17,6 +17,7 @@ body{
 .asterisk{
 	color:red;
 }
+
 @media (max-width:992px){
 	#oh1{
 		opacity:0;

@@ -1,64 +1,24 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-<!--====================Font Awesome==============================-->
-    <script src="https://kit.fontawesome.com/1d9b3c3ba8.js" crossorigin="anonymous"></script>
-<!--===================Google Fonts===================================================-->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<%- include("../partials/header1") %>
 	  <!--========Custom stylesheets=====================-->
 	  <link rel="stylesheet" href="/stylesheets/Navbar.css">
 	  <link rel="stylesheet" href="/stylesheets/NewFormHeader.css">
 	  <link rel="stylesheet" href="/stylesheets/new.css">
 	  <link rel="stylesheet" href="/stylesheets/Buttons.css">
-    <title>Hello, world!</title>
-  </head>
-  <body>
+	  <link rel="stylesheet" href="/stylesheets/Footer.css">
+<!--==============================================-->
+<%- include("../partials/header1b") %>
 	  
 <!---Jumbotron-==========================----->
 <div class="jumbotron">
 <!--Navbar=====================================-->
-<nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Parvaaz Parindey <i class="fas fa-dove"></i></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Know Your Opportunities</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Explore</a>
-                </li>
-            </ul>
-            </div>
-          </div>
-      </nav>
+<%- include("../partials/navbar") %>
 <!--=====================================================================-->
 <div class="container text-center">
-	<h1 id="oh1">
-		Add a New Opportunity
-	</h1>
+	<h1 id="oh1">Add a New Opportunity</h1>
 </div>
 </div>
 <div class="container">
-	<h1 id="oh2" class="text-center">
-		Add a New Opportunity
-	</h1>
+	<h1 id="oh2" class="text-center">Add a New Opportunity</h1>
 	<p id="p1" class="text-justify">
 		Fill this form for any new opportunities that could help others. Our goal is to make everyone aware about the latest opportunities in different fields! Note: The information in this form will be reviewed by us before posting to ensure it is genuine. The fields marked with <span class="asterisk">*</span> are mandatory.
 	</p>
@@ -110,7 +70,7 @@
     <input type="text" class="form-control" id="formGroupExampleInput2">
   </div>
 	<div class="form-group">
-    <label for="formGroupExampleInput2">Registeration Process </label>
+    <label for="formGroupExampleInput2">Registration Process </label>
     <input type="text" class="form-control" id="formGroupExampleInput2">
   </div>
 	<div class="form-group">
@@ -126,10 +86,5 @@
 	</div>
 </form>
 </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  </body>
-</html>
+<!--================================-->
+ <%- include("../partials/footer") %>
