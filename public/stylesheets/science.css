@@ -1,0 +1,27 @@
+.jumbotron{
+	background: url("https://imgur.com/PyR6jQu.jpg") no-repeat;
+	background-position: center;
+	background-size: cover;
+	border-radius:0;
+	padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+	height: 60vh;
+}
+.opph1{
+	color:white;
+	margin-top:10vh;
+}
+.card{
+	margin-bottom:1rem;
+	
+}
+.btn:hover{
+	border: 2px solid #A53692;
+}
+.card-img-top{
+	height:40vh;
+}
+.btn{
+	margin-bottom:2rem;
+}

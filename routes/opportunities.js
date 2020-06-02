@@ -3,15 +3,17 @@ const express = require("express"),
 
 //Index Route
 router.get("/",function(req,res){
-	// res.send("This will be oppurtunities page soon");
 	res.render("opportunities/index");
 });
 
 //Form for adding a new oppurtunity
 router.get("/new",function(req,res){
-	// res.send("This will be new form page soon");
 	res.render("opportunities/new");
 });
 
+router.get("/science",function(req,res){
+	// res.send("This will show opportunities for science and tech");
+	res.render("opportunities/science/index");
+});
 module.exports = router;
 	  
