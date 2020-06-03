@@ -102,6 +102,40 @@ router.put("/science/:id",upload.single('image'),function(req,res){	Opportunity.
 		});
 });
 
+router.get("/science/:id/imageedit",function(req,res){
+	Opportunity.findById(req.params.id,function(err,foundOpportunity){
+		if(err){
+			console.log(err);
+			res.redirect("/science");
+		}
+		else{
+			res.render("opportunities/science/imageedit",{opportunity:foundOpportunity});
+		}
+	});
+});
+//update route for image
+router.put("/science/:id/image",upload.single('image'),function(req,res){
+	Opportunity.findById(req.params.id,function(err,opportunity){
+		if(err){
+			console.log(err);
+		}
+		else{
+			cloudinary.v2.uploader.destroy(opportunity.imageId);
+				console.log(opportunity);
+				if(err){
+					console.log(err);
+				}
+				else{
+					cloudinary.uploader.upload(req.file.path, function(result) {
+					opportunity.image = result.secure_url;
+					opportunity.imageId = result.public_id;
+					res.redirect("/opportunities/science/"+req.params.id);
+					opportunity.save();
+					});
+				}
+		}
+	});
+});
 //delete
 router.delete("/science/:id",function(req,res){
 	Opportunity.findById(req.params.id,function(err,opportunity){
