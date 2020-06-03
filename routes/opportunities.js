@@ -62,6 +62,21 @@ router.get("/science",function(req,res){
 	
 });
 
+//show route
+router.get("/science/:id",function(req,res){
+	Opportunity.findById(req.params.id,function(err,foundOpportunity){
+		if(err){
+			console.log(err);
+			res.redirect("/science");
+		}
+		else{
+			res.render("opportunities/science/show",{opportunity:foundOpportunity});
+		}
+	});
+});
+
+//============================================================================
+//index route
 router.get("/business",upload.single('image'),function(req,res){
 	Opportunity.find({"category":2},function(err,Opportunities){
 		if(err){
