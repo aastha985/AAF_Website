@@ -34,10 +34,12 @@ router.get("/new",function(req,res){
 	res.render("opportunities/new");
 });
 
+//=============================science=============================
 //create route
 router.post("/",upload.single('image'),function(req,res){
 	cloudinary.uploader.upload(req.file.path, function(result) {
   		req.body.opportunity.image = result.secure_url;
+		req.body.opportunity.imageId = result.public_id;
 		Opportunity.create(req.body.opportunity,function(err,newOpportunity){
 			if(err){
 				console.log(err);
@@ -60,6 +62,7 @@ router.get("/science",function(req,res){
 		}
 	});
 	
+	
 });
 
 //show route
@@ -75,6 +78,49 @@ router.get("/science/:id",function(req,res){
 	});
 });
 
+//edit route
+router.get("/science/:id/edit",function(req,res){
+	Opportunity.findById(req.params.id,function(err,foundOpportunity){
+		if(err){
+			console.log(err);
+			res.redirect("/science");
+		}
+		else{
+			res.render("opportunities/science/edit",{opportunity:foundOpportunity});
+		}
+	});
+});
+
+//update
+router.put("/science/:id",upload.single('image'),function(req,res){	Opportunity.findByIdAndUpdate(req.params.id,req.body.opportunity,function(err,updatedOpportunity){
+			if(err){
+				console.log(err);
+			}
+			else{
+				res.redirect("/opportunities/science/"+req.params.id);
+			}
+		});
+});
+
+//delete
+router.delete("/science/:id",function(req,res){
+	Opportunity.findById(req.params.id,function(err,opportunity){
+		if(err){
+			console.log(err);
+		}
+		else{		cloudinary.v2.uploader.destroy(opportunity.imageId,function(err,deleteOpportunity){
+				if(err){
+					console.log(err);
+				}
+				else{
+					opportunity.remove();
+					console.log("removed");
+					res.redirect("/opportunities");
+				}
+			});
+		}
+	});
+});
 //============================================================================
 //index route
 router.get("/business",upload.single('image'),function(req,res){

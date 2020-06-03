@@ -1,9 +1,9 @@
-require('dotenv').config();
 const 	express = require("express"),
 		app=express(),
 		bodyParser = require("body-parser"),
 	  	mongoose = require("mongoose"),
-	  	Opportunity = require("./models/opportunity")
+	  	Opportunity = require("./models/opportunity"),
+	  	methodOverride = require("method-override");
 
 const 	indexRoutes = require("./routes/index"),
 	  	opportunityRoutes = require("./routes/opportunities");
@@ -16,6 +16,7 @@ mongoose.connect("mongodb://localhost/parvaazparindey");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
+app.use(methodOverride("_method"));
 
 app.use(indexRoutes);
 app.use("/opportunities",opportunityRoutes);

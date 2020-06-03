@@ -5,6 +5,7 @@ var opportunitySchema = new mongoose.Schema({
 	organisation:String,
 	detail:String,
 	image: String,
+	imageId: String,
 	category: Number,
 	eligibility:String,
 	dates: String,
