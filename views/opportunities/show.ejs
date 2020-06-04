@@ -12,6 +12,8 @@
 				<%= opportunity.heading %>
 			</h2>
 			<img src="<%= opportunity.image %>" class="img-fluid text-center">
+			<a href="/opportunities/<%= opportunity._id %>/imageedit">
+				<button class="btn btn-warning">Replace Image </button></a>
 			<p>
 				<b>About the Organisation</b>: <%= opportunity.organisation %>
 			</p>

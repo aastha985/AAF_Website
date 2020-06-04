@@ -1,5 +1,10 @@
 <%- include("../partials/header1") %>
+<link rel="stylesheet" href="/stylesheets/Navbar.css">
+<link rel="stylesheet" href="/stylesheets/Buttons.css">
+<link rel="stylesheet" href="/stylesheets/Footer.css">
 <%- include("../partials/header1b") %>
+<%- include("../partials/navbar") %>
+
 <form action="/opportunities/<%= opportunity._id %>/image?_method=PUT" method="POST" enctype="multipart/form-data">
 <div class="form-group">
 				<label for="exampleFormControlFile1">Upload Poster/Image <span class="asterisk">*</span></label>
@@ -10,4 +15,5 @@
 		<button type="submit" class="btn btn-lg px-5">Submit</button>
 	</div>
 </form>
+
  <%- include("../partials/footer") %>
