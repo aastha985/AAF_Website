@@ -9,8 +9,14 @@
 	height: 30vh;
 }
 a.nav-link{
-	color:black!important;
+	color:rgb(250, 85, 222)!important;
+}
+a.navbar-brand:hover{
+	color:#bf55ec!important;
+}
+a.nav-link:hover{
+	color:#bf55ec!important;
 }
 a.navbar-brand{
-	color:black!important;
+	color:rgb(250, 85, 222)!important;
 }

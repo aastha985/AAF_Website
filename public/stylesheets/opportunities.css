@@ -19,6 +19,8 @@ body{
 .txt1{
 	text-shadow: 2px 2px 32px black;
 	font-size:1.3rem;
+	padding-left: 2rem;
+	padding-right:2rem;
 }
 .heading{
 	

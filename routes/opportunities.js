@@ -1,6 +1,8 @@
 const express = require("express"),
 	  router = express.Router(),
 	  Opportunity = require("../models/opportunity");
+
+const OpportunityindexRoutes = require("./opportunitiesindex");
 //multer setup=====================================================================
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -29,13 +31,12 @@ router.get("/",function(req,res){
 	res.render("opportunities/index");
 });
 
-//Form for adding a new oppurtunity
+//New route
 router.get("/new",function(req,res){
 	res.render("opportunities/new");
 });
 
-//=============================science=============================
-//create route
+//Create route
 router.post("/",upload.single('image'),function(req,res){
 	cloudinary.uploader.upload(req.file.path, function(result) {
   		req.body.opportunity.image = result.secure_url;
@@ -51,93 +52,9 @@ router.post("/",upload.single('image'),function(req,res){
 	});
 });
 
-//index route
-router.get("/science",function(req,res){
-	Opportunity.find({"category":1},function(err,Opportunities){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render("opportunities/Categoriesindex/science",{opportunities:Opportunities});
-		}
-	});
-	
-	
-});
-//============================================================================
-//index route
-router.get("/business",function(req,res){
-	Opportunity.find({"category":2},function(err,Opportunities){
-		if(err){
-			console.log(err);
-		}
-		else{
-			 res.render("opportunities/Categoriesindex/business",{opportunities:Opportunities});
-		}
-	});
-});
-//index route
-router.get("/legal",function(req,res){
-	Opportunity.find({"category":3},function(err,Opportunities){
-		if(err){
-			console.log(err);
-		}
-		else{
-			 res.render("opportunities/Categoriesindex/legal",{opportunities:Opportunities});
-		}
-	});
-});
-
-router.get("/media",function(req,res){
-	Opportunity.find({"category":4},function(err,Opportunities){
-		if(err){
-			console.log(err);
-		}
-		else{
-			 res.render("opportunities/Categoriesindex/media",{opportunities:Opportunities});
-		}
-	});
-});
-router.get("/humanities",function(req,res){
-	Opportunity.find({"category":5},function(err,Opportunities){
-		if(err){
-			console.log(err);
-		}
-		else{
-			 res.render("opportunities/Categoriesindex/humanities",{opportunities:Opportunities});
-		}
-	});
-});
-router.get("/commerce",function(req,res){
-	Opportunity.find({"category":6},function(err,Opportunities){
-		if(err){
-			console.log(err);
-		}
-		else{
-			 res.render("opportunities/Categoriesindex/commerce",{opportunities:Opportunities});
-		}
-	});
-});
-router.get("/school",function(req,res){
-	Opportunity.find({"category":7},function(err,Opportunities){
-		if(err){
-			console.log(err);
-		}
-		else{
-			 res.render("opportunities/Categoriesindex/school",{opportunities:Opportunities});
-		}
-	});
-});
-router.get("/other",function(req,res){
-	Opportunity.find({"category":8},function(err,Opportunities){
-		if(err){
-			console.log(err);
-		}
-		else{
-			 res.render("opportunities/Categoriesindex/other",{opportunities:Opportunities});
-		}
-	});
-});
+//=========================================================
+router.use(OpportunityindexRoutes);
+//========================================================
 //show route
 router.get("/:id",function(req,res){
 	Opportunity.findById(req.params.id,function(err,foundOpportunity){
@@ -176,6 +93,7 @@ router.put("/:id",upload.single('image'),function(req,res){	Opportunity.findById
 		});
 });
 
+//edit for image
 router.get("/:id/imageedit",function(req,res){
 	Opportunity.findById(req.params.id,function(err,foundOpportunity){
 		if(err){
@@ -209,6 +127,7 @@ router.put("/:id/image",upload.single('image'),function(req,res){
 		}
 	});
 });
+
 //delete
 router.delete("/:id",function(req,res){
 	Opportunity.findById(req.params.id,function(err,opportunity){
