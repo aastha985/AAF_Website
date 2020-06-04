@@ -48,16 +48,46 @@
 		</div>
 		<div class="col-md-3">
 			<div class="list-group">
-  <a href="/opportunities/science" class="list-group-item list-group-item-action active">
-    Science and Technology
-  </a>
-  <a href="/opportunities/business" class="list-group-item list-group-item-action">Business, management and administration</a>
-  <a href="#" class="list-group-item list-group-item-action">Legal</a>
-  <a href="#" class="list-group-item list-group-item-action">Media and Journalism</a>
-  <a href="#" class="list-group-item list-group-item-action">Humanities</a>
-	<a href="#" class="list-group-item list-group-item-action">Commerce and Accountancy</a>
-	<a href="#" class="list-group-item list-group-item-action">School-level Opportunitities</a>
-	<a href="#" class="list-group-item list-group-item-action">Other Fields</a>
+<% if(opportunity.category==1){ %>
+  <a href="/opportunities/science" class="list-group-item list-group-item-action active">Science and Technology</a>
+	<%	} else{ %>
+	<a href="/opportunities/science" class="list-group-item list-group-item-action">Science and Technology</a>			
+	<% } %>
+<% if(opportunity.category==2){ %>
+  <a href="/opportunities/business" class="list-group-item list-group-item-action active">Business, management andadministration</a>
+		<% } else{ %>
+<a href="/opportunities/business" class="list-group-item list-group-item-action">Business, management and administration</a>	
+				<% } %>
+<% if(opportunity.category==3){ %>
+  <a href="/opportunities/legal" class="list-group-item list-group-item-action active">Legal</a>
+				<% } else{ %>
+	<a href="/opportunities/legal" class="list-group-item list-group-item-action">Legal</a>
+	<% } %>
+<% if(opportunity.category==4){ %>
+  <a href="/opportunities/media" class="list-group-item list-group-item-action active">Media and Journalism</a>
+				<% } else { %>
+<a href="/opportunities/media" class="list-group-item list-group-item-action">Media and Journalism</a>
+	<% } %>
+<% if(opportunity.category==5){ %>
+  <a href="/opportunities/humanities" class="list-group-item list-group-item-action active">Humanities</a>
+				<% } else{ %>
+<a href="/opportunities/humanities" class="list-group-item list-group-item-action">Humanities</a>
+	<% } %>
+<% if(opportunity.category==6){ %>
+	<a href="/opportunities/commerce" class="list-group-item list-group-item-action active">Commerce and Accountancy</a>
+				<% } else{ %>
+	<a href="/opportunities/commerce" class="list-group-item list-group-item-action">Commerce and Accountancy</a>
+	<% } %>
+<% if(opportunity.category==7){ %>
+	<a href="/opportunities/school" class="list-group-item list-group-item-action active">School-level Opportunitities</a>
+				<% } else{ %>
+	<a href="/opportunities/school" class="list-group-item list-group-item-action">School-level Opportunitities</a>
+	<% } %>
+<% if(opportunity.category==8){ %>
+	<a href="/opportunities/other" class="list-group-item list-group-item-action active">Other Fields</a>
+				<% } else{ %>
+	<a href="/opportunities/other" class="list-group-item list-group-item-action">Other Fields</a>
+	<% } %>
 </div>
 		</div>
 		
