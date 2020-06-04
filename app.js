@@ -11,7 +11,8 @@ const 	indexRoutes = require("./routes/index"),
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
-mongoose.connect("mongodb://localhost/parvaazparindey");
+mongoose.connect(process.env.DATABASEURL);
+// mongoose.connect("mongodb://localhost/parvaazparindey");
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
