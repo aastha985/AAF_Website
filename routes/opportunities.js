@@ -66,62 +66,62 @@ router.get("/science",function(req,res){
 });
 
 //show route
-router.get("/science/:id",function(req,res){
+router.get("/:id",function(req,res){
 	Opportunity.findById(req.params.id,function(err,foundOpportunity){
 		if(err){
 			console.log(err);
-			res.redirect("/science");
+			res.redirect("/opportunities");
 		}
 		else{
-			res.render("opportunities/science/show",{opportunity:foundOpportunity});
+			// res.send("this will be the show page");
+			res.render("opportunities/show",{opportunity:foundOpportunity});
 		}
 	});
 });
 
 //edit route
-router.get("/science/:id/edit",function(req,res){
+router.get("/:id/edit",function(req,res){
 	Opportunity.findById(req.params.id,function(err,foundOpportunity){
 		if(err){
 			console.log(err);
 			res.redirect("/science");
 		}
 		else{
-			res.render("opportunities/science/edit",{opportunity:foundOpportunity});
+			res.render("opportunities/edit",{opportunity:foundOpportunity});
 		}
 	});
 });
 
 //update
-router.put("/science/:id",upload.single('image'),function(req,res){	Opportunity.findByIdAndUpdate(req.params.id,req.body.opportunity,function(err,updatedOpportunity){
+router.put("/:id",upload.single('image'),function(req,res){	Opportunity.findByIdAndUpdate(req.params.id,req.body.opportunity,function(err,updatedOpportunity){
 			if(err){
 				console.log(err);
 			}
 			else{
-				res.redirect("/opportunities/science/"+req.params.id);
+				res.redirect("/opportunities/"+req.params.id);
 			}
 		});
 });
 
-router.get("/science/:id/imageedit",function(req,res){
+router.get("/:id/imageedit",function(req,res){
 	Opportunity.findById(req.params.id,function(err,foundOpportunity){
 		if(err){
 			console.log(err);
-			res.redirect("/science");
+			res.redirect("/opportunities");
 		}
 		else{
-			res.render("opportunities/science/imageedit",{opportunity:foundOpportunity});
+			res.render("opportunities/imageedit",{opportunity:foundOpportunity});
 		}
 	});
 });
 //update route for image
-router.put("/science/:id/image",upload.single('image'),function(req,res){
+router.put("/:id/image",upload.single('image'),function(req,res){
 	Opportunity.findById(req.params.id,function(err,opportunity){
 		if(err){
 			console.log(err);
 		}
 		else{
 			cloudinary.v2.uploader.destroy(opportunity.imageId);
-				console.log(opportunity);
 				if(err){
 					console.log(err);
 				}
@@ -129,7 +129,7 @@ router.put("/science/:id/image",upload.single('image'),function(req,res){
 					cloudinary.uploader.upload(req.file.path, function(result) {
 					opportunity.image = result.secure_url;
 					opportunity.imageId = result.public_id;
-					res.redirect("/opportunities/science/"+req.params.id);
+					res.redirect("/opportunities/"+req.params.id);
 					opportunity.save();
 					});
 				}
@@ -137,7 +137,7 @@ router.put("/science/:id/image",upload.single('image'),function(req,res){
 	});
 });
 //delete
-router.delete("/science/:id",function(req,res){
+router.delete("/:id",function(req,res){
 	Opportunity.findById(req.params.id,function(err,opportunity){
 		if(err){
 			console.log(err);

@@ -1,0 +1,65 @@
+<%- include("../partials/header1") %>
+	  <!--========Custom stylesheets=====================-->
+	  <link rel="stylesheet" href="/stylesheets/Navbar.css">
+	  <link rel="stylesheet" href="/stylesheets/NewFormHeader.css">
+	  <link rel="stylesheet" href="/stylesheets/new.css">
+	  <link rel="stylesheet" href="/stylesheets/Buttons.css">
+	  <link rel="stylesheet" href="/stylesheets/Footer.css">
+<!--==============================================-->
+<%- include("../partials/header1b") %>
+	  
+<!---Jumbotron-==========================----->
+<div class="jumbotron">
+<!--Navbar=====================================-->
+<%- include("../partials/navbar") %>
+<!--=====================================================================-->
+<div class="container text-center">
+	<h1 id="oh1">Edit Opportunity</h1>
+</div>
+</div>
+<div class="container">
+	<h1 id="oh2" class="text-center">Edit Opportunity</h1>
+	<p id="p1" class="text-justify">
+		The fields marked with <span class="asterisk">*</span> are mandatory.
+	</p>
+	<form action="/opportunities/<%= opportunity._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="formGroupExampleInput">Heading <span class="asterisk">*</span></label>
+    <input type="text" class="form-control" id="formGroupExampleInput" name="opportunity[heading]" value="<%= opportunity.heading %>" required>
+	  <small class="form-text text-muted">This will appear as the heading of your opportunity</small>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">About the Organisation <span class="asterisk">*</span></label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[organisation]" value="<%= opportunity.organisation %>" required>
+  </div>
+	<div class="form-group">
+    <label for="exampleFormControlTextarea1">About the  Competition/Event/Opportunity <span class="asterisk">*</span></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="opportunity[detail]" required><%= opportunity.detail %></textarea>
+  </div>
+	<div class="form-group">
+    <label for="formGroupExampleInput2">Eligibility/Prerequisites <span class="asterisk">*</span></label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[eligibility]" value="<%= opportunity.eligibility %>" required>
+  </div>
+	<div class="form-group">
+    <label for="formGroupExampleInput2">Important Dates <span class="asterisk">*</span></label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[dates]" value="<%= opportunity.dates %>" required>
+  </div>
+	<div class="form-group">
+    <label for="formGroupExampleInput2">Registration Process </label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[process]" value="<%= opportunity.process %>">
+  </div>
+	<div class="form-group">
+    <label for="formGroupExampleInput2">Benefits/Prizes/Perks <span class="asterisk">*</span></label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[prize]" value="<%= opportunity.prize %>" required>
+  </div>
+	<div class="form-group">
+    <label for="formGroupExampleInput2">Contact details for more information <span class="asterisk">*</span></label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[contact]" value="<%= opportunity.contact %>" required>
+  </div>
+	<div class="text-center">
+		<button type="submit" class="btn btn-lg px-5">Submit</button>
+	</div>
+</form>
+</div>
+<!--================================-->
+ <%- include("../partials/footer") %>

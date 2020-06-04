@@ -1,0 +1,66 @@
+<%- include("../partials/header1") -%>
+<link rel="stylesheet" href="/stylesheets/Navbar.css">
+<link rel="stylesheet" href="/stylesheets/show.css">
+<link rel="stylesheet" href="/stylesheets/Footer.css">
+<%- include("../partials/header1b") -%>
+
+<%- include("../partials/navbar") %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-9 img-thumbnail shadow p-3 mb-5 bg-white rounded" >
+			<h2 class="text-center">
+				<%= opportunity.heading %>
+			</h2>
+			<img src="<%= opportunity.image %>" class="img-fluid text-center">
+			<p>
+				<b>About the Organisation</b>: <%= opportunity.organisation %>
+			</p>
+			<p>
+				<b>About the Competition/Event/Opportunity</b> : <%= opportunity.detail %>
+			</p>
+			<p>
+				<b>Eligibility/Prerequisites</b> : <%= opportunity.eligibility %>
+			</p>
+			<p>
+				<b>Important Dates</b>: <%= opportunity.dates %>
+			</p>
+			<% if(opportunity.process.length > 0){ %>
+			<p>
+				<b>Registration Process</b>: <%= opportunity.process %>
+			</p>
+			<% } %>
+			<p>
+				<b>Benefits/Prizes/Perks</b>: <%= opportunity.prize %>
+			</p>
+			<p>
+				<b>Contact details for more information</b> : <%= opportunity.contact %>
+			</p>
+			<div class="row">
+				<a href="/opportunities/<%= opportunity._id %>/edit">
+				<button class="btn btn-warning">Edit </button></a>
+			 <form id="delete" action="/opportunities/<%= opportunity._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+			</div>
+			
+		</div>
+		<div class="col-md-3">
+			<div class="list-group">
+  <a href="/opportunities/science" class="list-group-item list-group-item-action active">
+    Science and Technology
+  </a>
+  <a href="/opportunities/business" class="list-group-item list-group-item-action">Business, management and administration</a>
+  <a href="#" class="list-group-item list-group-item-action">Legal</a>
+  <a href="#" class="list-group-item list-group-item-action">Media and Journalism</a>
+  <a href="#" class="list-group-item list-group-item-action">Humanities</a>
+	<a href="#" class="list-group-item list-group-item-action">Commerce and Accountancy</a>
+	<a href="#" class="list-group-item list-group-item-action">School-level Opportunitities</a>
+	<a href="#" class="list-group-item list-group-item-action">Other Fields</a>
+</div>
+		</div>
+		
+	</div>
+	
+	
+</div>
+<%- include("../partials/footer") %>
