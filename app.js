@@ -6,7 +6,8 @@ const 	express = require("express"),
 	  	methodOverride = require("method-override");
 
 const 	indexRoutes = require("./routes/index"),
-	  	opportunityRoutes = require("./routes/opportunities");
+	  	opportunityRoutes = require("./routes/opportunities"),
+		exploreRoutes = require("./routes/explore");
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
@@ -21,6 +22,7 @@ app.use(methodOverride("_method"));
 
 app.use(indexRoutes);
 app.use("/opportunities",opportunityRoutes);
+app.use("/explore",exploreRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function (req,res) {

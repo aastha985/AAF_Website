@@ -1,0 +1,26 @@
+.jumbotron{
+	background: url("https://imgur.com/TB8CAcd.jpg") no-repeat;
+	background-position: center;
+	background-size: cover;
+	border-radius:0;
+	padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+	height: 80vh;
+}
+#exp{
+	color:black;
+	margin-top: 25vh;
+	font-size: 4rem;
+	margin-bottom:2rem;
+}
+@media (max-width:992px){
+	#exp{
+		font-size: 3.5rem;
+	}
+}
+@media (max-width:540px){
+	#exp{
+		font-size: 3rem;
+	}
+}
