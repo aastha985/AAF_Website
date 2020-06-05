@@ -1,0 +1,52 @@
+<%- include("../partials/header1") %>
+<link rel="stylesheet" href="/stylesheets/Navbar.css">
+<link rel="stylesheet" href="/stylesheets/new2.css">
+<link rel="stylesheet" href="/stylesheets/Buttons.css">
+<link rel="stylesheet" href="/stylesheets/Footer.css">
+	    <script src="https://cdn.tiny.cloud/1/prxad9q6l6outq7bd3usr9ml5w9gir6e12tkpreoq57ql688/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+       tinymce.init({
+			selector: 'textarea#editor',
+			menubar: false
+		  });
+</script>
+<%- include("../partials/header1b") %>
+
+<!--======================================================-->
+<div class="jumbotron">
+<!--Navbar=====================================-->
+<%- include("../partials/navbar") %>
+<!--=====================================================================-->
+<div class="container text-center">
+	<h1 id="oh1">Submit Your Creative Writing</h1>
+</div>
+</div>
+<!--=======================================================-->
+<div class="container">
+	<h1 id="oh2" class="text-center">Submit Your Creative Writing</h1>
+	<p id="p1">Note: All fields are mandatory. </p>
+	<form action="/explore" method="POST" enctype="multipart/form-data">
+		<div class="form-group">
+		<label for="formGroupExampleInput">Heading</label>
+		<input type="text" class="form-control" id="formGroupExampleInput" name="post[heading]" required>
+		  <small class="form-text text-muted">This will appear as the heading of your post</small>
+	  </div>
+		<div class="form-group">
+			<label for="exampleFormControlFile1">Upload Image</label>
+			<input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" accept="image/*" required>
+			<small class="form-text text-muted">Only .jpg/.jpeg/.png formats allowed</small>
+		</div>
+		
+		<div class="form-group">
+			<label for="content">Content</label>
+			<textarea id="editor" name="post[content]" id="content"></textarea>
+		</div>
+		<div class="text-center">
+			<button type="submit" class="btn btn-lg">Submit</button>
+		</div>
+	</form>
+</div>
+<!--========================================================-->
+<!--================================-->
+ <%- include("../partials/footer") %>
+   
