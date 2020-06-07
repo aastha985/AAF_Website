@@ -26,6 +26,7 @@ cloudinary.config({
 });
 //=====================================================================================
 
+//index route
 router.get("/",function(req,res){
 	Post.find({},function(err,Posts){
 		if(err){
@@ -38,10 +39,12 @@ router.get("/",function(req,res){
 	
 });
 
+//new route
 router.get("/new",function(req,res){
 	res.render("explore/new");
 });
 
+//create route
 router.post("/",upload.single('image'),function(req,res){
 	cloudinary.uploader.upload(req.file.path, function(result) {
   		req.body.post.image = result.secure_url;
@@ -56,5 +59,93 @@ router.post("/",upload.single('image'),function(req,res){
 		});
 	});
 });
+//show route
+router.get("/:id",function(req,res){
+	Post.findById(req.params.id,function(err,foundPost){
+		if(err){
+			console.log(err);
+			res.redirect("/explore");
+		}
+		else{
+			res.render("explore/show",{post:foundPost});
+		}
+	});
+});
 
+
+//edit route
+router.get("/:id/edit",function(req,res){
+	Post.findById(req.params.id,function(err,foundPost){
+		if(err){
+			console.log(err);
+			res.redirect("/explore");
+		}
+		else{
+			res.render("explore/edit",{post:foundPost});
+		}
+	})
+});
+//update
+router.put("/:id",function(req,res){	Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,updatedPost){
+			if(err){
+				console.log(err);
+			}
+			else{
+				res.redirect("/explore/"+req.params.id);
+			}
+		});
+});
+
+//imageedit route
+router.get("/:id/imageedit",function(req,res){
+	Post.findById(req.params.id,function(err,foundPost){
+		if(err){
+			console.log(err);
+			res.redirect("/explore");
+		}
+		else{
+			res.render("explore/imageedit",{post:foundPost});
+		}
+	});
+});
+//update route for image
+router.put("/:id/image",upload.single('image'),function(req,res){
+	Post.findById(req.params.id,function(err,post){
+		if(err){
+			console.log(err);
+		}
+		else{
+			cloudinary.v2.uploader.destroy(post.imageId);
+				if(err){
+					console.log(err);
+				}
+				else{
+					cloudinary.uploader.upload(req.file.path, function(result) {
+					post.image = result.secure_url;
+					post.imageId = result.public_id;
+					res.redirect("/explore/"+req.params.id);
+					post.save();
+					});
+				}
+		}
+	});
+});
+router.delete("/:id",function(req,res){
+	Post.findById(req.params.id,function(err,post){
+		if(err){
+			console.log(err);
+		}
+		else{		cloudinary.v2.uploader.destroy(post.imageId,function(err,deletePost){
+				if(err){
+					console.log(err);
+				}
+				else{
+					post.remove();
+					console.log("removed");
+					res.redirect("/explore");
+				}
+			});
+		}
+	});
+});
 module.exports = router;

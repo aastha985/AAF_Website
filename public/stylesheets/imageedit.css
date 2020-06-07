@@ -11,3 +11,6 @@ h1{
 .btn{
 	margin-bottom: 35vh;
 }
+.btn:hover{
+	border: 2px solid #A53692;
+}

@@ -3,7 +3,11 @@ const 	express = require("express"),
 		bodyParser = require("body-parser"),
 	  	mongoose = require("mongoose"),
 	  	Opportunity = require("./models/opportunity"),
-	  	methodOverride = require("method-override");
+	  	Post = require("./models/post"),
+	  	passport = require("passport"),
+	  	LocalStrategy = require("passport-local"),
+	  	methodOverride = require("method-override"),
+	  	User = require("./models/user");
 
 const 	indexRoutes = require("./routes/index"),
 	  	opportunityRoutes = require("./routes/opportunities"),
@@ -19,6 +23,19 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
 app.use(methodOverride("_method"));
+
+//passport configuration
+app.use(require("express-session")({
+	secret: "Rusty is cute",
+	resave: false,
+	saveUninitialized : false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use(indexRoutes);
 app.use("/opportunities",opportunityRoutes);

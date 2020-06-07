@@ -23,6 +23,9 @@ body{
 	font-size: 1.2rem;
 	margin-bottom: 1.3rem;
 }
+.btn:hover{
+	border: 2px solid #A53692;
+}
 textarea{
 	height: 50vh;
 }

@@ -2,9 +2,6 @@
 	background-color:black;
 	margin-bottom:3rem;
 }
-.img-thumbnail{
-	margin-bottom:3rem;
-}
 h2{
 	margin-bottom:1rem;
 	margin-top:1rem;
@@ -12,7 +9,6 @@ h2{
 .img-fluid{
 	display:block;
 	margin-bottom:1rem;
-	height:80vh;
 	margin-left:auto;
 	margin-right:auto;
 }

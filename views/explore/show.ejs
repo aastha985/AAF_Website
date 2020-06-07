@@ -1,0 +1,32 @@
+<%- include("../partials/header1") -%>
+<link rel="stylesheet" href="/stylesheets/Navbar.css">
+<link rel="stylesheet" href="/stylesheets/show.css">
+<link rel="stylesheet" href="/stylesheets/Footer.css">
+<%- include("../partials/header1b") -%>
+
+<%- include("../partials/navbar") %>
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<div class="card shadow p-3 mb-5 bg-white rounded">
+			<h2 class="text-center">
+				<%= post.heading %>
+			</h2>
+			<img src="<%= post.image %>" class="img-fluid text-center">
+			<a href="/explore/<%= post._id %>/imageedit">
+				<button class="btn btn-warning">Replace Image </button></a>
+			<p>
+				<%- post.content %>
+			<p>
+			<div class="row">
+				<a href="/explore/<%= post._id %>/edit">
+				<button class="btn btn-warning">Edit </button></a>
+			 <form id="delete" action="/explore/<%= post._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+<%- include("../partials/footer") %>

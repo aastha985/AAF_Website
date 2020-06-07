@@ -10,3 +10,6 @@
     color:#A53692 !important;
     background-color: white;
 }
+.btn:hover{
+	border: 2px solid #A53692;
+}

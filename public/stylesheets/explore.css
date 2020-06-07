@@ -14,6 +14,12 @@
 	font-size: 4rem;
 	margin-bottom:2rem;
 }
+.card-img-top{
+	height:40vh;
+}
+.btn:hover{
+	border: 2px solid #A53692;
+}
 @media (max-width:992px){
 	#exp{
 		font-size: 3.5rem;

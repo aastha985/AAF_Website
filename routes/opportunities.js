@@ -74,7 +74,7 @@ router.get("/:id/edit",function(req,res){
 	Opportunity.findById(req.params.id,function(err,foundOpportunity){
 		if(err){
 			console.log(err);
-			res.redirect("/science");
+			res.redirect("/opportunities");
 		}
 		else{
 			res.render("opportunities/edit",{opportunity:foundOpportunity});
@@ -83,7 +83,7 @@ router.get("/:id/edit",function(req,res){
 });
 
 //update
-router.put("/:id",upload.single('image'),function(req,res){	Opportunity.findByIdAndUpdate(req.params.id,req.body.opportunity,function(err,updatedOpportunity){
+router.put("/:id",function(req,res){	Opportunity.findByIdAndUpdate(req.params.id,req.body.opportunity,function(err,updatedOpportunity){
 			if(err){
 				console.log(err);
 			}
