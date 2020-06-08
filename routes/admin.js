@@ -31,14 +31,14 @@ cloudinary.config({
 
 
 //index route - admin dashboard
-router.get("/",function(req,res){
+router.get("/",middleware.isAdmin,function(req,res){
 	res.render("admin/index");
 	
 });
 
 //pending posts===============================================================
 //index route
-router.get("/explore",function(req,res){
+router.get("/explore",middleware.isAdmin,function(req,res){
 	Post.find({"isApproved":false},function(err,Posts){
 		if(err){
 			console.log(err);
@@ -50,7 +50,7 @@ router.get("/explore",function(req,res){
 });
 
 //show route
-router.get("/explore/:id",function(req,res){
+router.get("/explore/:id",middleware.isAdmin,function(req,res){
 	Post.findById(req.params.id,function(err,foundPost){
 		if(err|| !foundPost ){
 			console.log(err);
@@ -63,7 +63,7 @@ router.get("/explore/:id",function(req,res){
 });
 
 //update Route ====== Approve
-router.put("/explore/:id",function(req,res){
+router.put("/explore/:id",middleware.isAdmin,function(req,res){
 	Post.findById(req.params.id,req.params.post,function(err,updatePost){
 		if(err){
 			console.log(err);
@@ -77,7 +77,7 @@ router.put("/explore/:id",function(req,res){
 });
 
 //delete route ===== Delete
-router.delete("/explore/:id",function(req,res){
+router.delete("/explore/:id",middleware.isAdmin,function(req,res){
 	Post.findById(req.params.id,function(err,post){
 		if(err){
 			console.log(err);
@@ -88,7 +88,7 @@ router.delete("/explore/:id",function(req,res){
 				}
 				else{
 					post.remove();
-					console.log("removed");
+					// console.log("removed");
 					res.redirect("/admin/explore");
 				}
 			});
@@ -99,7 +99,7 @@ router.delete("/explore/:id",function(req,res){
 //===================================================================
 //pending opportunities==============================================
 //index route
-router.get("/opportunities",function(req,res){
+router.get("/opportunities",middleware.isAdmin,function(req,res){
 	Opportunity.find({"isApproved":false},function(err,Opportunities){
 		if(err){
 			console.log(err);
@@ -111,7 +111,7 @@ router.get("/opportunities",function(req,res){
 });
 
 //show route
-router.get("/opportunities/:id",function(req,res){
+router.get("/opportunities/:id",middleware.isAdmin,function(req,res){
 	Opportunity.findById(req.params.id,function(err,foundOpportunity){
 		if(err|| !foundOpportunity ){
 			console.log(err);
@@ -124,7 +124,7 @@ router.get("/opportunities/:id",function(req,res){
 });
 
 //update Route ====== Approve
-router.put("/opportunities/:id",function(req,res){
+router.put("/opportunities/:id",middleware.isAdmin,function(req,res){
 	Opportunity.findById(req.params.id,req.params.opportunity,function(err,updateOpportunity){
 		if(err){
 			console.log(err);
@@ -137,7 +137,7 @@ router.put("/opportunities/:id",function(req,res){
 	});
 });
 
-router.delete("/opportunities/:id",function(req,res){
+router.delete("/opportunities/:id",middleware.isAdmin,function(req,res){
 	Opportunity.findById(req.params.id,function(err,opportunity){
 		if(err){
 			console.log(err);
@@ -148,7 +148,7 @@ router.delete("/opportunities/:id",function(req,res){
 				}
 				else{
 					opportunity.remove();
-					console.log("removed");
+					// console.log("removed");
 					res.redirect("/admin/opportunities");
 				}
 			});
