@@ -14,8 +14,11 @@
 			</h2>
 			<img src="<%= post.image %>" class="img-fluid text-center">
 			<% if(currentUser && currentUser._id.equals(adminId)) { %>
+				<div class="row d-flex justify-content-end mx-2">
 					<a href="/explore/<%= post._id %>/imageedit">
-				<button class="btn btn-warning">Replace Image </button></a>
+				<button class="btn btn-warning btn-sm ">Replace Image </button></a>
+				</div>
+					
 			<%	} %>
 			<p>
 				<%- post.content %>
@@ -23,25 +26,39 @@
 			<p>
 				<small class="text-muted">Submitted by <%= post.author.name %></small>
 			</p>	
-			<div class="row">
+			<div class="row d-flex justify-content-end mx-2 mb-4">
 				<a href="/explore/<%= post._id %>/edit">
-				<button class="btn btn-warning">Edit </button></a>
+				<button class="btn btn-warning btn-sm">Edit </button></a>
 			
 			 <form id="delete" action="/explore/<%= post._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-danger mx-2 btn-sm">Delete</button>
             </form>
-			<%- include("./likes") -%>
-			<a class="btn btn-primary" href="/explore/<%= post._id %>/comments/new">Add Comment</a>
-			<% post.comments.forEach(function(comment){ %>
-				<div class="row">
-					<div class="col-md-12">
-						<strong><%= comment.author.name %></strong>
-						<p><%=comment.text%></p>
-					</div>
-				</div>
-			<% }); %>
 			</div>
-		</div>
+			
+			<!--=====================================-->
+			<div class="container">
+				<%- include("./likes") -%>
+				<div style=" margin:2rem auto;">
+				<form action="/explore/<%=post._id%>/comments" method="POST">
+					<div class="form-group">
+					<input type="text" name="comment[text]" placeholder="Comment . . ." class="form-control" required >
+					</div>
+					<button class="btn btn-primary d-flex justify-content-center">Add Comment</button>
+				</form>
+				</div>
+				<hr>
+				<% post.comments.forEach(function(comment){ %>
+					<div class="row">
+						<div class="col-md-12">
+							<strong><%= comment.author.name %></strong>
+							<p><%=comment.text%></p>
+						</div>
+					</div>
+				<% }); %>
+			</div>
+			<!--=====================================-->
+			
+			</div>
 		</div>
 	</div>
 </div>

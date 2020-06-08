@@ -12,8 +12,10 @@
 				<%= opportunity.heading %>
 			</h2>
 			<img src="<%= opportunity.image %>" class="img-fluid text-center">
-			<a href="/opportunities/<%= opportunity._id %>/imageedit">
-				<button class="btn btn-warning">Replace Image </button></a>
+			<div class="row d-flex justify-content-end mx-2">
+				<a href="/opportunities/<%= opportunity._id %>/imageedit">
+					<button class="btn btn-warning btn-sm my-2">Replace Image </button></a>
+			</div>
 			<p>
 				<b>About the Organisation</b>: <%= opportunity.organisation %>
 			</p>
@@ -37,11 +39,11 @@
 			<p>
 				<b>Contact details for more information</b> : <%= opportunity.contact %>
 			</p>
-			<div class="row">
+			<div class="row d-flex justify-content-end mx-2 mb-4">
 				<a href="/opportunities/<%= opportunity._id %>/edit">
-				<button class="btn btn-warning">Edit </button></a>
+				<button class="btn btn-warning btn-sm">Edit </button></a>
 			 <form id="delete" action="/opportunities/<%= opportunity._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-danger btn-sm mx-2">Delete</button>
             </form>
 			</div>
 			

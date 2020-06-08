@@ -173,7 +173,7 @@ router.delete("/:id",middleware.isAdmin,function(req,res){
 				}
 				else{
 					post.remove();
-					console.log("removed");
+					// console.log("removed");
 					res.redirect("/explore");
 				}
 			});
