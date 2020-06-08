@@ -1,7 +1,8 @@
 const 	express = require("express"),
 		router= express.Router(),
 	  	passport=require("passport"),
-	  	User = require("../models/user");
+	  	User = require("../models/user"),
+	  	middleware = require("../middleware");
 	  
 	
 	  	
@@ -16,6 +17,7 @@ router.get("/about",function(req,res){
 
 //authentication routes
 
+//show register form
 router.get("/register",function(req,res){
 	res.render("register");
 });
@@ -36,5 +38,23 @@ router.post("/register",function(req,res){
 	});
 });
 
+//show login form
+router.get("/login",function(req,res){
+	res.render("login");
+});
+
+//handle log in logic
+router.post("/login",passport.authenticate("local",{
+	successRedirect: "/",
+	failureRedirect: "/login"}),
+	function(req,res){
+});
+
+//logout route
+router.get("/logout",function(req,res){
+	req.logout();
+	res.redirect("/");
+	
+});
 module.exports = router;
 	  

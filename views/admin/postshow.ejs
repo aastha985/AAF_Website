@@ -1,0 +1,34 @@
+<%- include("../partials/header1") -%>
+<link rel="stylesheet" href="/stylesheets/Navbar.css">
+<link rel="stylesheet" href="/stylesheets/show.css">
+<link rel="stylesheet" href="/stylesheets/Footer.css">
+<%- include("../partials/header1b") -%>
+
+<%- include("../partials/navbar") %>
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<div class="card shadow p-3 mb-5 bg-white rounded">
+			<h2 class="text-center">
+				<%= post.heading %>
+			</h2>
+			<img src="<%= post.image %>" class="img-fluid text-center">
+			<p>
+				<%- post.content %>
+			<p>
+			<p>
+				<small class="text-muted">Submitted by <%= post.author.name %></small>
+			</p>
+			<div class="row">
+				 <form id="delete" action="/admin/explore/<%= post._id %>?_method=DELETE" method="POST">
+					<button class="btn btn-danger">Delete</button>
+				</form>
+				<form id="approve" action="/admin/explore/<%= post._id %>?_method=PUT" method="POST">
+					<input type="submit" class="btn btn-success" value="Approve">
+				</form>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+<%- include("../partials/footer") %>

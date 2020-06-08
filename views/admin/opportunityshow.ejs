@@ -1,0 +1,97 @@
+<%- include("../partials/header1") -%>
+<link rel="stylesheet" href="/stylesheets/Navbar.css">
+<link rel="stylesheet" href="/stylesheets/show.css">
+<link rel="stylesheet" href="/stylesheets/Footer.css">
+<%- include("../partials/header1b") -%>
+
+<%- include("../partials/navbar") %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-9 card shadow p-3 mb-5 bg-white rounded" >
+			<h2 class="text-center">
+				<%= opportunity.heading %>
+			</h2>
+			<img src="<%= opportunity.image %>" class="img-fluid text-center">
+			<p>
+				<b>About the Organisation</b>: <%= opportunity.organisation %>
+			</p>
+			<p>
+				<b>About the Competition/Event/Opportunity</b> : <%= opportunity.detail %>
+			</p>
+			<p>
+				<b>Eligibility/Prerequisites</b> : <%= opportunity.eligibility %>
+			</p>
+			<p>
+				<b>Important Dates</b>: <%= opportunity.dates %>
+			</p>
+			<% if(opportunity.process.length > 0){ %>
+			<p>
+				<b>Registration Process</b>: <%= opportunity.process %>
+			</p>
+			<% } %>
+			<p>
+				<b>Benefits/Prizes/Perks</b>: <%= opportunity.prize %>
+			</p>
+			<p>
+				<b>Contact details for more information</b> : <%= opportunity.contact %>
+			</p>
+			<div class="row">
+				 <form id="delete" action="/admin/opportunities/<%= opportunity._id %>?_method=DELETE" method="POST">
+					<button class="btn btn-danger">Delete</button>
+				</form>
+				<form id="approve" action="/admin/opportunities/<%= opportunity._id %>?_method=PUT" method="POST">
+					<input type="submit" class="btn btn-success" value="Approve">
+				</form>
+			</div>
+			
+		</div>
+		<div class="col-md-3">
+			<div class="list-group">
+<% if(opportunity.category==1){ %>
+  <a href="/opportunities/science" class="list-group-item list-group-item-action active">Science and Technology</a>
+	<%	} else{ %>
+	<a href="/opportunities/science" class="list-group-item list-group-item-action">Science and Technology</a>			
+	<% } %>
+<% if(opportunity.category==2){ %>
+  <a href="/opportunities/business" class="list-group-item list-group-item-action active">Business, management andadministration</a>
+		<% } else{ %>
+<a href="/opportunities/business" class="list-group-item list-group-item-action">Business, management and administration</a>	
+				<% } %>
+<% if(opportunity.category==3){ %>
+  <a href="/opportunities/legal" class="list-group-item list-group-item-action active">Legal</a>
+				<% } else{ %>
+	<a href="/opportunities/legal" class="list-group-item list-group-item-action">Legal</a>
+	<% } %>
+<% if(opportunity.category==4){ %>
+  <a href="/opportunities/media" class="list-group-item list-group-item-action active">Media and Journalism</a>
+				<% } else { %>
+<a href="/opportunities/media" class="list-group-item list-group-item-action">Media and Journalism</a>
+	<% } %>
+<% if(opportunity.category==5){ %>
+  <a href="/opportunities/humanities" class="list-group-item list-group-item-action active">Humanities</a>
+				<% } else{ %>
+<a href="/opportunities/humanities" class="list-group-item list-group-item-action">Humanities</a>
+	<% } %>
+<% if(opportunity.category==6){ %>
+	<a href="/opportunities/commerce" class="list-group-item list-group-item-action active">Commerce and Accountancy</a>
+				<% } else{ %>
+	<a href="/opportunities/commerce" class="list-group-item list-group-item-action">Commerce and Accountancy</a>
+	<% } %>
+<% if(opportunity.category==7){ %>
+	<a href="/opportunities/school" class="list-group-item list-group-item-action active">School-level Opportunitities</a>
+				<% } else{ %>
+	<a href="/opportunities/school" class="list-group-item list-group-item-action">School-level Opportunitities</a>
+	<% } %>
+<% if(opportunity.category==8){ %>
+	<a href="/opportunities/other" class="list-group-item list-group-item-action active">Other Fields</a>
+				<% } else{ %>
+	<a href="/opportunities/other" class="list-group-item list-group-item-action">Other Fields</a>
+	<% } %>
+</div>
+		</div>
+		
+	</div>
+	
+	
+</div>
+<%- include("../partials/footer") %>

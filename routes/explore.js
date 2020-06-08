@@ -1,6 +1,8 @@
 const 	express = require("express"),
 	  	router = express.Router(),
-		Post = require("../models/post");
+		Post = require("../models/post"),
+	  	Comment = require("../models/comment"),
+		middleware = require("../middleware");
 
 //multer setup=====================================================================
 var multer = require('multer');
@@ -28,7 +30,7 @@ cloudinary.config({
 
 //index route
 router.get("/",function(req,res){
-	Post.find({},function(err,Posts){
+	Post.find({"isApproved":true},function(err,Posts){
 		if(err){
 			console.log(err);
 		}
@@ -40,7 +42,7 @@ router.get("/",function(req,res){
 });
 
 //new route
-router.get("/new",function(req,res){
+router.get("/new",middleware.isLoggedIn,function(req,res){
 	res.render("explore/new");
 });
 
@@ -49,6 +51,7 @@ router.post("/",upload.single('image'),function(req,res){
 	cloudinary.uploader.upload(req.file.path, function(result) {
   		req.body.post.image = result.secure_url;
 		req.body.post.imageId = result.public_id;
+		req.body.post.author = req.user;
 		Post.create(req.body.post,function(err,newPost){
 			if(err){
 				console.log(err);
@@ -61,8 +64,8 @@ router.post("/",upload.single('image'),function(req,res){
 });
 //show route
 router.get("/:id",function(req,res){
-	Post.findById(req.params.id,function(err,foundPost){
-		if(err){
+	Post.findById(req.params.id).populate("comments likes").exec(function(err,foundPost){
+		if(err || !foundPost){
 			console.log(err);
 			res.redirect("/explore");
 		}
@@ -72,9 +75,38 @@ router.get("/:id",function(req,res){
 	});
 });
 
+//post like route
+router.post("/:id/like",middleware.isLoggedIn,function(req,res){
+	Post.findById(req.params.id,function(err,foundPost){
+		if(err){
+			console.log(err);
+			return res.redirect("/explore");
+		}
+		else{
+			var foundUserLike = foundPost.likes.some(function (like) {
+				return like.equals(req.user._id);
+			});
+			if (foundUserLike) {
+            // user already liked, removing like
+				foundPost.likes.pull(req.user._id);
+			} 
+			else {
+				// adding the new user like
+				foundPost.likes.push(req.user);
+			}
+			foundPost.save(function (err) {
+            if (err) {
+                console.log(err);
+                return res.redirect("/explore");
+            }
+            return res.redirect("/explore/" + foundPost._id);
+        });
+		}
+	});
+});
 
 //edit route
-router.get("/:id/edit",function(req,res){
+router.get("/:id/edit",middleware.isAdmin,function(req,res){
 	Post.findById(req.params.id,function(err,foundPost){
 		if(err){
 			console.log(err);
@@ -86,7 +118,7 @@ router.get("/:id/edit",function(req,res){
 	})
 });
 //update
-router.put("/:id",function(req,res){	Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,updatedPost){
+router.put("/:id",middleware.isAdmin,function(req,res){	Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,updatedPost){
 			if(err){
 				console.log(err);
 			}
@@ -97,7 +129,7 @@ router.put("/:id",function(req,res){	Post.findByIdAndUpdate(req.params.id,req.bo
 });
 
 //imageedit route
-router.get("/:id/imageedit",function(req,res){
+router.get("/:id/imageedit",middleware.isAdmin,function(req,res){
 	Post.findById(req.params.id,function(err,foundPost){
 		if(err){
 			console.log(err);
@@ -109,7 +141,7 @@ router.get("/:id/imageedit",function(req,res){
 	});
 });
 //update route for image
-router.put("/:id/image",upload.single('image'),function(req,res){
+router.put("/:id/image",middleware.isAdmin,upload.single('image'),function(req,res){
 	Post.findById(req.params.id,function(err,post){
 		if(err){
 			console.log(err);
@@ -130,7 +162,7 @@ router.put("/:id/image",upload.single('image'),function(req,res){
 		}
 	});
 });
-router.delete("/:id",function(req,res){
+router.delete("/:id",middleware.isAdmin,function(req,res){
 	Post.findById(req.params.id,function(err,post){
 		if(err){
 			console.log(err);

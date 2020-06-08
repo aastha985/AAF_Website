@@ -3,7 +3,7 @@ const express = require("express"),
 	  Opportunity = require("../models/opportunity");
 //index routes
 router.get("/science",function(req,res){
-	Opportunity.find({"category":1},function(err,Opportunities){
+	Opportunity.find({"isApproved":true,"category":1},function(err,Opportunities){
 		if(err){
 			console.log(err);
 		}
@@ -15,7 +15,7 @@ router.get("/science",function(req,res){
 	
 });
 router.get("/business",function(req,res){
-	Opportunity.find({"category":2},function(err,Opportunities){
+	Opportunity.find({"isApproved":true,"category":2},function(err,Opportunities){
 		if(err){
 			console.log(err);
 		}
@@ -26,7 +26,7 @@ router.get("/business",function(req,res){
 });
 //index route
 router.get("/legal",function(req,res){
-	Opportunity.find({"category":3},function(err,Opportunities){
+	Opportunity.find({"isApproved":true,"category":3},function(err,Opportunities){
 		if(err){
 			console.log(err);
 		}
@@ -37,7 +37,7 @@ router.get("/legal",function(req,res){
 });
 
 router.get("/media",function(req,res){
-	Opportunity.find({"category":4},function(err,Opportunities){
+	Opportunity.find({"isApproved":true,"category":4},function(err,Opportunities){
 		if(err){
 			console.log(err);
 		}
@@ -47,7 +47,7 @@ router.get("/media",function(req,res){
 	});
 });
 router.get("/humanities",function(req,res){
-	Opportunity.find({"category":5},function(err,Opportunities){
+	Opportunity.find({"isApproved":true,"category":5},function(err,Opportunities){
 		if(err){
 			console.log(err);
 		}
@@ -57,7 +57,7 @@ router.get("/humanities",function(req,res){
 	});
 });
 router.get("/commerce",function(req,res){
-	Opportunity.find({"category":6},function(err,Opportunities){
+	Opportunity.find({"isApproved":true,"category":6},function(err,Opportunities){
 		if(err){
 			console.log(err);
 		}
@@ -67,7 +67,7 @@ router.get("/commerce",function(req,res){
 	});
 });
 router.get("/school",function(req,res){
-	Opportunity.find({"category":7},function(err,Opportunities){
+	Opportunity.find({"isApproved":true,"category":7},function(err,Opportunities){
 		if(err){
 			console.log(err);
 		}
@@ -77,7 +77,7 @@ router.get("/school",function(req,res){
 	});
 });
 router.get("/other",function(req,res){
-	Opportunity.find({"category":8},function(err,Opportunities){
+	Opportunity.find({"isApproved":true,"category":8},function(err,Opportunities){
 		if(err){
 			console.log(err);
 		}

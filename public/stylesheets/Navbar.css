@@ -10,7 +10,7 @@ body{
 }
 .nav-item{
     text-transform: uppercase;
-    padding-left:1.5rem;
+    padding-left:0.5rem;
     z-index:1;
     position: relative;
 }

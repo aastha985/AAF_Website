@@ -1,0 +1,18 @@
+<form action="/explore/<%= post._id %>/like" method="POST">
+	<div class="btn-group">
+		<% if(currentUser && post.likes.some(function(like){
+			if(like!=null)
+			return like.equals(currentUser._id)
+		})) { %>
+		<button class="btn btn-danger"><i class="fas fa-heart"></i></button>
+		<% } else { %>
+		<button class="btn btn-light" ><i class="fas fa-heart"></i></button>
+		<% } if(post.likes==null){ %>
+		<button class="btn btn-danger">0 Likes</button>
+		<% } else if(post.likes.length==1){ %>
+		<button class="btn btn-danger">1 Like</button>
+		<% } else { %>
+		<button class="btn btn-danger"><%= post.likes.length %> Likes</button>
+		<% } %>
+	</div>
+</form>

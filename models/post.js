@@ -4,7 +4,33 @@ var postSchema = new mongoose.Schema({
 	heading:String,
 	image: String,
 	imageId: String,
-	content: String
+	content: String,
+	author:{
+		id:{
+			type:mongoose.Schema.Types.ObjectId,
+			ref: "User"
+		},
+		username:String,
+		name: String
+	},
+	comments:[
+		{
+			type:mongoose.Schema.Types.ObjectId,
+			ref:"Comment"
+		}
+	],
+	likes:[
+		{
+			type:mongoose.Schema.Types.ObjectId,
+			ref:"User"
+		}
+	],
+	isApproved:
+		{
+			type:Boolean,
+			default:false
+		}
+	
 });
 
 var Post = mongoose.model("Post",postSchema);

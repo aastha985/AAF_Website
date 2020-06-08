@@ -13,17 +13,33 @@
 				<%= post.heading %>
 			</h2>
 			<img src="<%= post.image %>" class="img-fluid text-center">
-			<a href="/explore/<%= post._id %>/imageedit">
+			<% if(currentUser && currentUser._id.equals(adminId)) { %>
+					<a href="/explore/<%= post._id %>/imageedit">
 				<button class="btn btn-warning">Replace Image </button></a>
+			<%	} %>
 			<p>
 				<%- post.content %>
 			<p>
+			<p>
+				<small class="text-muted">Submitted by <%= post.author.name %></small>
+			</p>	
 			<div class="row">
 				<a href="/explore/<%= post._id %>/edit">
 				<button class="btn btn-warning">Edit </button></a>
+			
 			 <form id="delete" action="/explore/<%= post._id %>?_method=DELETE" method="POST">
                 <button class="btn btn-danger">Delete</button>
             </form>
+			<%- include("./likes") -%>
+			<a class="btn btn-primary" href="/explore/<%= post._id %>/comments/new">Add Comment</a>
+			<% post.comments.forEach(function(comment){ %>
+				<div class="row">
+					<div class="col-md-12">
+						<strong><%= comment.author.name %></strong>
+						<p><%=comment.text%></p>
+					</div>
+				</div>
+			<% }); %>
 			</div>
 		</div>
 		</div>

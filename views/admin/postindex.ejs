@@ -1,0 +1,34 @@
+<%- include("../partials/header1") %>
+<link rel="stylesheet" href="/stylesheets/Navbar.css">
+<link rel="stylesheet" href="/stylesheets/Buttons.css">
+<link rel="stylesheet" href="/stylesheets/admin.css">
+<link rel="stylesheet" href="/stylesheets/Footer.css">
+<%- include("../partials/header1b") %>
+<%- include("../partials/navbar") %>
+
+<div class="container">
+	<div class="row d-flex justify-content-center">
+		<h1 id="c2">Pending Posts</h1>
+	</div>
+	<% if(posts.length == 0){ %>
+		<div class="container">
+			<div class="alert alert-info" role="alert">
+			 No pending posts
+			</div>
+		</div>
+	<% } %>
+	<div class="row">
+	<% posts.forEach(function(post){  %>
+		<div class="col-md-4">
+			<div class="img-thumbnail shadow p-3 mb-5 bg-white rounded">
+				  <img src="<%= post.image %>" class="card-img-top" alt="...">
+				  <div class="card-body">
+					<h5 class="card-title"><%= post.heading %></h5>
+					<a href="/admin/explore/<%= post._id %>" class="btn">Read More</a>
+				  </div>
+			</div>
+		</div>
+	<%  }); %>
+	</div>
+</div>
+<%- include("../partials/footer") %>

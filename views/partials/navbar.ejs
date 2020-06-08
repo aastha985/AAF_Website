@@ -18,6 +18,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/explore">Explore</a>
                 </li>
+				<% if(!currentUser){ %>
+					<li class="nav-item">
+						<a class="nav-link" href="/register">Sign Up</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/login">Log In</a>
+					</li>
+				<% }else{ %>
+				<% if(currentUser._id.equals(adminId)){ %>
+					<li class="nav-item">
+						<a class="nav-link" href="/admin">Admin Dashboard</a>
+					</li>
+				<% } %>
+					<li class="nav-item">
+						<a class="nav-link" href="/logout">Log Out</a>
+					</li>
+				<% } %>
+				
             </ul>
             </div>
           </div>
