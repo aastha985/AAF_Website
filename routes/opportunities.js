@@ -1,6 +1,7 @@
 const express = require("express"),
 	  router = express.Router(),
-	  Opportunity = require("../models/opportunity");
+	  Opportunity = require("../models/opportunity"),
+	  middleware = require("../middleware");
 
 const OpportunityindexRoutes = require("./opportunitiesindex");
 //multer setup=====================================================================
@@ -32,12 +33,12 @@ router.get("/",function(req,res){
 });
 
 //New route
-router.get("/new",function(req,res){
+router.get("/new",middleware.isLoggedIn,function(req,res){
 	res.render("opportunities/new");
 });
 
 //Create route
-router.post("/",upload.single('image'),function(req,res){
+router.post("/",middleware.isLoggedIn,upload.single('image'),function(req,res){
 	cloudinary.uploader.upload(req.file.path, function(result) {
   		req.body.opportunity.image = result.secure_url;
 		req.body.opportunity.imageId = result.public_id;
@@ -70,7 +71,7 @@ router.get("/:id",function(req,res){
 });
 
 //edit route
-router.get("/:id/edit",function(req,res){
+router.get("/:id/edit",middleware.isAdmin,function(req,res){
 	Opportunity.findById(req.params.id,function(err,foundOpportunity){
 		if(err){
 			console.log(err);
@@ -83,7 +84,7 @@ router.get("/:id/edit",function(req,res){
 });
 
 //update
-router.put("/:id",function(req,res){	Opportunity.findByIdAndUpdate(req.params.id,req.body.opportunity,function(err,updatedOpportunity){
+router.put("/:id",middleware.isAdmin,function(req,res){	Opportunity.findByIdAndUpdate(req.params.id,req.body.opportunity,function(err,updatedOpportunity){
 			if(err){
 				console.log(err);
 			}
@@ -94,7 +95,7 @@ router.put("/:id",function(req,res){	Opportunity.findByIdAndUpdate(req.params.id
 });
 
 //edit for image
-router.get("/:id/imageedit",function(req,res){
+router.get("/:id/imageedit",middleware.isAdmin,function(req,res){
 	Opportunity.findById(req.params.id,function(err,foundOpportunity){
 		if(err){
 			console.log(err);
@@ -106,7 +107,7 @@ router.get("/:id/imageedit",function(req,res){
 	});
 });
 //update route for image
-router.put("/:id/image",upload.single('image'),function(req,res){
+router.put("/:id/image",middleware.isAdmin,upload.single('image'),function(req,res){
 	Opportunity.findById(req.params.id,function(err,opportunity){
 		if(err){
 			console.log(err);
@@ -129,7 +130,7 @@ router.put("/:id/image",upload.single('image'),function(req,res){
 });
 
 //delete
-router.delete("/:id",function(req,res){
+router.delete("/:id",middleware.isAdmin,function(req,res){
 	Opportunity.findById(req.params.id,function(err,opportunity){
 		if(err){
 			console.log(err);
@@ -140,7 +141,7 @@ router.delete("/:id",function(req,res){
 				}
 				else{
 					opportunity.remove();
-					console.log("removed");
+					// console.log("removed");
 					res.redirect("/opportunities");
 				}
 			});

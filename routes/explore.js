@@ -47,7 +47,7 @@ router.get("/new",middleware.isLoggedIn,function(req,res){
 });
 
 //create route
-router.post("/",upload.single('image'),function(req,res){
+router.post("/",middleware.isLoggedIn,upload.single('image'),function(req,res){
 	cloudinary.uploader.upload(req.file.path, function(result) {
   		req.body.post.image = result.secure_url;
 		req.body.post.imageId = result.public_id;
