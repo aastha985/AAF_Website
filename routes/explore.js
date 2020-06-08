@@ -162,22 +162,31 @@ router.put("/:id/image",middleware.isAdmin,upload.single('image'),function(req,r
 		}
 	});
 });
+
+
 router.delete("/:id",middleware.isAdmin,function(req,res){
-	Post.findById(req.params.id,function(err,post){
+	Post.findById(req.params.id,async function(err,post){
 		if(err){
 			console.log(err);
+			return res.redirect("/explore");
 		}
-		else{		cloudinary.v2.uploader.destroy(post.imageId,function(err,deletePost){
-				if(err){
-					console.log(err);
-				}
-				else{
-					post.remove();
-					// console.log("removed");
-					res.redirect("/explore");
-				}
-			});
+		try{		
+			await cloudinary.v2.uploader.destroy(post.imageId);
+			await Comment.deleteMany({
+      			_id: {
+        		$in: post.comments
+      			}
+    		});
+			post.remove();
+			return res.redirect("/explore");
 		}
+		catch(err){
+			if(err){
+				console.log(err);
+				return res.redirect("/explore");
+			}
+	}
 	});
 });
+
 module.exports = router;

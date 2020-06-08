@@ -37,7 +37,7 @@
 			</p>
 			<div class="row">
 				 <form id="delete" action="/admin/opportunities/<%= opportunity._id %>?_method=DELETE" method="POST">
-					<button class="btn btn-danger">Delete</button>
+					<button class="btn btn-danger mx-2">Delete</button>
 				</form>
 				<form id="approve" action="/admin/opportunities/<%= opportunity._id %>?_method=PUT" method="POST">
 					<input type="submit" class="btn btn-success" value="Approve">

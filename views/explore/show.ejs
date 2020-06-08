@@ -45,7 +45,7 @@
 					<div class="form-group">
 					<input type="text" name="comment[text]" placeholder="Comment . . ." class="form-control" required >
 					</div>
-					<button class="btn btn-primary d-flex justify-content-center">Add Comment</button>
+					<button class="btn btn-primary d-flex justify-content-center">Add Comment </button>
 				</form>
 				</div>
 				<hr>
@@ -53,7 +53,16 @@
 					<div class="row">
 						<div class="col-md-12">
 							<strong><%= comment.author.name %></strong>
-							<p><%=comment.text%></p>
+							<div class="mb-3"><%=comment.text%> 
+							<% if(currentUser && currentUser._id.equals(adminId)) { %>
+							<form action="/explore/<%= post._id %>/comments/<%= comment._id%>?_method=DELETE" method="POST" id="inl">
+								<button class="btn btn-sm btn-danger ml-2">
+									<i class="fas fa-trash-alt"></i>
+								</button>	
+							</form>
+							<%	} %>
+							</div>
+							
 						</div>
 					</div>
 				<% }); %>

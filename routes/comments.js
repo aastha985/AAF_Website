@@ -41,5 +41,16 @@ router.post("/",middleware.isLoggedIn,function(req,res){
 	});
 });
 
+router.delete("/:comment_id",middleware.isAdmin,function(req,res){
+	Comment.findByIdAndRemove(req.params.comment_id,function(err){
+		if(err){
+			res.redirect("/explore/"+req.params.id);
+		}
+		else{
+			res.redirect("/explore/"+req.params.id);
+		}
+	});
+});
+
 module.exports = router;
 	  
