@@ -23,9 +23,10 @@
 			<p>
 				<%- post.content %>
 			<p>
-			<p>
-				<small class="text-muted">Submitted by <%= post.author.name %></small>
-			</p>	
+				<div class="text-right mr-5">
+				<p class="text-muted">Submitted by <%= post.author.name %></p>
+				</div>	
+			<% if(currentUser && currentUser._id.equals(adminId)) { %>
 			<div class="row d-flex justify-content-end mx-2 mb-4">
 				<a href="/explore/<%= post._id %>/edit">
 				<button class="btn btn-warning btn-sm">Edit </button></a>
@@ -34,6 +35,7 @@
                 <button class="btn btn-danger mx-2 btn-sm">Delete</button>
             </form>
 			</div>
+			<%	} %>
 			
 			<!--=====================================-->
 			<div class="container">

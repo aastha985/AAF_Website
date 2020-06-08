@@ -1,5 +1,5 @@
 <form action="/explore/<%= post._id %>/like" method="POST">
-	<div class="btn-group">
+	<div class="btn-group mt-4">
 		<% if(currentUser && post.likes.some(function(like){
 			if(like!=null)
 			return like.equals(currentUser._id)
