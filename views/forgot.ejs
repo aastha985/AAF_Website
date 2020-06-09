@@ -1,0 +1,29 @@
+<%- include("./partials/header1") %>
+<link rel="stylesheet" href="/stylesheets/Navbar.css">
+<link rel="stylesheet" href="/stylesheets/register.css">
+<link rel="stylesheet" href="/stylesheets/Footer.css">
+<%- include("./partials/header1b") %>
+<div class="jumbotron">
+	<%- include("./partials/navbar") %>
+</div>
+<!--===================================================-->
+<div class="container" style="margin-top: -3rem; margin-bottom:-3rem;">
+<%- include("./partials/flash") %>
+</div>
+<!--===================================================-->
+<div class="container last">
+		<div class="text-center">
+			<h2 id="signh" class="mt-5 pt-5">Forgot Password</h2>
+			<form action="/forgot" method="POST">
+				<div class="form-group">
+					<input type="email" class="form-control" name="username" placeholder="Email address" required>
+				</div>
+				<button class="btn mb-3 mt-2">
+					Reset Password
+				</button>
+				<a href="/login" style="float:right">Back to Login</a>
+			</form>
+		</div>
+</div>
+
+<%- include("./partials/footer") %>

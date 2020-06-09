@@ -6,7 +6,11 @@ const 	express = require("express"),
 
 router.get("/new",middleware.isLoggedIn,function(req,res){
 	Post.findById(req.params.id,function(err,foundPost){
-		if(err) console.log(err);
+		if(err){
+			console.log(err);
+			
+			return res.redirect("/explore");
+		}
 		else{
 			res.render("explore/comments/new",{post:foundPost});
 		}
@@ -18,6 +22,7 @@ router.post("/",middleware.isLoggedIn,function(req,res){
 	Post.findById(req.params.id,function(err,post){
 		if(err){
 			console.log(err);
+			req.flash("error","Could not post your comment");
 			res.redirect("/explore");
 		}else{
 			// create a new comment 
@@ -34,7 +39,8 @@ router.post("/",middleware.isLoggedIn,function(req,res){
 					//connect new comment to campground
 					post.comments.push(comment);
 					post.save();
-					res.redirect("/explore/"+post._id);
+					req.flash("success","Comment added");
+					return res.redirect("/explore/"+post._id);
 				}
 			});
 		}
@@ -44,10 +50,12 @@ router.post("/",middleware.isLoggedIn,function(req,res){
 router.delete("/:comment_id",middleware.isAdmin,function(req,res){
 	Comment.findByIdAndRemove(req.params.comment_id,function(err){
 		if(err){
-			res.redirect("/explore/"+req.params.id);
+			req.flash("error","Could not delete comment");
+			return res.redirect("/explore/"+req.params.id);
 		}
 		else{
-			res.redirect("/explore/"+req.params.id);
+			req.flash("success","Successfully Deleted Comment");
+			return res.redirect("/explore/"+req.params.id);
 		}
 	});
 });

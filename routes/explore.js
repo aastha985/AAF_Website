@@ -67,7 +67,8 @@ router.get("/:id",function(req,res){
 	Post.findById(req.params.id).populate("comments likes").exec(function(err,foundPost){
 		if(err || !foundPost){
 			console.log(err);
-			res.redirect("/explore");
+			req.flash("error","Could not display the Post");
+			return res.redirect("/explore");
 		}
 		else{
 			res.render("explore/show",{post:foundPost});
@@ -80,6 +81,7 @@ router.post("/:id/like",middleware.isLoggedIn,function(req,res){
 	Post.findById(req.params.id,function(err,foundPost){
 		if(err){
 			console.log(err);
+			req.flash("error","Could not like the post");
 			return res.redirect("/explore");
 		}
 		else{
@@ -88,17 +90,21 @@ router.post("/:id/like",middleware.isLoggedIn,function(req,res){
 			});
 			if (foundUserLike) {
             // user already liked, removing like
+				req.flash("success","Post Uniked");
 				foundPost.likes.pull(req.user._id);
 			} 
 			else {
 				// adding the new user like
+				req.flash("success","Post Liked!");
 				foundPost.likes.push(req.user);
 			}
 			foundPost.save(function (err) {
             if (err) {
                 console.log(err);
+				req.flash("error","Could not like the post");
                 return res.redirect("/explore");
             }
+			
             return res.redirect("/explore/" + foundPost._id);
         });
 		}
@@ -110,7 +116,8 @@ router.get("/:id/edit",middleware.isAdmin,function(req,res){
 	Post.findById(req.params.id,function(err,foundPost){
 		if(err){
 			console.log(err);
-			res.redirect("/explore");
+			req.flash("error","Cannot find the Post");
+			return res.redirect("/explore");
 		}
 		else{
 			res.render("explore/edit",{post:foundPost});
@@ -123,7 +130,8 @@ router.put("/:id",middleware.isAdmin,function(req,res){	Post.findByIdAndUpdate(r
 				console.log(err);
 			}
 			else{
-				res.redirect("/explore/"+req.params.id);
+				req.flash("success","Post updated successfully");
+				return res.redirect("/explore/"+req.params.id);
 			}
 		});
 });
@@ -155,8 +163,10 @@ router.put("/:id/image",middleware.isAdmin,upload.single('image'),function(req,r
 					cloudinary.uploader.upload(req.file.path, function(result) {
 					post.image = result.secure_url;
 					post.imageId = result.public_id;
-					res.redirect("/explore/"+req.params.id);
 					post.save();
+					req.flash("success","Image Replaced!");
+					return res.redirect("/explore/"+req.params.id);
+					
 					});
 				}
 		}
@@ -178,6 +188,7 @@ router.delete("/:id",middleware.isAdmin,function(req,res){
       			}
     		});
 			post.remove();
+			req.flash("success","Post deleted successfully!");
 			return res.redirect("/explore");
 		}
 		catch(err){

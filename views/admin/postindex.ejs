@@ -10,9 +10,12 @@
 	<div class="row d-flex justify-content-center">
 		<h1 id="c2">Pending Posts</h1>
 	</div>
+	<div class="container">
+		<%- include("../partials/flash") %>
+	</div>
 	<% if(posts.length == 0){ %>
 		<div class="container">
-			<div class="alert alert-info" role="alert">
+			<div class="alert alert-info padbott" role="alert">
 			 No pending posts
 			</div>
 		</div>

@@ -7,7 +7,8 @@ middlewareObj.isLoggedIn = function(req,res,next){
 	if(req.isAuthenticated()){
 		return next();
 	}
-	res.redirect("/login");
+	req.flash("error","Please login first");
+	return res.redirect("/login");
 }
 middlewareObj.isAdmin = function(req,res,next){
 	if(req.isAuthenticated()){
@@ -15,11 +16,13 @@ middlewareObj.isAdmin = function(req,res,next){
 			next();
 		}
 		else{
-			return res.redirect("back");
+			req.flash("error","You don't have permission to do that");
+			return res.redirect("/explore");
 		}
 	}
 	else{
-		res.redirect("/login");
+		req.flash("error","Please login first");
+		return res.redirect("/login");
 	}
 }
 

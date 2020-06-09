@@ -1,0 +1,32 @@
+<%- include("./partials/header1") %>
+<link rel="stylesheet" href="/stylesheets/Navbar.css">
+<link rel="stylesheet" href="/stylesheets/register.css">
+<!-- <link rel="stylesheet" href="/stylesheets/Buttons.css"> -->
+<link rel="stylesheet" href="/stylesheets/Footer.css">
+<%- include("./partials/header1b") %>
+<div class="jumbotron">
+	<%- include("./partials/navbar") %>
+</div>
+<!--===================================================-->
+<div class="container mb-3" style="margin-top: -3rem;">
+<%- include("./partials/flash") %>
+</div>
+<!--===================================================-->
+<div class="container last">
+		<div class="text-center">
+			<h2 id="signh">Reset Password</h2>
+			<form action="/reset/<%= token %>" method="POST">
+				<div class="form-group">
+					<input type="password" class="form-control" name="password" placeholder="New Password" required>
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" name="confirm" placeholder="Confirm Password" required>
+				</div>
+				<button class="btn btn-lg mb-3">
+					Update Password
+				</button>
+			</form>
+		</div>
+</div>
+
+<%- include("./partials/footer") %>

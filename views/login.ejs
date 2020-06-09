@@ -1,26 +1,33 @@
 <%- include("./partials/header1") %>
 <link rel="stylesheet" href="/stylesheets/Navbar.css">
 <link rel="stylesheet" href="/stylesheets/register.css">
-<link rel="stylesheet" href="/stylesheets/Buttons.css">
+<!-- <link rel="stylesheet" href="/stylesheets/Buttons.css"> -->
 <link rel="stylesheet" href="/stylesheets/Footer.css">
 <%- include("./partials/header1b") %>
 <div class="jumbotron">
 	<%- include("./partials/navbar") %>
 </div>
-
-<div class="container">
+<!--===================================================-->
+<div class="container mb-3" style="margin-top: -3rem;">
+<%- include("./partials/flash") %>
+</div>
+<!--===================================================-->
+<div class="container last">
 		<div class="text-center">
-			<h2 id="signh">Log In</h2>
-			<form action="/login" method="POST">
+			<h2 id="signh">Login</h2>
+			<form action="/forgot" method="POST">
 				<div class="form-group">
 					<input type="email" class="form-control" name="username" placeholder="Email address" required>
 				</div>
 				<div class="form-group">
 					<input type="password" class="form-control" name="password" placeholder="Password" required>
 				</div>
-				<button class="btn btn-lg">
+				<a href="/forgot" style="float:left" class="mb-2">Forgot Password?</a>
+				<a href="/register" style="float:right">Sign Up</a>
+				<button class="btn btn-lg mb-3">
 					Submit
 				</button>
+				
 			</form>
 		</div>
 </div>

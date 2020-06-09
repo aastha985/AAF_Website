@@ -34,10 +34,27 @@ form{
 }
 .btn{
 	width:35vw;
-	margin-bottom: 30vh!important;
+	/*  */
 }
 #signh{
 	margin-bottom: 3vh;
+}
+.btn{
+	background-color: #A53692;
+    border:0;
+    color:white!important;
+	font-weight:600;
+    /* margin-bottom: 3rem; */
+}
+.last{
+	margin-bottom: 30vh!important;
+}
+.btn:hover{
+    color:#A53692 !important;
+    background-color: white;
+}
+.btn:hover{
+	border: 2px solid #A53692;
 }
 @media (max-width:768px){
 	.btn{

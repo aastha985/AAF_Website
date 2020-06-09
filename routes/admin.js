@@ -33,7 +33,6 @@ cloudinary.config({
 //index route - admin dashboard
 router.get("/",middleware.isAdmin,function(req,res){
 	res.render("admin/index");
-	
 });
 
 //pending posts===============================================================
@@ -42,6 +41,7 @@ router.get("/explore",middleware.isAdmin,function(req,res){
 	Post.find({"isApproved":false},function(err,Posts){
 		if(err){
 			console.log(err);
+			return res.redirect("/admin");
 		}
 		else{
 			res.render("admin/postindex",{posts:Posts});
@@ -67,11 +67,13 @@ router.put("/explore/:id",middleware.isAdmin,function(req,res){
 	Post.findById(req.params.id,req.params.post,function(err,updatePost){
 		if(err){
 			console.log(err);
+			return res.redirect("/admin");
 		}
 		else{
 			updatePost.isApproved=true;
 			updatePost.save();
-			res.redirect("/admin/explore");
+			req.flash("success","Approved Post!")
+			return res.redirect("/admin/explore");
 		}
 	});
 });
@@ -81,15 +83,17 @@ router.delete("/explore/:id",middleware.isAdmin,function(req,res){
 	Post.findById(req.params.id,function(err,post){
 		if(err){
 			console.log(err);
+			return res.redirect("/admin");
 		}
 		else{		cloudinary.v2.uploader.destroy(post.imageId,function(err,deletePost){
 				if(err){
+					return res.redirect("/admin");
 					console.log(err);
 				}
 				else{
 					post.remove();
-					// console.log("removed");
-					res.redirect("/admin/explore");
+					req.flash("success","Deleted Post!");
+					return res.redirect("/admin/explore");
 				}
 			});
 		}
@@ -103,6 +107,7 @@ router.get("/opportunities",middleware.isAdmin,function(req,res){
 	Opportunity.find({"isApproved":false},function(err,Opportunities){
 		if(err){
 			console.log(err);
+			return res.redirect("/admin");
 		}
 		else{
 			res.render("admin/opportunityindex",{opportunities:Opportunities});
@@ -128,11 +133,13 @@ router.put("/opportunities/:id",middleware.isAdmin,function(req,res){
 	Opportunity.findById(req.params.id,req.params.opportunity,function(err,updateOpportunity){
 		if(err){
 			console.log(err);
+			return res.redirect("/admin");
 		}
 		else{
 			updateOpportunity.isApproved=true;
 			updateOpportunity.save();
-			res.redirect("/admin/opportunities");
+			req.flash("success","Approved Opportunity!")
+			return res.redirect("/admin/opportunities");
 		}
 	});
 });
@@ -141,15 +148,17 @@ router.delete("/opportunities/:id",middleware.isAdmin,function(req,res){
 	Opportunity.findById(req.params.id,function(err,opportunity){
 		if(err){
 			console.log(err);
+			return res.redirect("/admin");
 		}
 		else{		cloudinary.v2.uploader.destroy(opportunity.imageId,function(err,deleteOpportunity){
 				if(err){
 					console.log(err);
+					return res.redirect("/admin");
 				}
 				else{
 					opportunity.remove();
-					// console.log("removed");
-					res.redirect("/admin/opportunities");
+					req.flash("success","Deleted Opportunity!");
+					return res.redirect("/admin/opportunities");
 				}
 			});
 		}

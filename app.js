@@ -5,6 +5,7 @@ const 	express = require("express"),
 	  	Opportunity = require("./models/opportunity"),
 	  	Post = require("./models/post"),
 	  	Comment = require("./models/comment"),
+	  	flash = require("connect-flash"),
 	  	passport = require("passport"),
 	  	LocalStrategy = require("passport-local"),
 	  	methodOverride = require("method-override"),
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
 app.use(methodOverride("_method"));
+app.use(flash());
 
 //passport configuration
 app.use(require("express-session")({
@@ -43,8 +45,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function(req,res,next){
 	res.locals.currentUser = req.user;
 	res.locals.adminId = "5edc9cb83ad90209f088b386"; 
-	// res.locals.error = req.flash("error");
-	// res.locals.success = req.flash("success");
+	res.locals.error = req.flash("error");
+	res.locals.success = req.flash("success");
 	next();
 });
 

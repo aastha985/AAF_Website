@@ -61,10 +61,10 @@ router.get("/:id",function(req,res){
 	Opportunity.findById(req.params.id,function(err,foundOpportunity){
 		if(err){
 			console.log(err);
+			req.flash("error","Could not display the opportunity");
 			res.redirect("/opportunities");
 		}
 		else{
-			// res.send("this will be the show page");
 			res.render("opportunities/show",{opportunity:foundOpportunity});
 		}
 	});
@@ -75,6 +75,7 @@ router.get("/:id/edit",middleware.isAdmin,function(req,res){
 	Opportunity.findById(req.params.id,function(err,foundOpportunity){
 		if(err){
 			console.log(err);
+			req.flash("error","Cannot find the opportunity");
 			res.redirect("/opportunities");
 		}
 		else{
@@ -89,6 +90,7 @@ router.put("/:id",middleware.isAdmin,function(req,res){	Opportunity.findByIdAndU
 				console.log(err);
 			}
 			else{
+				req.flash("success","Opportunity updated successfully");
 				res.redirect("/opportunities/"+req.params.id);
 			}
 		});
@@ -121,8 +123,9 @@ router.put("/:id/image",middleware.isAdmin,upload.single('image'),function(req,r
 					cloudinary.uploader.upload(req.file.path, function(result) {
 					opportunity.image = result.secure_url;
 					opportunity.imageId = result.public_id;
-					res.redirect("/opportunities/"+req.params.id);
 					opportunity.save();
+					req.flash("success","Image Replaced!");
+					return res.redirect("/opportunities/"+req.params.id);
 					});
 				}
 		}
@@ -141,8 +144,8 @@ router.delete("/:id",middleware.isAdmin,function(req,res){
 				}
 				else{
 					opportunity.remove();
-					// console.log("removed");
-					res.redirect("/opportunities");
+					req.flash("success","Opportunity deleted successfully!");
+					return res.redirect("/opportunities");
 				}
 			});
 		}
