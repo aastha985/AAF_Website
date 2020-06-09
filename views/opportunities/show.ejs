@@ -44,6 +44,11 @@
 			<p>
 				<b>Contact details for more information</b> : <%= opportunity.contact %>
 			</p>
+			<% if(opportunity.other.length > 0){ %>
+			<p>
+				<b>Other Details</b>: <%= opportunity.other %>
+			</p>
+			<% } %>
 			<% if(currentUser && currentUser._id.equals(adminId)) { %>
 			<div class="row d-flex justify-content-end mx-2 mb-4">
 				<a href="/opportunities/<%= opportunity._id %>/edit">

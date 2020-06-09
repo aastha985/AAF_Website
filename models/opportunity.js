@@ -12,6 +12,7 @@ var opportunitySchema = new mongoose.Schema({
 	process: String,
 	prize: String,
 	contact: String,
+	other:String,
 	author:{
 		id:{
 			type:mongoose.Schema.Types.ObjectId,

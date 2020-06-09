@@ -35,6 +35,11 @@
 			<p>
 				<b>Contact details for more information</b> : <%= opportunity.contact %>
 			</p>
+			<% if(opportunity.other.length > 0){ %>
+			<p>
+				<b>Other Details</b>: <%= opportunity.other %>
+			</p>
+			<% } %>
 			<div class="row">
 				 <form id="delete" action="/admin/opportunities/<%= opportunity._id %>?_method=DELETE" method="POST">
 					<button class="btn btn-danger mx-2">Delete</button>
