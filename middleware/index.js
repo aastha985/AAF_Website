@@ -12,7 +12,7 @@ middlewareObj.isLoggedIn = function(req,res,next){
 }
 middlewareObj.isAdmin = function(req,res,next){
 	if(req.isAuthenticated()){
-		if(req.user._id.equals("5edf4effa369d60ae305f759")){
+		if(req.user._id.equals("5edf4ecb87ba0600171de405")){
 			next();
 		}
 		else{
