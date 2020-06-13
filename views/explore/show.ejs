@@ -26,10 +26,11 @@
 			<p>
 				<%- post.content %>
 			<p>
+			<% if(currentUser && currentUser._id.equals(adminId)) { %>
 				<div class="text-right mr-5">
 				<p class="text-muted">Submitted by <%= post.author.name %></p>
 				</div>	
-			<% if(currentUser && currentUser._id.equals(adminId)) { %>
+			
 			<div class="row d-flex justify-content-end mx-2 mb-4">
 				<a href="/explore/<%= post._id %>/edit">
 				<button class="btn btn-warning btn-sm">Edit </button></a>
