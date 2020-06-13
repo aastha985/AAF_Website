@@ -21,31 +21,31 @@
 					<button class="btn btn-warning btn-sm my-2">Replace Image </button>					</a>
 			</div>
 			<%	} %>
-			<p>
+			<p class="text-justify">
 				<b>About the Organisation</b>: <%= opportunity.organisation %>
 			</p>
-			<p>
+			<p class="text-justify">
 				<b>About the Competition/Event/Opportunity</b> : <%= opportunity.detail %>
 			</p>
-			<p>
+			<p class="text-justify">
 				<b>Eligibility/Prerequisites</b> : <%= opportunity.eligibility %>
 			</p>
-			<p>
+			<p class="text-justify">
 				<b>Important Dates</b>: <%= opportunity.dates %>
 			</p>
 			<% if(opportunity.process){ %>
-			<p>
+			<p class="text-justify">
 				<b>Registration Process</b>: <%= opportunity.process %>
 			</p>
 			<% } %>
-			<p>
+			<p class="text-justify">
 				<b>Benefits/Prizes/Perks</b>: <%= opportunity.prize %>
 			</p>
-			<p>
+			<p class="text-justify">
 				<b>Contact details for more information</b> : <%= opportunity.contact %>
 			</p>
 			<% if(opportunity.other){ %>
-			<p>
+			<p class="text-justify">
 				<b>Other Details</b>: <%= opportunity.other %>
 			</p>
 			<% } %>
