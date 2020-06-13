@@ -3,13 +3,17 @@
 <link rel="stylesheet" href="/stylesheets/new2.css">
 <link rel="stylesheet" href="/stylesheets/Buttons.css">
 <link rel="stylesheet" href="/stylesheets/Footer.css">
-	    <script src="https://cdn.tiny.cloud/1/prxad9q6l6outq7bd3usr9ml5w9gir6e12tkpreoq57ql688/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+	    <!-- <script src="https://cdn.tiny.cloud/1/prxad9q6l6outq7bd3usr9ml5w9gir6e12tkpreoq57ql688/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
        tinymce.init({
 			selector: 'textarea#editor',
 			menubar: false
 		  });
-</script>
+</script> -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<%- include("../partials/header1b") %>
 <%- include("../partials/header1b") %>
 
 <!--======================================================-->
@@ -31,9 +35,14 @@
 		<input type="text" class="form-control" id="formGroupExampleInput" name="post[heading]" value="<%= post.heading %>" required>
 		  <small class="form-text text-muted">This will appear as the heading of your post</small>
 	  </div>	
+		<!-- <div class="form-group">
+			<label for="content">Content</label>
+			<textarea id="editor" name="post[content]" id="content"></textarea>
+		</div> -->
 		<div class="form-group">
 			<label for="content">Content</label>
-			<textarea id="editor" name="post[content]" id="content"><%= post.content %></textarea>
+			<div id="content"><%- post.content %></div>
+			<input type="hidden" name="content">
 		</div>
 		<div class="text-center">
 			<button type="submit" class="btn btn-lg">Submit</button>
@@ -41,6 +50,27 @@
 	</form>
 </div>
 <!--========================================================-->
+<script>
+        var quill = new Quill('#content', {
+        modules: {
+            toolbar: [
+            [{size: [ 'small', false, 'large', 'huge' ]}],
+            ['bold', 'italic','underline','strike'],
+            ['link', 'blockquote'],
+            [{ 'script': 'sub'}, { 'script': 'super' }],
+            [{ list: 'ordered' }, { list: 'bullet' }]   
+            ]
+        },
+        placeholder: 'Content goes here...',
+        theme: 'snow'
+        });
+		var form = document.querySelector('form');
+		form.onsubmit = function(){
+			document.querySelector('input[name=content]').value=quill.root.innerHTML;
+			console.log(document.querySelector('input[name=content]').value);
+		}
+		
+  </script>
 <!--================================-->
  <%- include("../partials/footer") %>
    

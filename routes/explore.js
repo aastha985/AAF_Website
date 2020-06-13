@@ -126,7 +126,9 @@ router.get("/:id/edit",middleware.isAdmin,function(req,res){
 	})
 });
 //update
-router.put("/:id",middleware.isAdmin,function(req,res){	Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,updatedPost){
+router.put("/:id",middleware.isAdmin,function(req,res){
+	req.body.post.content = req.body.content;
+	Post.findByIdAndUpdate(req.params.id,req.body.post,function(err,updatedPost){
 			if(err){
 				console.log(err);
 			}
