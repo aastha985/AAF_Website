@@ -33,7 +33,7 @@
 			<p>
 				<b>Important Dates</b>: <%= opportunity.dates %>
 			</p>
-			<% if(opportunity.process.length > 0){ %>
+			<% if(opportunity.process){ %>
 			<p>
 				<b>Registration Process</b>: <%= opportunity.process %>
 			</p>
@@ -44,7 +44,7 @@
 			<p>
 				<b>Contact details for more information</b> : <%= opportunity.contact %>
 			</p>
-			<% if(opportunity.other.length > 0){ %>
+			<% if(opportunity.other){ %>
 			<p>
 				<b>Other Details</b>: <%= opportunity.other %>
 			</p>
