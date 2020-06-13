@@ -42,10 +42,11 @@
 		<div class="form-group">
 			<label for="content">Content</label>
 			
-			<div name="post[content]" id="content"></div>
+			<div id="content"></div>
+			<input type="hidden" name="post[content]" id="content1">
 		</div>
 		<div class="text-center">
-			<button type="submit" class="btn btn-lg">Submit</button>
+			<button type="submit" class="btn btn-lg" id="btn-submit">Submit</button>
 		</div>
 	</form>
 </div>
@@ -66,9 +67,14 @@
         placeholder: 'Content goes here...',
         theme: 'snow'  // or 'bubble'
         });
-		 //$("form").submit(function() {
-        //$("#content").val(quill.getContents());
-    });
+		$('#btn-submit').on('click', () => { 
+		// Get HTML content
+		var html = quill.root.innerHTML;
+
+		// Copy HTML content in hidden form
+		$('#content1').val( html )
+		})
+		
   </script>
 
  <%- include("../partials/footer") %>
