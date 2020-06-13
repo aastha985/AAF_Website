@@ -41,14 +41,14 @@
 			<p class="text-justify">
 				<b>Benefits/Prizes/Perks</b>: <%= opportunity.prize %>
 			</p>
-			<p class="text-justify">
-				<b>Contact details for more information</b> : <%= opportunity.contact %>
-			</p>
 			<% if(opportunity.other){ %>
 			<p class="text-justify">
 				<b>Other Details</b>: <%= opportunity.other %>
 			</p>
 			<% } %>
+			<p class="text-justify">
+				<b>Contact details for more information</b> : <%= opportunity.contact %>
+			</p>
 			<% if(currentUser && currentUser._id.equals(adminId)) { %>
 			<div class="row d-flex justify-content-end mx-2 mb-4">
 				<a href="/opportunities/<%= opportunity._id %>/edit">

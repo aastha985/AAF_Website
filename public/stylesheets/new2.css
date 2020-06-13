@@ -26,8 +26,9 @@ body{
 .btn:hover{
 	border: 2px solid #A53692;
 }
-textarea{
-	height: 50vh;
+#content {
+        height: 50vh;
+		margin-bottom:1rem;
 }
 @media (max-width:992px){
 	#oh1{
