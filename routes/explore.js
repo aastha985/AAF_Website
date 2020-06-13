@@ -49,10 +49,10 @@ router.get("/new",middleware.isLoggedIn,function(req,res){
 //create route
 router.post("/",middleware.isLoggedIn,upload.single('image'),function(req,res){
 	cloudinary.uploader.upload(req.file.path, function(result) {
-		console.log(req.body);
   		req.body.post.image = result.secure_url;
 		req.body.post.imageId = result.public_id;
 		req.body.post.author = req.user;
+		req.body.post.content = req.body.content;
 		Post.create(req.body.post,function(err,newPost){
 			if(err){
 				console.log(err);

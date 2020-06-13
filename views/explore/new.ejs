@@ -43,7 +43,7 @@
 			<label for="content">Content</label>
 			
 			<div id="content"></div>
-			<input type="hidden" name="post[content]" id="content1">
+			<input type="hidden" name="content">
 		</div>
 		<div class="text-center">
 			<button type="submit" class="btn btn-lg" id="btn-submit">Submit</button>
@@ -60,20 +60,17 @@
             ['bold', 'italic','underline','strike'],
             ['link', 'blockquote'],
             [{ 'script': 'sub'}, { 'script': 'super' }],
-            [{ list: 'ordered' }, { list: 'bullet' }],   
-            ],
-            // toolbar:false
+            [{ list: 'ordered' }, { list: 'bullet' }]   
+            ]
         },
         placeholder: 'Content goes here...',
-        theme: 'snow'  // or 'bubble'
+        theme: 'snow'
         });
-		$('#btn-submit').on('click', () => { 
-		// Get HTML content
-		var html = quill.root.innerHTML;
-
-		// Copy HTML content in hidden form
-		$('#content1').val( html )
-		})
+		var form = document.querySelector('form');
+		form.onsubmit = function(){
+			document.querySelector('input[name=content]').value=quill.root.innerHTML;
+			console.log(document.querySelector('input[name=content]').value);
+		}
 		
   </script>
 
