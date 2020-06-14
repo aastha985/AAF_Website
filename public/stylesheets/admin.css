@@ -20,3 +20,14 @@
 #c2{
 	margin-bottom: 8vh;
 }
+.card-img-top{
+	height:13rem;
+}
+#more{
+	margin-bottom:0;
+}
+@media (min-width: 992px){
+	.card{
+		height: 35rem;
+	}
+}

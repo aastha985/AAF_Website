@@ -18,13 +18,15 @@
 <div class="container">
 	<div class="row">
 	<% posts.reverse().forEach(function(post){  %>
-		<div class="col-md-4">
-			<div class="img-thumbnail shadow p-3 mb-5 bg-white rounded">
+		<div class="col-lg-4">
+			<div class="card shadow p-3 mb-5 bg-white rounded">
 				  <img src="<%= post.image %>" class="card-img-top" alt="...">
 				  <div class="card-body">
-					<h5 class="card-title"><%= post.heading %></h5>
+					<h5 class="card-title"><%= post.heading.substring(0,100) %></h5>
 					<p class="card-text"><%- post.content.substring(0,100) %></p>
-					<a href="/explore/<%= post._id %>" class="btn">Read More</a>
+					 <div>
+						<a href="/explore/<%= post._id %>" id="more" class="btn">Read More</a>
+					  </div>
 				  </div>
 			</div>
 		</div>

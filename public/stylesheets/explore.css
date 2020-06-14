@@ -17,15 +17,25 @@
 	padding-right:1rem;
 }
 .card-img-top{
-	height:40vh;
+	height:13rem;
 }
 .btn:hover{
 	border: 2px solid #A53692;
 }
+#more{
+	margin-bottom:0;
+}
+@media (min-width: 992px){
+	.card{
+		height: 35rem;
+	}
+}
+
 @media (max-width:992px){
 	#exp{
 		font-size: 3.5rem;
 	}
+	
 }
 @media (max-width:540px){
 	#exp{

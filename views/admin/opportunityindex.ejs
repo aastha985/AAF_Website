@@ -22,13 +22,16 @@
 	<% } %>
 	<div class="row">
 	<% opportunities.forEach(function(opportunity){  %>
-		<div class="col-md-4">
+		<div class="col-lg-4">
 			<div class="card shadow p-3 mb-5 bg-white rounded">
 				  <img src="<%= opportunity.image %>" class="card-img-top" alt="...">
 				  <div class="card-body">
-					<h5 class="card-title"><%= opportunity.heading %></h5>
+					<h5 class="card-title"><%= opportunity.heading.substring(0,100) %></h5>
 					<p class="card-text"><%- opportunity.detail.substring(0,100)%></p>
-					<a href="/admin/opportunities/<%= opportunity._id %>" class="btn">Read More</a>
+					 <div>
+						<a href="/opportunities/<%= opportunity._id %>" id="more" class="btn">Read More</a> 
+					  </div>
+					
 				  </div>
 			</div>
 		</div>

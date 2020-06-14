@@ -19,7 +19,7 @@
 	border: 2px solid #A53692;
 }
 .card-img-top{
-	height:40vh;
+	height:13rem;
 }
 .btn{
 	margin-bottom:2rem;
@@ -27,4 +27,12 @@
 .alert{
 	padding: 5vh 2rem 5vh 2rem;
 	margin-bottom: 30vh;
+}
+#more{
+	margin-bottom:0;
+}
+@media (min-width: 992px){
+	.card{
+		height: 35rem;
+	}
 }
