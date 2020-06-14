@@ -21,14 +21,19 @@ a.navbar-brand{
 }
 #main-heading{
 	font-size:5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 #tag{
     font-size: 1.5rem;
     font-weight: bold;
+	padding-right: 1rem;
 }
 #blue{
 	padding-top: 3rem;
 	margin-bottom:0;
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 #next{
 	margin-top:-3rem;
@@ -38,6 +43,8 @@ a.navbar-brand{
 }
 .abt1{
 	margin-top: 2rem;
+	padding-left: 1rem;
+	padding-right:1rem;
 }
 .ss{
 	font-size: 1.3rem;
@@ -45,6 +52,8 @@ a.navbar-brand{
 .abt2{
 	margin-top: 2rem;
 	margin-bottom: 4rem;
+	padding-left: 1rem;
+	padding-right:1rem;
 }
 /*========================== */
 #text1{
@@ -55,10 +64,14 @@ a.navbar-brand{
 #text2{
     font-size: 1.2rem;
     color:black;
+	padding-left: 1rem;
+	padding-right:1rem;
 }
 .welcome{
     background-color:rgb(235, 187, 228);
     text-align: center;
+	padding-left:1rem;
+	padding-right:1rem;
 }
 #paddd{
     padding-top: 20vh;
