@@ -9,8 +9,7 @@ modules: {
 	toolbar: [
 		['bold', 'italic','underline','strike'],
 		['link', 'blockquote'],
-		[{ 'script': 'sub'}, { 'script': 'super' }],
-		[{ list: 'ordered' }, { list: 'bullet' }]   
+		[{ 'script': 'sub'}, { 'script': 'super' }] 
     ]
 		
 },
