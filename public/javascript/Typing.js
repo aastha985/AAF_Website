@@ -1,6 +1,6 @@
 var i = 0;
-var txt = 'BELIEVE you CAN and you are halfway THERE!';
-var speed = 130;
+var txt = 'Believe you can and you are halfway there!';
+var speed = 50;
       
 window.onload = typeWriter();
 function typeWriter() {

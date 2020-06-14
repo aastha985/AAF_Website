@@ -1,0 +1,94 @@
+.jumbotron{
+	background: url("https://imgur.com/ybXlkr9.jpg") no-repeat;
+	background-position: center;
+	background-size: cover;
+	border-radius:0;
+	padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+	padding-bottom:0;
+	margin-bottom:0;
+	height: 100vh;
+}
+a.nav-link{
+	color:black!important;
+}
+a.navbar-brand{
+	color:black!important;
+}
+#landing-header{
+	margin-top:13vh;
+}
+#main-heading{
+	font-size:5rem;
+}
+#tag{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+#blue{
+	padding-top: 3rem;
+	margin-bottom:0;
+}
+#next{
+	margin-top:-3rem;
+}
+.txt6{
+	font-size:1.2rem;
+}
+.abt1{
+	margin-top: 2rem;
+}
+.ss{
+	font-size: 1.3rem;
+}
+.abt2{
+	margin-top: 2rem;
+	margin-bottom: 4rem;
+}
+/*========================== */
+#text1{
+    padding-top:3vh;
+    color:#A53692;
+    font-size: 2.4rem;
+}
+#text2{
+    font-size: 1.2rem;
+    color:black;
+}
+.welcome{
+    background-color:rgb(235, 187, 228);
+    text-align: center;
+}
+#paddd{
+    padding-top: 20vh;
+}
+.bot{
+    padding-bottom: 20vh;
+}
+/*============================*/
+.qt{
+    font-size:1.2rem;
+    font-style:italic;
+}
+.big{
+    font-size:2.1rem;
+    font-weight:bold;
+    margin-bottom: 1.5rem;
+}
+.inspire{
+    font-size:1.2rem;
+}
+.logo{
+    height: 100px;
+    margin-left: 3vw;
+}
+@media (max-width:992px){
+	#main-heading{
+		font-size:2.5rem;
+	}
+	#tag{
+		font-size: 1rem;
+		font-weight: bold;
+	}
+}

@@ -10,10 +10,7 @@ const 	express = require("express"),
 	  	
 //root route
 router.get("/",function(req,res){
-	res.render("landing");
-});
-router.get("/about",function(req,res){
-	res.render("about");
+	res.render("home");
 });
 
 //authentication routes
