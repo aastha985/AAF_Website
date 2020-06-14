@@ -18,6 +18,7 @@ a.nav-link{
     color:white!important;
     z-index:1;
     position: relative;
+	text-align:center;
 }
 a.nav-link:hover{
     color:rgb(250, 85, 222)!important;
