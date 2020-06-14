@@ -9,7 +9,7 @@
 <% } %>
 <div class="container">
 	<div class="row">
-	<% opportunities.forEach(function(opportunity){  %>
+	<% opportunities.reverse().forEach(function(opportunity){  %>
 		<div class="col-md-4">
 			<div class="card shadow p-3 mb-5 bg-white rounded">
 				  <img src="<%= opportunity.image %>" class="card-img-top" alt="...">
