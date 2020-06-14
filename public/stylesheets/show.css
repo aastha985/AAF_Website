@@ -21,3 +21,6 @@ body{
 .card{
 	padding: 2rem!important;
 }
+.list-group{
+	margin-bottom: 1rem;
+}
