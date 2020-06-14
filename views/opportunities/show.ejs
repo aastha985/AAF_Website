@@ -22,32 +22,32 @@
 			</div>
 			<%	} %>
 			<p class="text-justify">
-				<b>About the Organisation</b>: <%= opportunity.organisation %>
+				<b>About the Organisation</b> <%- opportunity.organisation %>
 			</p>
 			<p class="text-justify">
-				<b>About the Competition/Event/Opportunity</b> : <%= opportunity.detail %>
+				<b>About the Competition/Event/Opportunity</b> <%- opportunity.detail %>
 			</p>
 			<p class="text-justify">
-				<b>Eligibility/Prerequisites</b> : <%= opportunity.eligibility %>
+				<b>Eligibility/Prerequisites</b> <%- opportunity.eligibility %>
 			</p>
 			<p class="text-justify">
-				<b>Important Dates</b>: <%= opportunity.dates %>
+				<b>Important Dates</b> <%- opportunity.dates %>
 			</p>
-			<% if(opportunity.process){ %>
+			<% if(opportunity.process && opportunity.process.length>11){ %>
 			<p class="text-justify">
-				<b>Registration Process</b>: <%= opportunity.process %>
-			</p>
-			<% } %>
-			<p class="text-justify">
-				<b>Benefits/Prizes/Perks</b>: <%= opportunity.prize %>
-			</p>
-			<% if(opportunity.other){ %>
-			<p class="text-justify">
-				<b>Other Details</b>: <%= opportunity.other %>
+				<b>Registration Process</b> <%- opportunity.process %>
 			</p>
 			<% } %>
 			<p class="text-justify">
-				<b>Contact details for more information</b> : <%= opportunity.contact %>
+				<b>Benefits/Prizes/Perks</b> <%- opportunity.prize %>
+			</p>
+			<% if(opportunity.other && opportunity.other.length>11){ %>
+			<p class="text-justify">
+				<b>Other Details</b> <%- opportunity.other %>
+			</p>
+			<% } %>
+			<p class="text-justify">
+				<b>Contact details for more information</b><%- opportunity.contact %>
 			</p>
 			<% if(currentUser && currentUser._id.equals(adminId)) { %>
 			<div class="row d-flex justify-content-end mx-2 mb-4">

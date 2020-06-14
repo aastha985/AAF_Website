@@ -29,7 +29,7 @@
 		<div class="form-group">
 			<label for="exampleFormControlFile1">Upload Image(Orientation: Square/Landscape)</label>
 			<input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" accept="image/*" required>
-			<small class="form-text text-muted">Only .jpg/.jpeg/.png formats allowed</small>
+			<small class="form-text text-muted">Only .jpg/.jpeg/.png formats allowed. Max size 0.5MB</small>
 		</div>
 		
 		<div class="form-group">
@@ -44,27 +44,7 @@
 </div>
 <!--========================================================-->
 <!--================================-->
-<script>
-        var quill = new Quill('#content', {
-        modules: {
-            toolbar: [
-            [{size: [ 'small', false, 'large', 'huge' ]}],
-            ['bold', 'italic','underline','strike'],
-            ['link', 'blockquote'],
-            [{ 'script': 'sub'}, { 'script': 'super' }],
-            [{ list: 'ordered' }, { list: 'bullet' }]   
-            ]
-        },
-        placeholder: 'Content goes here...',
-        theme: 'snow'
-        });
-		var form = document.querySelector('form');
-		form.onsubmit = function(){
-			document.querySelector('input[name=content]').value=quill.root.innerHTML;
-			console.log(document.querySelector('input[name=content]').value);
-		}
-		
-  </script>
+<script src="../../javascript/quill1.js"></script>
 
  <%- include("../partials/footer") %>
    

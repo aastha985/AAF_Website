@@ -5,6 +5,8 @@
 	  <link rel="stylesheet" href="/stylesheets/new.css">
 	  <link rel="stylesheet" href="/stylesheets/Buttons.css">
 	  <link rel="stylesheet" href="/stylesheets/Footer.css">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <!--==============================================-->
 <%- include("../partials/header1b") %>
 	  
@@ -30,21 +32,23 @@
   </div>
   <div class="form-group">
     <label for="formGroupExampleInput2">About the Organisation <span class="asterisk">*</span></label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[organisation]" required>
+	<div id="organisation" class="white"></div>
+    <input type="hidden" id="o1" name="opportunity[organisation]" required>
   </div>
 	<div class="form-group">
     <label for="exampleFormControlTextarea1">About the  Competition/Event/Opportunity <span class="asterisk">*</span></label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="opportunity[detail]" required></textarea>
+	<div id="detail" class="white"></div>
+	<input type="hidden" id="o2" name="opportunity[detail]" required>
   </div>
 	<div class="form-row">
-		<div class="col-lg-3">
+		<div class="col-lg-4">
 			<div class="form-group">
 				<label for="exampleFormControlFile1">Upload Poster/Image (Orientation: Square/Landscape)<span class="asterisk">*</span></label>
 				<input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" accept="image/*" required>
-				<small class="form-text text-muted">Only .jpg/.jpeg/.png formats allowed</small>
+				<small class="form-text text-muted">Only .jpg/.jpeg/.png formats allowed. Max. size 0.5MB</small>
 			</div>
 		</div>
-		<div class="col-lg-9">
+		<div class="col-lg-8">
 			<div class="form-group">
 			<label for="inlineFormCustomSelect">Choose Category <span class="asterisk">*</span></label>
 
@@ -63,32 +67,39 @@
 	</div>
 	<div class="form-group">
     <label for="formGroupExampleInput2">Eligibility/Prerequisites <span class="asterisk">*</span></label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[eligibility]" required>
+	<div id="eligibility" class="white"></div>
+	<input type="hidden" id="o3" name="opportunity[eligibility]" required>
   </div>
 	<div class="form-group">
     <label for="formGroupExampleInput2">Important Dates <span class="asterisk">*</span></label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[dates]" required>
+	<div id="dates" class="white"></div>
+	<input type="hidden" id="o4" name="opportunity[dates]" required>
   </div>
-	<div class="form-group">
+	<div class="form-group" >
     <label for="formGroupExampleInput2">Registration Process </label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[process]">
+	<div id="process" class="white"></div>
+	<input type="hidden" id="o5" name="opportunity[process]" required>
   </div>
-	<div class="form-group">
+	<div class="form-group" >
     <label for="formGroupExampleInput2">Benefits/Prizes/Perks <span class="asterisk">*</span></label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[prize]" required>
+	<div id="prize" class="white"></div>
+	<input type="hidden" id="o6" name="opportunity[prize]" required>
   </div>
-	<div class="form-group">
-    <label for="formGroupExampleInput2">Contact details for more information <span class="asterisk">*</span></label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[contact]" required>
-  </div>
-	<div class="form-group">
+	<div class="form-group" >
     <label for="formGroupExampleInput2">Other Details</label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" name="opportunity[other]">
+	<div id="other" class="white"></div>
+	<input type="hidden" id="o8" name="opportunity[other]" required>
   </div>
-	<div class="text-center">
+	<div class="form-group" >
+    <label for="formGroupExampleInput2">Contact details for more information <span class="asterisk">*</span></label>
+	<div id="contact" class="white"></div>
+	<input type="hidden" id="o7" name="opportunity[contact]" required>
+  </div>
+	<div class="text-center" class="white">
 		<button type="submit" class="btn btn-lg px-5">Submit</button>
 	</div>
 </form>
 </div>
 <!--================================-->
+<script src="../../javascript/quill2.js"></script>
  <%- include("../partials/footer") %>
