@@ -1,4 +1,6 @@
 const 	express = require("express"),
+	  	http = require('http'),
+    	https = require('https'),
 		app=express(),
 		bodyParser = require("body-parser"),
 	  	mongoose = require("mongoose"),
@@ -64,6 +66,10 @@ app.get('*', function(req, res) {
 
 var port = process.env.PORT || 3000;
 
-app.listen(port, function (req,res) {
-  console.log("Server started!");
+http.createServer(app).listen(port, function() {
+    console.log('Server started');
 });
+
+// app.listen(port, function (req,res) {
+//   console.log("Server started!");
+// });
