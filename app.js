@@ -62,7 +62,7 @@ app.use("/admin",adminRoutes);
 app.get('*', function(req, res) {  
 	res.redirect(301, 'https://parvaaz-parindey.aafngo.org' + req.path);
     //res.redirect('https://' + req.headers.host + req.url);
-})
+});
 
 var port = process.env.PORT || 3000;
 
