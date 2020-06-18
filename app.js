@@ -59,9 +59,9 @@ app.use("/explore",exploreRoutes);
 app.use("/explore/:id/comments",commentRoutes);
 app.use("/admin",adminRoutes);
 
-// var http = express.createServer();
 app.get('*', function(req, res) {  
-    res.redirect('https://' + req.headers.host + req.url);
+	res.redirect(301, 'https://parvaaz-parindey.aafngo.org' + req.path);
+    //res.redirect('https://' + req.headers.host + req.url);
 })
 
 var port = process.env.PORT || 3000;
