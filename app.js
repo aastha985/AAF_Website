@@ -53,20 +53,11 @@ app.use(function(req,res,next){
 	next();
 });
 
-
-
 app.use(indexRoutes);
 app.use("/opportunities",opportunityRoutes);
 app.use("/explore",exploreRoutes);
 app.use("/explore/:id/comments",commentRoutes);
 app.use("/admin",adminRoutes);
-
-// app.get('*', function(req, res) {  
-// 	res.redirect(301, 'https://parvaaz-parindey.aafngo.org' + req.path);
-//     //res.redirect('https://' + req.headers.host + req.url);
-// });
-
-
 
 var port = process.env.PORT || 3000;
 
@@ -74,6 +65,3 @@ app.listen(port, function() {
     console.log('Server started');
 });
 
-// app.listen(port, function (req,res) {
-//   console.log("Server started!");
-// });
