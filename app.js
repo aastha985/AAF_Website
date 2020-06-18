@@ -44,8 +44,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req,res,next){
 	res.locals.currentUser = req.user;
-	// res.locals.adminId = "5edc9cb83ad90209f088b386";
-	res.locals.adminId = "5edf4ecb87ba0600171de405";
+	res.locals.adminId = "5edc9cb83ad90209f088b386";
+	// res.locals.adminId = "5edf4ecb87ba0600171de405";
 	res.locals.error = req.flash("error");
 	res.locals.success = req.flash("success");
 	next();
@@ -57,7 +57,13 @@ app.use("/explore",exploreRoutes);
 app.use("/explore/:id/comments",commentRoutes);
 app.use("/admin",adminRoutes);
 
+// var http = express.createServer();
+app.get('*', function(req, res) {  
+    res.redirect('https://' + req.headers.host + req.url);
+})
+
 var port = process.env.PORT || 3000;
+
 app.listen(port, function (req,res) {
   console.log("Server started!");
 });
