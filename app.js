@@ -53,6 +53,8 @@ app.use(function(req,res,next){
 	next();
 });
 
+
+
 app.use(indexRoutes);
 app.use("/opportunities",opportunityRoutes);
 app.use("/explore",exploreRoutes);
@@ -64,10 +66,7 @@ app.use("/admin",adminRoutes);
 //     //res.redirect('https://' + req.headers.host + req.url);
 // });
 
-app.get('*',function(req,res,next){ 
-	if(req.headers['x-forwarded-proto']!='https') res.redirect('https://mypreferreddomain.com'+req.url); 
-	else next(); 
-});
+
 
 var port = process.env.PORT || 3000;
 
