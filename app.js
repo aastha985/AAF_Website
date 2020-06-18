@@ -59,14 +59,19 @@ app.use("/explore",exploreRoutes);
 app.use("/explore/:id/comments",commentRoutes);
 app.use("/admin",adminRoutes);
 
-app.get('*', function(req, res) {  
-	res.redirect(301, 'https://parvaaz-parindey.aafngo.org' + req.path);
-    //res.redirect('https://' + req.headers.host + req.url);
+// app.get('*', function(req, res) {  
+// 	res.redirect(301, 'https://parvaaz-parindey.aafngo.org' + req.path);
+//     //res.redirect('https://' + req.headers.host + req.url);
+// });
+
+app.get('*',function(req,res,next){ 
+	if(req.headers['x-forwarded-proto']!='https') res.redirect('https://mypreferreddomain.com'+req.url); 
+	else next(); 
 });
 
 var port = process.env.PORT || 3000;
 
-http.createServer(app).listen(port, function() {
+app.listen(port, function() {
     console.log('Server started');
 });
 
