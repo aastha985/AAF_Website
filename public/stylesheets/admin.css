@@ -22,6 +22,7 @@
 }
 .card-img-top{
 	height:13rem;
+	object-fit: cover;
 }
 #more{
 	margin-bottom:0;
