@@ -18,6 +18,7 @@
 }
 .card-img-top{
 	height:13rem;
+	object-fit:cover;
 }
 .btn:hover{
 	border: 2px solid #A53692;
