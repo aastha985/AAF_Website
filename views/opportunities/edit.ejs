@@ -30,6 +30,11 @@
     <input type="text" class="form-control" id="formGroupExampleInput" name="opportunity[heading]" value="<%= opportunity.heading %>" required>
 	  <small class="form-text text-muted">This will appear as the heading of your opportunity</small>
   </div>
+<div class="form-group">
+		<label for="formGroupExampleInput">Short Description(100 Characters)</label>
+		<input type="text" class="form-control" id="formGroupExampleInput" name="opportunity[shortDescription]" maxlength = "100" value="<%= opportunity.shortDescription %>" required>
+		  <small class="form-text text-muted">This will appear under the heading on the main page</small>
+	  </div>
 <!--==============================================-->
   <div class="form-group">
     <label for="formGroupExampleInput2">About the Organisation <span class="asterisk">*</span></label>

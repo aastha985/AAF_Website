@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 var opportunitySchema = new mongoose.Schema({
 	heading:String,
+	shortDescription: String,
 	organisation:String,
 	detail:String,
 	image: String,
