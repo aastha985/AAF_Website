@@ -27,7 +27,7 @@
 				  <img src="<%= post.image %>" class="card-img-top" alt="...">
 				  <div class="card-body">
 					<h5 class="card-title"><%= post.heading.substring(0,100) %></h5>
-					<p class="card-text"><%- post.content.substring(0,100) %></p>
+						  <p class="card-text"><%= post.shortDescription %></p>
 					 <div>
 						<a href="/admin/explore/<%= post._id %>" id="more" class="btn">Read More</a>
 					  </div>

@@ -29,6 +29,11 @@
 		  <small class="form-text text-muted">This will appear as the heading of your post</small>
 	  </div>
 		<div class="form-group">
+		<label for="formGroupExampleInput">Short Description(100 Characters)</label>
+		<input type="text" class="form-control" id="formGroupExampleInput" name="post[shortDescription]" maxlength = "100" value="<%= post.shortDescription %>" required>
+		  <small class="form-text text-muted">This will appear under the heading on the main page</small>
+	  </div>
+		<div class="form-group">
 			<label for="content">Content</label>
 			<div id="content"><%- post.content %></div>
 			<input type="hidden" name="content">

@@ -27,6 +27,11 @@
 		  <small class="form-text text-muted">This will appear as the heading of your post</small>
 	  </div>
 		<div class="form-group">
+		<label for="formGroupExampleInput">Short Description(100 Characters)</label>
+		<input type="text" class="form-control" id="formGroupExampleInput" name="post[shortDescription]" maxlength = "100" required>
+		  <small class="form-text text-muted">This will appear under the heading on the main page</small>
+	  </div>
+		<div class="form-group">
 			<label for="exampleFormControlFile1">Upload Image(Orientation: Square/Landscape)</label>
 			<input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" accept="image/*" required>
 			<small class="form-text text-muted">Only .jpg/.jpeg/.png formats allowed. Max size 0.5MB</small>
