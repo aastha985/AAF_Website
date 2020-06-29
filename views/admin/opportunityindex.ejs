@@ -27,7 +27,7 @@
 				  <img src="<%= opportunity.image %>" class="card-img-top" alt="...">
 				  <div class="card-body">
 					<h5 class="card-title"><%= opportunity.heading.substring(0,100) %></h5>
-					<p class="card-text"><%- opportunity.detail.substring(0,100)%></p>
+					<p class="card-text"><%= opportunity.shortDescription %></p>
 					 <div>
 						<a href="/admin/opportunities/<%= opportunity._id %>" id="more" class="btn">Read More</a> 
 					  </div>
