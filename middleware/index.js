@@ -12,12 +12,12 @@ middlewareObj.isLoggedIn = function(req,res,next){
 }
 middlewareObj.isAdmin = function(req,res,next){
 	if(req.isAuthenticated()){
-		if(req.user._id.equals("5edc9cb83ad90209f088b386")){
-			next();
-		}	
-		// if(req.user._id.equals("5edf4ecb87ba0600171de405")){
+		// if(req.user._id.equals("5edc9cb83ad90209f088b386")){
 		// 	next();
-		// }
+		// }	
+		if(req.user._id.equals("5edf4ecb87ba0600171de405")){
+			next();
+		}
 		else{
 			req.flash("error","You don't have permission to do that");
 			return res.redirect("/explore");
