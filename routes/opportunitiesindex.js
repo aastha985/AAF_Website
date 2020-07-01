@@ -56,7 +56,7 @@ router.get("/humanities",function(req,res){
 		}
 	});
 });
-router.get("/commerce",function(req,res){
+router.get("/governmentjobs",function(req,res){
 	Opportunity.find({"isApproved":true,"category":6},function(err,Opportunities){
 		if(err){
 			console.log(err);
