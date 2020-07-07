@@ -21,32 +21,32 @@
 					<button class="btn btn-warning btn-sm my-2">Replace Image </button>					</a>
 			</div>
 			<%	} %>
-			<p class="text-justify">
+			<p>
 				<b>About the Organisation</b> <%- opportunity.organisation %>
 			</p>
-			<p class="text-justify">
+			<p>
 				<b>About the Competition/Event/Opportunity</b> <%- opportunity.detail %>
 			</p>
-			<p class="text-justify">
+			<p>
 				<b>Eligibility/Prerequisites</b> <%- opportunity.eligibility %>
 			</p>
-			<p class="text-justify">
+			<p>
 				<b>Important Dates</b> <%- opportunity.dates %>
 			</p>
 			<% if(opportunity.process && opportunity.process.length>11){ %>
-			<p class="text-justify">
+			<p>
 				<b>Registration Process</b> <%- opportunity.process %>
 			</p>
 			<% } %>
-			<p class="text-justify">
+			<p>
 				<b>Benefits/Prizes/Perks</b> <%- opportunity.prize %>
 			</p>
 			<% if(opportunity.other && opportunity.other.length>11){ %>
-			<p class="text-justify">
+			<p>
 				<b>Other Details</b> <%- opportunity.other %>
 			</p>
 			<% } %>
-			<p class="text-justify">
+			<p>
 				<b>Contact details for more information</b><%- opportunity.contact %>
 			</p>
 			<% if(currentUser && currentUser._id.equals(adminId)) { %>
