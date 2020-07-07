@@ -10,7 +10,6 @@ router.get('*',function(req,res,next){
 	if(req.headers['x-forwarded-proto']!='https') res.redirect('https://parvaaz-parindey.aafngo.org'+req.url); 
 	else next(); 
 });	
-	  	
 //root route
 router.get("/",function(req,res){
 	res.render("home");
