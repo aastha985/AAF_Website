@@ -16,7 +16,7 @@
 				<%- post.content %>
 			<p>
 			<p>
-				<small class="text-muted">Submitted by <%= post.author.name %></small>
+				<small class="text-muted">Submitted by <%= post.author.name %> (<%= post.author.username %>) </small>
 			</p>
 			<div class="row">
 				 <form id="delete" action="/admin/explore/<%= post._id %>?_method=DELETE" method="POST">
