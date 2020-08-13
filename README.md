@@ -25,7 +25,7 @@ The website uses Passport.js for handling authentication. It also uses good codi
 ### :rocket: Getting Started
 If you have git installed: 
 ```sh
-$ git clone https://github.com/rohitjethoe/premesniper.git
+$ git clone https://github.com/aastha985/ParvaazParindey.git
 ```
 ```sh
 $ npm start
