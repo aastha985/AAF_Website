@@ -3,6 +3,10 @@ A website for Asha Akanksha Foundation using Node.js, Express,MongoDB. Deployed 
 
 The website uses Passport.js for handling authentication. It also uses good coding practices like RESTful routing.
 
+### 🔌 Technologies used
+- Front-End: HTML, CSS, Bootstrap, JavaScript.
+- Back-End: JavaScript (npm, nodejs,  async, body-parser, cloudinary, connect-flash, ejs, express,express-session, method-override, mongoose,multer, nodemailer, passport, passport-local, passport-local-mongoose)
+
 ### :star: Features
 - Responsive web design
 - Authentication:
