@@ -38,7 +38,7 @@ router.get("/", (req,res) => {
 });
 
 // New route
-router.get("/new",middleware.isLoggedIn, (req,res) =>
+router.get("/new", middleware.isLoggedIn, (req,res) =>
 	res.render("explore/new") 
 );
 
@@ -150,6 +150,7 @@ router.get("/:id/imageedit",middleware.isAdmin,function(req,res){
 		}
 	});
 });
+
 // Update route for image
 router.put("/:id/image", middleware.isAdmin,upload.single('image'), (req,res) => {
 	Post.findById(req.params.id, (err,post) => {

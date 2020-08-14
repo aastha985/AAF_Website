@@ -6,7 +6,7 @@ async = require("async"),
 nodemailer = require("nodemailer"),
 crypto = require("crypto");
 	  
-router.get('*', (req,res,next) =>{ 
+router.get('*', (req,res,next) => { 
 	if(req.headers['x-forwarded-proto']!='https') res.redirect('https://parvaaz-parindey.aafngo.org'+req.url); 
 	else next(); 
 });	
@@ -54,7 +54,7 @@ router.post("/login",passport.authenticate("local",{
     // ???? something has to be here.
 });
 
-//logout route
+// Logout route
 router.get("/logout", (req,res) => {
 	req.logout();
 	req.flash("success","Logged Out!")
