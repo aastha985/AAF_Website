@@ -1,63 +1,60 @@
-const express = require("express"),
-	  router = express.Router(),
-	  Opportunity = require("../models/opportunity");
-//index routes
-router.get("/science",function(req,res){
-	Opportunity.find({"isApproved":true,"category":1},function(err,Opportunities){
-		if(err){
+const express = require("express"), router = express.Router(), Opportunity = require("../models/opportunity");
+
+// Index routes
+router.get("/science", (req,res) => {
+	Opportunity.find({ "isApproved": true, "category": 1 }, (err, Opportunities) =>{
+		if (err) {
 			console.log(err);
-		}
-		else{
-			res.render("opportunities/Categoriesindex/science",{opportunities:Opportunities});
-		}
-	});
-	
-	
-});
-router.get("/business",function(req,res){
-	Opportunity.find({"isApproved":true,"category":2},function(err,Opportunities){
-		if(err){
-			console.log(err);
-		}
-		else{
-			 res.render("opportunities/Categoriesindex/business",{opportunities:Opportunities});
+		} else {
+			res.render("opportunities/Categoriesindex/science",{ opportunities: Opportunities });
 		}
 	});
 });
-//index route
+
+router.get("/business", (req,res) => {
+	Opportunity.find({"isApproved":true,"category":2}, (err, Opportunities) => {
+		if (err){
+			console.log(err);
+		} else{
+			 res.render("opportunities/Categoriesindex/business",{ opportunities: Opportunities });
+		}
+	});
+});
+
+// Index route
 router.get("/legal",function(req,res){
-	Opportunity.find({"isApproved":true,"category":3},function(err,Opportunities){
+	Opportunity.find({"isApproved":true,"category":3}, (err, Opportunities) => {
 		if(err){
 			console.log(err);
 		}
 		else{
-			 res.render("opportunities/Categoriesindex/legal",{opportunities:Opportunities});
+			 res.render("opportunities/Categoriesindex/legal",{ opportunities: Opportunities });
 		}
 	});
 });
 
 router.get("/media",function(req,res){
-	Opportunity.find({"isApproved":true,"category":4},function(err,Opportunities){
-		if(err){
+	Opportunity.find({"isApproved":true,"category":4}, (err,Opportunities) => {
+		if (err) {
 			console.log(err);
-		}
-		else{
+		} else {
 			 res.render("opportunities/Categoriesindex/media",{opportunities:Opportunities});
 		}
 	});
 });
-router.get("/humanities",function(req,res){
-	Opportunity.find({"isApproved":true,"category":5},function(err,Opportunities){
+
+router.get("/humanities", (req,res) => {
+	Opportunity.find({"isApproved":true,"category":5}, (err,Opportunities) => {
 		if(err){
 			console.log(err);
-		}
-		else{
-			 res.render("opportunities/Categoriesindex/humanities",{opportunities:Opportunities});
+		} else {
+			res.render("opportunities/Categoriesindex/humanities",{opportunities:Opportunities});
 		}
 	});
 });
-router.get("/governmentjobs",function(req,res){
-	Opportunity.find({"isApproved":true,"category":6},function(err,Opportunities){
+
+router.get("/governmentjobs", (req,res) => {
+	Opportunity.find({"isApproved":true,"category":6}, (err,Opportunities) => {
 		if(err){
 			console.log(err);
 		}
@@ -66,24 +63,25 @@ router.get("/governmentjobs",function(req,res){
 		}
 	});
 });
-router.get("/school",function(req,res){
-	Opportunity.find({"isApproved":true,"category":7},function(err,Opportunities){
-		if(err){
+
+router.get("/school", (req,res) => {
+	Opportunity.find({"isApproved":true,"category":7}, (err,Opportunities) => {
+		if (err) {
 			console.log(err);
-		}
-		else{
-			 res.render("opportunities/Categoriesindex/school",{opportunities:Opportunities});
+		} else {
+			res.render("opportunities/Categoriesindex/school",{opportunities:Opportunities});
 		}
 	});
 });
+
 router.get("/other",function(req,res){
-	Opportunity.find({"isApproved":true,"category":8},function(err,Opportunities){
-		if(err){
+	Opportunity.find({"isApproved":true,"category":8}, (err,Opportunities) => {
+		if (err) {
 			console.log(err);
-		}
-		else{
-			 res.render("opportunities/Categoriesindex/other",{opportunities:Opportunities});
+		} else{
+			res.render("opportunities/Categoriesindex/other",{opportunities:Opportunities});
 		}
 	});
 });
+
 module.exports = router;
