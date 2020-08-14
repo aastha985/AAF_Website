@@ -1,4 +1,4 @@
-const 	express = require("express"),
+const express = require("express"),
 	  	http = require('http'),
     	https = require('https'),
 		app=express(),
@@ -13,7 +13,7 @@ const 	express = require("express"),
 	  	methodOverride = require("method-override"),
 	  	User = require("./models/user");
 
-const 	indexRoutes = require("./routes/index"),
+const indexRoutes = require("./routes/index"),
 	  	opportunityRoutes = require("./routes/opportunities"),
 		exploreRoutes = require("./routes/explore"),
 	  	commentRoutes = require("./routes/comments"),
@@ -31,7 +31,7 @@ app.use(express.static(__dirname+"/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
 
-//passport configuration
+// Passport configuration
 app.use(require("express-session")({
 	secret: "Rusty is cute",
 	resave: false,
