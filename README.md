@@ -35,5 +35,8 @@ $ git clone https://github.com/aastha985/ParvaazParindey.git
 $ npm start
 ```
 
+## :card_index_dividers: Contribution Guidelines
+View the contribution guidelines [here](https://github.com/aastha985/ParvaazParindey/CONTRIBUTING.md)
+
 ### :copyright: License
 [MIT License](http://opensource.org/licenses/MIT)
