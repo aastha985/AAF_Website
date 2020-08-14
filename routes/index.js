@@ -1,29 +1,30 @@
-const 	express = require("express"),
-		router= express.Router(),
-	  	passport=require("passport"),
-	  	User = require("../models/user"),
-	  	async = require("async"),
-		nodemailer = require("nodemailer"),
-		crypto = require("crypto");
+const express = require("express"),
+router = express.Router(),
+passport = require("passport"),
+User = require("../models/user"),
+async = require("async"),
+nodemailer = require("nodemailer"),
+crypto = require("crypto");
 	  
-router.get('*',function(req,res,next){ 
+router.get('*', (req,res,next) => { 
 	if(req.headers['x-forwarded-proto']!='https') res.redirect('https://parvaaz-parindey.aafngo.org'+req.url); 
 	else next(); 
 });	
-//root route
-router.get("/",function(req,res){
-	res.render("home");
-});
 
-//authentication routes
+// Root route
+router.get("/", (req,res) => 
+	res.render("home")
+);
 
-//show register form
-router.get("/register",function(req,res){
-	res.render("register");
-});
-//handle sign up logic
-router.post("/register",function(req,res){
-	// res.send("Signing you up...");
+// Authentication routes
+
+// Registration route
+router.get("/register",(req,res) =>
+	res.render("register")
+);
+
+// Handling sign up logic
+router.post("/register", (req,res) => {
 	var newUser = new User({username:req.body.username,name:req.body.name});
 	User.register(newUser,req.body.password,function(err,user){
 		if(err){
@@ -40,31 +41,31 @@ router.post("/register",function(req,res){
 	});
 });
 
-//show login form
-router.get("/login",function(req,res){
-	res.render("login");
-});
+// Show login form
+router.get("/login", (req,res) => 
+	res.render("login")
+);
 
-//handle log in logic
+// Handle log in logic
 router.post("/login",passport.authenticate("local",{
 	successRedirect: "/",
 	failureRedirect: "/login"}),
-	function(req,res){
+	(req,res) => {
+    // ???? something has to be here.
 });
 
-//logout route
-router.get("/logout",function(req,res){
+// Logout route
+router.get("/logout", (req,res) => {
 	req.logout();
 	req.flash("success","Logged Out!")
-	return res.redirect("/explore");
-	
+	return res.redirect("/explore");	
 });
 
-router.get("/forgot",function(req,res){
-	res.render("forgot");
-});
+router.get("/forgot", (req,res) =>
+	res.render("forgot")
+);
 
-router.post('/forgot', function(req, res, next) {
+router.post('/forgot', (req, res, next) => {
   async.waterfall([
     function(done) {
       crypto.randomBytes(20, function(err, buf) {
@@ -82,20 +83,20 @@ router.post('/forgot', function(req, res, next) {
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
-        user.save(function(err) {
+        user.save((err) => {
           done(err, token, user);
         });
       });
     },
-    function(token, user, done) {
-      var smtpTransport = nodemailer.createTransport({
+    (token, user, done) => {
+      let smtpTransport = nodemailer.createTransport({
         service: 'Gmail', 
         auth: {
           user: 'aafwebsitep@gmail.com',
           pass: process.env.GMAIL_PASSWORD
         }
       });
-      var mailOptions = {
+      let mailOptions = {
         to: user.username,
         from: 'aafwebsitep@gmail.com',
         subject: 'Parvaaz Parindey Password Reset',
@@ -110,13 +111,13 @@ router.post('/forgot', function(req, res, next) {
         done(err, 'done');
       });
     }
-  ], function(err) {
+  ], (err) => {
     if (err) return next(err);
     res.redirect('/forgot');
   });
 });
 
-router.get('/reset/:token', function(req, res) {
+router.get('/reset/:token', (req, res) => {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
     if (!user) {
       req.flash('error', 'Password reset token is invalid or has expired.');
@@ -126,7 +127,7 @@ router.get('/reset/:token', function(req, res) {
   });
 });
 
-router.post('/reset/:token', function(req, res) {
+router.post('/reset/:token', (req, res) => {
   async.waterfall([
     function(done) {
       User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
@@ -135,12 +136,12 @@ router.post('/reset/:token', function(req, res) {
           return res.redirect('back');
         }
         if(req.body.password === req.body.confirm) {
-          user.setPassword(req.body.password, function(err) {
+          user.setPassword(req.body.password, (err) => {
             user.resetPasswordToken = undefined;
             user.resetPasswordExpires = undefined;
 
-            user.save(function(err) {
-              req.logIn(user, function(err) {
+            user.save((err) => {
+              req.logIn(user, (err) => {
                 done(err, user);
               });
             });
@@ -151,15 +152,15 @@ router.post('/reset/:token', function(req, res) {
         }
       });
     },
-    function(user, done) {
-      var smtpTransport = nodemailer.createTransport({
+    (user, done) => {
+      let smtpTransport = nodemailer.createTransport({
         service: 'Gmail', 
         auth: {
           user: 'aafwebsitep@gmail.com',
           pass: process.env.GMAIL_PASSWORD
         }
       });
-      var mailOptions = {
+      let mailOptions = {
         to: user.username,
         from: 'aafwebsitep@gmail.com',
         subject: 'Your password has been changed',
@@ -171,11 +172,10 @@ router.post('/reset/:token', function(req, res) {
         done(err);
       });
     }
-  ], function(err) {
+  ], (err) => {
     res.redirect('/explore');
   });
 });
-
 
 module.exports = router;
 	  

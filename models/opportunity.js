@@ -29,5 +29,5 @@ var opportunitySchema = new mongoose.Schema({
 		}
 });
 
-var Opportunity = mongoose.model("Opportunity",opportunitySchema);
+let Opportunity = mongoose.model("Opportunity",opportunitySchema);
 module.exports = Opportunity;
