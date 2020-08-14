@@ -1,10 +1,11 @@
-var organisation = new Quill('#organisation', {
+let organisation = new Quill('#organisation', {
 modules: {
 	toolbar:false
 },
     theme: 'snow'
 });
-var detail = new Quill('#detail', {
+
+let detail = new Quill('#detail', {
 modules: {
 	toolbar: [
 		['bold', 'italic','underline','strike'],
@@ -15,19 +16,22 @@ modules: {
 },
     theme: 'snow'
 });
-var eligibility = new Quill('#eligibility', {
+
+let eligibility = new Quill('#eligibility', {
 modules: {
 	toolbar: false
 },
     theme: 'snow'
 });
-var dates = new Quill('#dates', {
+
+let dates = new Quill('#dates', {
 modules: {
 	toolbar:false  	
 },
     theme: 'snow'
 });
-var process = new Quill('#process', {
+
+let process = new Quill('#process', {
 modules: {
 	toolbar: [
 		['link'], 
@@ -36,13 +40,15 @@ modules: {
 },
     theme: 'snow'
 });
-var prize = new Quill('#prize', {
+
+let prize = new Quill('#prize', {
 modules: {
 	toolbar: false
 },
     theme: 'snow'
 });
-var contact = new Quill('#contact', {
+
+let contact = new Quill('#contact', {
 modules: {
 	toolbar: [
 		['link']
@@ -51,7 +57,8 @@ modules: {
 },
     theme: 'snow'
 });
-var other = new Quill('#other', {
+
+let other = new Quill('#other', {
 modules: {
 	toolbar: [
 		['link']
@@ -60,8 +67,8 @@ modules: {
     theme: 'snow'
 });
 
-var form = document.querySelector('form');
-form.onsubmit = function(){
+let form = document.querySelector('form');
+form.onsubmit = () => {
 	console.log(organisation.root.innerHTML);
 	document.querySelector('#o1').value=organisation.root.innerHTML;
 	document.querySelector('#o2').value=detail.root.innerHTML;
