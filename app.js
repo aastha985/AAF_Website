@@ -59,9 +59,9 @@ app.use("/explore",exploreRoutes);
 app.use("/explore/:id/comments",commentRoutes);
 app.use("/admin",adminRoutes);
 
-var port = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3000;
 
-app.listen(port, function() {
-    console.log('Server started');
+app.listen(PORT, function() {
+    console.log(`Server is running on PORT ${PORT}`);
 });
 
