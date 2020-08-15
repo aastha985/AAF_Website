@@ -36,7 +36,7 @@ $ npm start
 ```
 
 ### :card_index_dividers: Contribution Guidelines
-View the contribution guidelines [here](https://github.com/aastha985/ParvaazParindey/master/CONTRIBUTING.md)
+View the contribution guidelines [here](https://github.com/aastha985/ParvaazParindey/blob/master/CONTRIBUTING.md)
 
 ### :copyright: License
 [MIT License](http://opensource.org/licenses/MIT)
