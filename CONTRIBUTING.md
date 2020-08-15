@@ -36,10 +36,12 @@ Unsure where to begin contributing? You can start by looking through these issue
 * Run 'npm start' on the terminal and access the site on localhost:3000/ in your browser.
 
 ## Moderator details
-* Aastha: * Github:   https://github.com/aastha985
-          * LinkedIn: https://www.linkedin.com/in/aastha-045b91187/
-* Agrim : * Github:   https://github.com/agrim19
-          * LinkedIn: https://www.linkedin.com/in/agrim-chopra-329a88181/
+* Aastha: 
+   * Github:   https://github.com/aastha985
+   * LinkedIn: https://www.linkedin.com/in/aastha-045b91187/
+* Agrim : 
+   * Github:   https://github.com/agrim19
+   * LinkedIn: https://www.linkedin.com/in/agrim-chopra-329a88181/
 
 ## Some pointers
 * Do not work on an issue already assigned to someone else! Always work on issue already assigned to you.
