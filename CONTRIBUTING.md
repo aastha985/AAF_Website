@@ -33,6 +33,7 @@ Unsure where to begin contributing? You can start by looking through these issue
 * Setup cloudinary account. Once that is done:
     * Export 3 environment variables: CLOUDINARY_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET. They need to be what the name suggests, copied  from your cloudinary account. 
 * Export environment variable adminId, which is _id of the person you want to make the admin in your local run from mongo. (Make a user, and copy his _id field from the mongo shell).
+* Comment the whole route 'router.get('*')' in routes/index.js.(**Be sure to revert this change when making PR**).
 * Run 'npm start' on the terminal and access the site on localhost:3000/ in your browser.
 
 ## Moderator details

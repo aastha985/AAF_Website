@@ -16,7 +16,7 @@ middlewareObj.isAdmin = (req,res,next) => {
 		// if(req.user._id.equals("5edc9cb83ad90209f088b386")){
 		// 	next();
 		// }	
-		if(req.user._id.equals("5edf4ecb87ba0600171de405")){
+		if(req.user._id.equals(res.locals.adminId)){
 			next();
 		}
 		else{

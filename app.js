@@ -46,8 +46,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req,res,next){
 	res.locals.currentUser = req.user;
-	// res.locals.adminId = "5edc9cb83ad90209f088b386";
-	res.locals.adminId = "5edf4ecb87ba0600171de405";
+	res.locals.adminId = process.env.adminId;
 	res.locals.error = req.flash("error");
 	res.locals.success = req.flash("success");
 	next();
