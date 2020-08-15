@@ -90,6 +90,7 @@ router.post('/forgot', (req, res, next) => {
     },
     (token, user, done) => {
       let smtpTransport = nodemailer.createTransport({
+		 host: 'smtp.gmail.com',
         service: 'Gmail', 
         auth: {
           user: 'aafwebsitep@gmail.com',
