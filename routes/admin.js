@@ -1,44 +1,40 @@
-const 	express = require("express"),
-	  	router = express.Router(),
-		Post = require("../models/post"),
-	  	Opportunity = require("../models/opportunity"),
-	  	middleware = require("../middleware");
+const express = require("express"), router = express.Router(), Post = require("../models/post"), Opportunity = require("../models/opportunity"), middleware = require("../middleware");
 
 
-//multer setup=====================================================================
-var multer = require('multer');
-var storage = multer.diskStorage({
+// Multer setup
+const multer = require('multer');
+let storage = multer.diskStorage({
   filename: function(req, file, callback) {
     callback(null, Date.now() + file.originalname);
   }
 });
-var imageFilter = function (req, file, cb) {
-    // accept image files only
+
+let imageFilter = function (req, file, cb) {
+    // Accept image files only
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/i)) {
         return cb(new Error('Only image files are allowed!'), false);
     }
     cb(null, true);
 };
-var upload = multer({ storage: storage, fileFilter: imageFilter});
-//cloudinary setup================================================================
-var cloudinary = require('cloudinary');
+
+let upload = multer({ storage: storage, fileFilter: imageFilter});
+
+// Cloudinary setup
+const cloudinary = require('cloudinary');
 cloudinary.config({ 
   cloud_name: 'dqm7ezutf', 
   api_key: process.env.CLOUDINARY_API_KEY, 
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
-//=====================================================================================
 
-
-//index route - admin dashboard
-router.get("/",middleware.isAdmin,function(req,res){
+// Root route - Admin dashboard
+router.get("/",middleware.isAdmin, (req, res) => {
 	res.render("admin/index");
 });
 
-//pending posts===============================================================
-//index route
-router.get("/explore",middleware.isAdmin,function(req,res){
-	Post.find({"isApproved":false},function(err,Posts){
+// Explore route
+router.get("/explore",middleware.isAdmin, (req, res) => {
+	Post.find({"isApproved":false}, (err, Posts) => {
 		if(err){
 			console.log(err);
 			return res.redirect("/admin");
@@ -50,27 +46,26 @@ router.get("/explore",middleware.isAdmin,function(req,res){
 });
 
 //show route
-router.get("/explore/:id",middleware.isAdmin,function(req,res){
-	Post.findById(req.params.id,function(err,foundPost){
-		if(err|| !foundPost ){
+router.get("/explore/:id", middleware.isAdmin, (req,res) => {
+	Post.findById(req.params.id, (err,foundPost) => {
+		if (err|| !foundPost ){
 			console.log(err);
 			res.render("/admin");
-		}
-		else{
-			res.render("admin/postshow",{post:foundPost});
+		} else{
+			res.render("admin/postshow", {post:foundPost});
 		}
 	});
 });
 
-//update Route ====== Approve
-router.put("/explore/:id",middleware.isAdmin,function(req,res){
-	Post.findById(req.params.id,req.params.post,function(err,updatePost){
+// Update route
+router.put("/explore/:id", middleware.isAdmin, (req,res) => {
+	Post.findById(req.params.id,req.params.post, (err,updatePost) => {
 		if(err){
 			console.log(err);
 			return res.redirect("/admin");
 		}
 		else{
-			updatePost.isApproved=true;
+			updatePost.isApproved = true;
 			updatePost.save();
 			req.flash("success","Approved Post!")
 			return res.redirect("/admin/explore");
@@ -78,14 +73,14 @@ router.put("/explore/:id",middleware.isAdmin,function(req,res){
 	});
 });
 
-//delete route ===== Delete
-router.delete("/explore/:id",middleware.isAdmin,function(req,res){
-	Post.findById(req.params.id,function(err,post){
+// Delete route 
+router.delete("/explore/:id", middleware.isAdmin, (req,res) => {
+	Post.findById(req.params.id, (err,post) => {
 		if(err){
 			console.log(err);
 			return res.redirect("/admin");
-		}
-		else{		cloudinary.v2.uploader.destroy(post.imageId,function(err,deletePost){
+		} else {		
+			cloudinary.v2.uploader.destroy(post.imageId, (err,deletePost) => {
 				if(err){
 					return res.redirect("/admin");
 					console.log(err);
@@ -100,24 +95,22 @@ router.delete("/explore/:id",middleware.isAdmin,function(req,res){
 	});
 });
 
-//===================================================================
-//pending opportunities==============================================
-//index route
-router.get("/opportunities",middleware.isAdmin,function(req,res){
-	Opportunity.find({"isApproved":false},function(err,Opportunities){
+// Pending opportunities
+router.get("/opportunities", middleware.isAdmin, (req,res) => {
+	Opportunity.find({"isApproved":false}, (err,Opportunities) => {
 		if(err){
 			console.log(err);
 			return res.redirect("/admin");
 		}
 		else{
-			res.render("admin/opportunityindex",{opportunities:Opportunities});
+			res.render("admin/opportunityindex", {opportunities:Opportunities});
 		}
 	});
 });
 
-//show route
-router.get("/opportunities/:id",middleware.isAdmin,function(req,res){
-	Opportunity.findById(req.params.id,function(err,foundOpportunity){
+// Show route
+router.get("/opportunities/:id",middleware.isAdmin, (req,res) => {
+	Opportunity.findById(req.params.id, (err,foundOpportunity) => {
 		if(err|| !foundOpportunity ){
 			console.log(err);
 			res.render("/admin");
@@ -128,9 +121,9 @@ router.get("/opportunities/:id",middleware.isAdmin,function(req,res){
 	});
 });
 
-//update Route ====== Approve
-router.put("/opportunities/:id",middleware.isAdmin,function(req,res){
-	Opportunity.findById(req.params.id,req.params.opportunity,function(err,updateOpportunity){
+// Update Route  
+router.put("/opportunities/:id", middleware.isAdmin, (req,res) => {
+	Opportunity.findById(req.params.id, req.params.opportunity, (err,updateOpportunity) => {
 		if(err){
 			console.log(err);
 			return res.redirect("/admin");
@@ -144,13 +137,13 @@ router.put("/opportunities/:id",middleware.isAdmin,function(req,res){
 	});
 });
 
-router.delete("/opportunities/:id",middleware.isAdmin,function(req,res){
-	Opportunity.findById(req.params.id,function(err,opportunity){
+router.delete("/opportunities/:id", middleware.isAdmin, (req,res) => {
+	Opportunity.findById(req.params.id, (err,opportunity) => {
 		if(err){
 			console.log(err);
 			return res.redirect("/admin");
-		}
-		else{		cloudinary.v2.uploader.destroy(opportunity.imageId,function(err,deleteOpportunity){
+		} else{	
+			cloudinary.v2.uploader.destroy(opportunity.imageId, (err,deleteOpportunity) => {
 				if(err){
 					console.log(err);
 					return res.redirect("/admin");

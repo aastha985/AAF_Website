@@ -1,14 +1,14 @@
 {
-  "name": "parvaazparindey2",
+  "name": "parvaazparindey",
   "version": "1.0.0",
-  "description": "",
+  "description": "Asha Akanksha Foundation is a non-government organization established in the year 2013 working to spread awareness in the society and provide quality education to those who are void of it. ",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "author": "Aastha",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "async": "^3.2.0",
     "body-parser": "^1.19.0",

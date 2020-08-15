@@ -10,8 +10,9 @@ modules: {
 placeholder: 'Content goes here...',
     theme: 'snow'
 });
-var form = document.querySelector('form');
-form.onsubmit = function(){
+
+let form = document.querySelector('form');
+
+form.onsubmit = () => {
 	document.querySelector('input[name=content]').value=quill.root.innerHTML;
-	// console.log(document.querySelector('input[name=content]').value);
 }
