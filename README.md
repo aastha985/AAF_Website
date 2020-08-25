@@ -1,5 +1,5 @@
 # 👨🏽‍💻 ParvaazParindey
-A website for Asha Akanksha Foundation using Node.js, Express,MongoDB. Deployed at [link https://parvaaz-parindey.aafngo.org](https://parvaaz-parindey.aafngo.org)
+A website for Asha Akanksha Foundation using Node.js, Express,MongoDB. Deployed at [https://parvaaz-parindey.aafngo.org](https://parvaaz-parindey.aafngo.org)
 
 The website uses Passport.js for handling authentication. It also uses good coding practices like RESTful routing.
 
