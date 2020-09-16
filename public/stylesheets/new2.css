@@ -30,6 +30,11 @@ body{
         height: 50vh;
 		margin-bottom:1rem;
 }
+
+label[for="terms"]{
+	display:inline;
+}
+
 @media (max-width:992px){
 	#oh1{
 		opacity:0;
