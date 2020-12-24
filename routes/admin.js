@@ -151,7 +151,7 @@ router.delete("/opportunities/:id", middleware.isAdmin, (req,res) => {
 				else{
 					opportunity.remove();
 					req.flash("success","Deleted Opportunity!");
-					return res.redirect("/admin/opportunities");
+					res.redirect("/admin/opportunities");
 				}
 			});
 		}

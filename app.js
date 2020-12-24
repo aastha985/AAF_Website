@@ -17,7 +17,8 @@ const indexRoutes = require("./routes/index"),
 	  	opportunityRoutes = require("./routes/opportunities"),
 		exploreRoutes = require("./routes/explore"),
 	  	commentRoutes = require("./routes/comments"),
-	  	adminRoutes = require("./routes/admin");
+		adminRoutes = require("./routes/admin"),
+		volunteerRoutes = require("./routes/volunteer");  
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
@@ -57,6 +58,7 @@ app.use("/opportunities",opportunityRoutes);
 app.use("/explore",exploreRoutes);
 app.use("/explore/:id/comments",commentRoutes);
 app.use("/admin",adminRoutes);
+app.use("/volunteer",volunteerRoutes);
 
 var PORT = process.env.PORT || 3000;
 

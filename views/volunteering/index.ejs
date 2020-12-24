@@ -1,0 +1,45 @@
+<%- include("../partials/header1") %>
+    <script src="https://kit.fontawesome.com/1d9b3c3ba8.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/registerVolunteer.css">
+<%- include("../partials/header1b") %>
+<%- include("../partials/navbar") %>
+
+<div class="jumbotron">
+            <!--=====================================================================-->
+            <div class="container opph">
+                <h1 class="heading"> Become a Volunteer </h1>
+                <p class="txt1">
+                    Collaborate with us to work for the general benefit of the society
+                </p>
+            </div>
+        </div>
+        <div class="container">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe veniam corporis impedit quisquam, adipisci distinctio provident accusantium dignissimos iure repellendus itaque! A earum minima aliquid porro voluptate omnis cum odio sapiente molestias, maiores pariatur officia nobis, minus perferendis veritatis molestiae fuga eos iure animi nemo vero in quod. Veniam maiores a ipsa! Consequuntur alias harum blanditiis at officiis repellendus, nesciunt vitae reiciendis facere quas autem consectetur laboriosam vel ab labore itaque sapiente exercitationem soluta tempora adipisci assumenda quibusdam, aspernatur reprehenderit perspiciatis? Architecto quos consectetur ea, quo hic, sunt quod cum commodi natus ducimus dolores dolore, qui reprehenderit distinctio. Veritatis, vero?</p>
+            <hr>
+            <form method="POST" action="/volunteer/new/">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="name" name="volunteer[name]">
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number: </label>
+                    <input type="number" class="form-control" id="phone" aria-describedby="phone" name ="volunteer[phoneNumber]">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name = "volunteer[emailAddress]">
+                </div>
+                <div class="mb-3">
+                    <label for="purpose" class="form-label">Why do you wish to join Asha Akanksha Foundation? </label>
+                    <textarea name="volunteer[aimToJoin]" id="purpose" rows="5"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="use" class="form-label">In what way do you believe you can help us? </label>
+                    <textarea name="volunteer[positionDetails]" id="use" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>            
+        </div>
+    </body>
+</html>

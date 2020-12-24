@@ -1,40 +1,40 @@
-.jumbotron{
-	background: url("https://imgur.com/ybXlkr9.jpg") no-repeat;
-	background-position: center;
-	background-size: cover;
-	border-radius:0;
-	padding-top: 0;
+.jumbotron {
+    background: url('https://imgur.com/ybXlkr9.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 0;
+    padding-top: 0;
     padding-left: 0;
     padding-right: 0;
-	height: 70vh;
-	margin-bottom:2rem;
+    height: 70vh;
+    margin-bottom: 2rem;
 }
-a.nav-link{
-	color:black!important;
+a.nav-link {
+    color: black !important;
 }
-a.navbar-brand{
-	color:black!important;
+a.navbar-brand {
+    color: black !important;
 }
-h1{
-	color:black;
-	margin-top: 10vh;
-	font-size: 4rem;
+h1 {
+    color: black;
+    margin-top: 10vh;
+    font-size: 4rem;
 }
-.txt6{
-	font-size:1.2rem;
+.txt6 {
+    font-size: 1.2rem;
 }
-.abt1{
-	margin-top: 2rem;
+.abt1 {
+    margin-top: 2rem;
 }
-.ss{
-	font-size: 1.3rem;
+.ss {
+    font-size: 1.3rem;
 }
-.abt2{
-	margin-top: 2rem;
-	margin-bottom: 4rem;
+.abt2 {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
 }
-@media (max-width:992px){
-	h1{
-		font-size:2rem;
-	}
+@media (max-width: 992px) {
+    h1 {
+        font-size: 2rem;
+    }
 }
