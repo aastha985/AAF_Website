@@ -20,6 +20,11 @@ var volunteerSchema = new mongoose.Schema({
     positionDetails:{
         type:String,
         required:true
+    },
+    approved:{
+        type: Boolean,
+        required:false,
+        default:false,
     }
 
 });

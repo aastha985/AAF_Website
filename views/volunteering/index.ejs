@@ -1,45 +1,100 @@
 <%- include("../partials/header1") %>
-    <script src="https://kit.fontawesome.com/1d9b3c3ba8.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheets/registerVolunteer.css">
+	  <!--========Custom stylesheets=====================-->
+	  <link rel="stylesheet" href="/stylesheets/Navbar.css">
+	  <link rel="stylesheet" href="/stylesheets/NewFormHeader.css">
+	  <link rel="stylesheet" href="/stylesheets/new.css">
+	  <link rel="stylesheet" href="/stylesheets/Buttons.css">
+	  <link rel="stylesheet" href="/stylesheets/Footer.css">
+	  <link rel="stylesheet" href="/stylesheets/registerVolunteer.css">
+<!--==============================================-->
 <%- include("../partials/header1b") %>
-<%- include("../partials/navbar") %>
-
+	  
+<!---Jumbotron-==========================----->
 <div class="jumbotron">
-            <!--=====================================================================-->
-            <div class="container opph">
-                <h1 class="heading"> Become a Volunteer </h1>
-                <p class="txt1">
-                    Collaborate with us to work for the general benefit of the society
-                </p>
-            </div>
-        </div>
-        <div class="container">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe veniam corporis impedit quisquam, adipisci distinctio provident accusantium dignissimos iure repellendus itaque! A earum minima aliquid porro voluptate omnis cum odio sapiente molestias, maiores pariatur officia nobis, minus perferendis veritatis molestiae fuga eos iure animi nemo vero in quod. Veniam maiores a ipsa! Consequuntur alias harum blanditiis at officiis repellendus, nesciunt vitae reiciendis facere quas autem consectetur laboriosam vel ab labore itaque sapiente exercitationem soluta tempora adipisci assumenda quibusdam, aspernatur reprehenderit perspiciatis? Architecto quos consectetur ea, quo hic, sunt quod cum commodi natus ducimus dolores dolore, qui reprehenderit distinctio. Veritatis, vero?</p>
-            <hr>
-            <form method="POST" action="/volunteer/new/">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" aria-describedby="name" name="volunteer[name]">
-                </div>
-                <div class="mb-3">
-                    <label for="phone" class="form-label">Phone Number: </label>
-                    <input type="number" class="form-control" id="phone" aria-describedby="phone" name ="volunteer[phoneNumber]">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name = "volunteer[emailAddress]">
-                </div>
-                <div class="mb-3">
-                    <label for="purpose" class="form-label">Why do you wish to join Asha Akanksha Foundation? </label>
-                    <textarea name="volunteer[aimToJoin]" id="purpose" rows="5"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="use" class="form-label">In what way do you believe you can help us? </label>
-                    <textarea name="volunteer[positionDetails]" id="use" rows="5"></textarea>
-                </div>
-                <button type="submit" class="btn btn-success">Submit</button>
-              </form>            
-        </div>
-    </body>
-</html>
+<!--Navbar=====================================-->
+<%- include("../partials/navbar") %>
+<!--=====================================================================-->
+<div class="container text-center">
+    <h1 id="oh1">Become a Volunteer</h1>
+</div>
+</div>
+<div class="container">
+	<h1 id="oh2" class="text-center">Become a Volunteer</h1>
+	<p id="p1" class="text-justify">
+	    We welcome you for <strong>Volunteership Program</strong> to exercise your mental machines and give a little something back to the society!<br/><br/>
+        The applications are now open for people interested in social work from the age of 15 to 40. Volunteers would be expected to participate in the events organised by our Foundation and take initiatives to plan more events. However, they would not be required to work 24*7 on all events. They will have the option to opt out of certain events if the events do not match their field of work. But, in order to get a certificate, a minimum number of hours/events would be mandatory for the year. <br/><br/>
+        To join our organisation please complete and submit the form below.<br/>
+        <br/>
+        There is no fee payment required for this program.<br/>
+        The minimum tenure of your volunteership would be 1 year with flexible timings and this will be a part time program.
+        <br/><br/>
+        After the completion of this tenure, you can apply to work as a full-time member of our team. The best part about working with us is that you do NOT have to devote long hours. Our work requires minimal time consumption and you’ll have all the time to pursue your other endeavours. <br/>
+        <br/>
+        <br/>
+        <strong>Our aim for this Volunteership is to inspire individuals<br/></strong>
+        - across the country to work for the betterment of our society<br/>
+        - to work towards bridging the gap between classes closer<br/>
+        - to spread awareness about the societal problems <br/>
+        - to help those in need and motivate others to do the same <br/>
+        - to visit the underprivileged areas and educate people about their rights and laws<br/>
+        <br/>
+        <strong>The volunteers would be expected to:<br/></strong>
+        - conduct and take part in regular field visits to slum areas,<br/>
+        - design the content on certain social topics for presentations in different areas and for our official blog,<br/>
+        - Promote us and our initiatives on their social media handles,<br/>
+        - take part in donation drives in the underprivileged areas <br/>
+        - take initiatives and suggest new ways in which we can contribute for the upliftment  of our society <br/>
+        - exchange views and learn from their supervisors and ascertain the needs of the society better.<br/>
+        <br/>
+        <strong>Perks (based on the level of participation throughout the year) <br/></strong>
+        - Recognition<br/>
+        - Certificate of Voluntertship<br/>
+        - Performance based Rewards<br/>
+        - Letter of Recommendation<br/>
+        - Award for contribution in society<br/>
+        - Opportunity to be convenor and work on first-hand basis<br/>
+        - Regular Training programmes with experienced professionals<br/>
+        <br/><br/>
+        We hope that you will join us in this journey towards making this world a better place, bit by bit!
+        <br/>
+        Till then, look after yourselves and those around you! 
+        <br/>
+        <strong>Till the situation is not normal, tasks will be online. All tasks will be done from home. After the situation normalises, we might start conducting field visits again on the weekends. You are not obligated to go every weekend. 
+        You will have the liberty to plan these visits according to your convenience. </strong>
+        <br/><br/>
+        <strong>Application is open for all, no restrictions.</strong>
+    </p>
+    <br/><br/>
+    <h3>Application Form</h3>
+    <small class="form-text text-muted">Fill out this form and our team will reach back to you.</small>
+    <hr>
+	<form action="/volunteer/new" method="POST">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="volunteer[name]" required>
+        <small class="form-text text-muted">Enter Your Full Name Here</small>
+    </div>
+    <div class="form-group">
+        <label for="number">Phone Number</label>
+        <input type="number" class="form-control" id="number" name="volunteer[phoneNumber]" maxlength = "100" required>
+        <small class="form-text text-muted">Enter Your Phone Number Here</small>
+    </div>
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" class="form-control" id="email" name="volunteer[emailAddress]" maxlength = "100" required>
+    </div>
+    <div class="form-group">
+        <label for="reason">Why do you wish to join Asha Akanksha Foundation?</label>
+        <textarea name="volunteer[aimToJoin]" id="reason" rows="6"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="use">In what way do you believe you can help us?</label>
+        <textarea name="volunteer[positionDetails]" id="reason" rows="6" required></textarea>
+    </div>
+    <div class="text-center" class="white">
+        <button type="submit" class="btn btn-lg px-5" required>Submit</button>
+    </div>
+</form>
+</div>
+<!--================================-->
+<%- include("../partials/footer") %>

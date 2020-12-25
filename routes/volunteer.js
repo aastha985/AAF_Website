@@ -8,8 +8,8 @@ router.get("/",(req,res,next)=>{
 
 router.post("/new", (req,res,next)=>{
     Volunteer.create(req.body.volunteer, (err,volunteer)=>{
-        if(err) next(err);
-        req.flash("success", "Sent your details for review! Wait for a response from our team.");
+        if(err) req.flash("error", err.message);
+        else req.flash("success", "Sent your details for review! Wait for a response from our team.");
         res.redirect("/explore");
     });
 });
