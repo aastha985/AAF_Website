@@ -26,14 +26,14 @@ router.get("/register",(req,res) =>
 // Handling sign up logic
 router.post("/register", (req,res) => {
 	var newUser = new User({username:req.body.username,name:req.body.name});
-	User.register(newUser,req.body.password,function(err,user){
+	User.register(newUser,req.body.password,(err,user) => {
 		if(err){
 			console.log(err);
 			req.flash("error",err.message);
 			return res.redirect("/register");
 		}
 		else{
-			passport.authenticate("local")(req,res,function(){
+			passport.authenticate("local")(req,res,() => {
 				req.flash("success","Welcome "+user.name);
 				return res.redirect("/explore");
 			});
@@ -67,14 +67,14 @@ router.get("/forgot", (req,res) =>
 
 router.post('/forgot', (req, res, next) => {
   async.waterfall([
-    function(done) {
-      crypto.randomBytes(20, function(err, buf) {
+    (done) => {
+      crypto.randomBytes(20, (err, buf) => {
         var token = buf.toString('hex');
         done(err, token);
       });
     },
-    function(token, done) {
-      User.findOne({ username: req.body.username }, function(err, user) {
+    (token, done) => {
+      User.findOne({ username: req.body.username }, (err, user) => {
         if (!user) {
           req.flash('error', 'No account with that email address exists.');
           return res.redirect('/forgot');
@@ -106,7 +106,7 @@ router.post('/forgot', (req, res, next) => {
           'http://' + req.headers.host + '/reset/' + token + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
-      smtpTransport.sendMail(mailOptions, function(err) {
+      smtpTransport.sendMail(mailOptions, (err) => {
         console.log('mail sent');
         req.flash('success', 'An e-mail has been sent to ' + user.username + ' with further instructions. If you don\'t not receive the email please check your spam folder.');
         done(err, 'done');
@@ -119,7 +119,7 @@ router.post('/forgot', (req, res, next) => {
 });
 
 router.get('/reset/:token', (req, res) => {
-  User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+  User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, (err, user) => {
     if (!user) {
       req.flash('error', 'Password reset token is invalid or has expired.');
       return res.redirect('/forgot');
@@ -130,8 +130,8 @@ router.get('/reset/:token', (req, res) => {
 
 router.post('/reset/:token', (req, res) => {
   async.waterfall([
-    function(done) {
-      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+    (done)=> {
+      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, (err, user) => {
         if (!user) {
           req.flash('error', 'Password reset token is invalid or has expired.');
           return res.redirect('back');
@@ -168,7 +168,7 @@ router.post('/reset/:token', (req, res) => {
         text: 'Hello '+user.name+',\n\n' +
           'This is a confirmation that the password for your account ' + user.username + ' has just been changed.\n'
       };
-      smtpTransport.sendMail(mailOptions, function(err) {
+      smtpTransport.sendMail(mailOptions, (err) => {
         req.flash('success', 'Success! Your password has been changed.');
         done(err);
       });

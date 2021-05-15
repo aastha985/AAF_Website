@@ -27,7 +27,7 @@ cloudinary.config({
 
 // Index route
 router.get("/", (req,res) => {
-	Post.find({"isApproved":true},function(err,Posts){
+	Post.find({"isApproved":true},(err,Posts) => {
 		if(err){
 			console.log(err);
 		}
@@ -44,13 +44,13 @@ router.get("/new", middleware.isLoggedIn, (req,res) =>
 
 // Create route
 router.post("/",middleware.isLoggedIn,upload.single('image'), (req,res) => {
-	cloudinary.uploader.upload(req.file.path, function(result) {
+	cloudinary.uploader.upload(req.file.path, (result) => {
 		console.log(req.body);
   		req.body.post.image = result.secure_url;
 		req.body.post.imageId = result.public_id;
 		req.body.post.author = req.user;
 		req.body.post.content = req.body.content;
-		Post.create(req.body.post,function(err,newPost){
+		Post.create(req.body.post,(err,newPost) => {
 			if (err) {
 				console.log(err);
 			}
@@ -77,7 +77,7 @@ router.get("/:id", (req,res) => {
 
 // Like posts route
 router.post("/:id/like",middleware.isLoggedIn, (req,res) => {
-	Post.findById(req.params.id,function(err,foundPost){
+	Post.findById(req.params.id,(err,foundPost) => {
 		if(err){
 			console.log(err);
 			req.flash("error","Could not like the post");
@@ -97,7 +97,7 @@ router.post("/:id/like",middleware.isLoggedIn, (req,res) => {
 				req.flash("success","Post Liked!");
 				foundPost.likes.push(req.user);
 			}
-			foundPost.save(function (err) {
+			foundPost.save( (err) => {
             if (err) {
                 console.log(err);
 				req.flash("error","Could not like the post");
@@ -112,7 +112,7 @@ router.post("/:id/like",middleware.isLoggedIn, (req,res) => {
 
 // Edit route
 router.get("/:id/edit", middleware.isAdmin, (req,res) => {
-	Post.findById(req.params.id,function(err,foundPost){
+	Post.findById(req.params.id, (err,foundPost) => {
 		if(err){
 			console.log(err);
 			req.flash("error","Cannot find the Post");
@@ -139,8 +139,8 @@ router.put("/:id", middleware.isAdmin, (req,res) => {
 });
 
 // Image edit route
-router.get("/:id/imageedit",middleware.isAdmin,function(req,res){
-	Post.findById(req.params.id,function(err,foundPost){
+router.get("/:id/imageedit",middleware.isAdmin,(req,res) => {
+	Post.findById(req.params.id,(err,foundPost) => {
 		if(err){
 			console.log(err);
 			res.redirect("/explore");
@@ -174,7 +174,7 @@ router.put("/:id/image", middleware.isAdmin,upload.single('image'), (req,res) =>
 });
 
 router.delete("/:id", middleware.isAdmin, (req,res) => {
-	Post.findById(req.params.id,async function(err,post){
+	Post.findById(req.params.id,async (err,post) => {
 		if(err){
 			console.log(err);
 			return res.redirect("/explore");

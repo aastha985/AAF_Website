@@ -1,7 +1,7 @@
 const express = require("express"), router= express.Router({mergeParams:true}), Post = require("../models/post"), Comment = require("../models/comment"), middleware = require("../middleware");
 
 router.get("/new", middleware.isLoggedIn, (req,res) =>{
-	Post.findById(req.params.id,function(err,foundPost){
+	Post.findById(req.params.id,(err,foundPost) => {
 		if(err){
 			console.log(err);
 			

@@ -9,7 +9,7 @@ let storage = multer.diskStorage({
   }
 });
 
-let imageFilter = function (req, file, cb) {
+let imageFilter = (req, file, cb) => {
     // Accept image files only
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/i)) {
         return cb(new Error('Only image files are allowed!'), false);

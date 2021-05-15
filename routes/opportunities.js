@@ -39,7 +39,7 @@ router.get("/new", middleware.isLoggedIn, (req,res) =>
 
 // Create route
 router.post("/", middleware.isLoggedIn,upload.single('image'), (req,res) => {
-	cloudinary.uploader.upload(req.file.path, function(result) {
+	cloudinary.uploader.upload(req.file.path, (result)=> {
   		req.body.opportunity.image = result.secure_url;
 		req.body.opportunity.imageId = result.public_id;
 		Opportunity.create(req.body.opportunity, (err,newOpportunity) => {
@@ -56,7 +56,7 @@ router.post("/", middleware.isLoggedIn,upload.single('image'), (req,res) => {
 router.use(OpportunityindexRoutes);
 
 // Show route
-router.get("/:id",function(req,res){
+router.get("/:id",(req,res) => {
 	Opportunity.findById(req.params.id, (err,foundOpportunity) => {
 		if(err){
 			console.log(err);
