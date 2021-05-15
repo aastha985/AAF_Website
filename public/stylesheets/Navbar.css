@@ -1,6 +1,16 @@
 body{
 	font-family:'Poppins', sans-serif;
 }
+
+.resendButton{
+    background: none!important;
+  border: none;
+  padding: 0!important;
+  color:#007bff;
+  /*optional*/
+  cursor: pointer;
+}
+
 .navbar{
     z-index:1;
     position: relative;
