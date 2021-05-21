@@ -49,7 +49,8 @@ router.get("/login", (req,res) =>
 // Handle log in logic
 router.post("/login",passport.authenticate("local",{
 	successRedirect: "/",
-	failureRedirect: "/login"}),
+	failureRedirect: "/login",
+  failureFlash: true}),
 	(req,res) => {
     // ???? something has to be here.
 });
