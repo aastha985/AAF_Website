@@ -1,3 +1,4 @@
+<link rel="preload" href="https://imgur.com/cJDAUqj.jpg" as="image">
 <%- include("./partials/header1") %>
 <link rel="stylesheet" href="/stylesheets/Navbar.css">
 <link rel="stylesheet" href="/stylesheets/register.css">
@@ -18,13 +19,24 @@
 				<div class="form-group">
 					<input type="email" class="form-control" name="username" placeholder="Email address" required>
 				</div>
-				<button class="btn mb-3 mt-2">
+				<button class="btn mb-3 mt-2" id="reset">
 					Reset Password
 				</button>
 				<a href="/login" style="float:right">Back to Login</a>
-				<button type="submit" formaction ="/forgot" style="float:left" class="resendButton">Did not receive email?</a>
+				<button type="submit" formaction ="/forgot" style="float:left" class="resendButton" id="resend">Did not receive email?</a>
 			</form>
 		</div>
 </div>
 
 <%- include("./partials/footer") %>
+<script>
+	let resendButton=document.getElementById("resend");
+	let reset=document.getElementById("reset");
+	resendButton.disabled=true;
+	let enableResend=()=>{
+		resendButton.disabled=false;
+	}
+	reset.addEventListener("click",()=>{
+		setTimeout(enableResend,60000);
+	});
+</script>
