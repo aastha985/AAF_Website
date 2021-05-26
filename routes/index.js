@@ -4,6 +4,7 @@ passport = require("passport"),
 User = require("../models/user"),
 async = require("async"),
 nodemailer = require("nodemailer"),
+ModalImage=require("../models/ModalImage")
 crypto = require("crypto");
 	  
 router.get('*', (req,res,next) => { 
@@ -12,8 +13,17 @@ router.get('*', (req,res,next) => {
 });	
 
 // Root route
-router.get("/", (req,res) => 
-	res.render("home")
+router.get("/", (req,res) => {
+    ModalImage.findOne({"toDisplay":true},(err,found)=>{
+      if(found==null){
+        res.render("home",{toggle:false,url:null})
+      }
+      else{
+        res.render("home",{toggle:true,url:found.Url})
+      }
+
+    })
+  }
 );
 
 // Authentication routes

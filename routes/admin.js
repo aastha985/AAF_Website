@@ -1,5 +1,5 @@
 const express = require("express"), router = express.Router(), Post = require("../models/post"), Opportunity = require("../models/opportunity"), middleware = require("../middleware");
-
+const ModalImage=require("../models/ModalImage")
 
 // Multer setup
 const multer = require('multer');
@@ -29,7 +29,15 @@ cloudinary.config({
 
 // Root route - Admin dashboard
 router.get("/",middleware.isAdmin, (req, res) => {
-	res.render("admin/index");
+	ModalImage.findOne({"toDisplay":true},(err,found)=>{
+		if(found==null){
+		  res.render("admin/index",{toggle:false,url:null})
+		}
+		else{
+		  res.render("admin/index",{toggle:true,url:found.Url})
+		}
+  
+	  })
 });
 
 // Explore route
@@ -56,6 +64,36 @@ router.get("/explore/:id", middleware.isAdmin, (req,res) => {
 		}
 	});
 });
+
+//update url
+router.post("/", middleware.isAdmin, (req,res) => {
+	console.log("hello")
+	var isOn=false;
+	if(req.body.isOn=="on"){
+		isOn=true;
+	}
+	ModalImage.remove({"toDisplay":!isOn},(err,result)=>{
+		if(err){
+			console.log(err)
+		}
+	})
+	ModalImage.remove({"toDisplay": isOn},(err,result)=>{
+		if(err){
+			console.log(err)
+		}
+	})
+	ModalImage.create({"toDisplay":isOn,"Url":req.body.img_url},(err,newModalImage)=>{
+		if(err){
+			console.log(err);
+			return res.redirect("/admin");
+		}
+		else{
+			req.flash("Successfully updated");
+			return res.redirect("/admin");
+		}
+	})
+});
+
 
 // Update route
 router.put("/explore/:id", middleware.isAdmin, (req,res) => {

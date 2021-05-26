@@ -7,6 +7,11 @@
 <link rel="stylesheet" href="/stylesheets/Footer.css">
 <%- include("./partials/header1b") %>
 
+<!-- Whether to show modal or not by admin settings -->
+<% if(toggle){ %>
+<%- include("./partials/flashupAd",{url:url}) %>
+<% } %>
+
 <div class="jumbotron">
 	<div class="container">
 		<%- include("./partials/navbar") %>
