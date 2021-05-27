@@ -134,6 +134,7 @@ router.put("/explore/:id", middleware.isAdmin, (req,res) => {
 		}
 		else{
 			updatePost.isApproved = true;
+			updatePost.dateApproved = Date.now();
 			updatePost.save();
 			req.flash("success","Approved Post!")
 			return res.redirect("/admin/explore");
@@ -198,6 +199,7 @@ router.put("/opportunities/:id", middleware.isAdmin, (req,res) => {
 		}
 		else{
 			updateOpportunity.isApproved=true;
+			updateOpportunity.dateApproved = Date.now();
 			updateOpportunity.save();
 			req.flash("success","Approved Opportunity!")
 			return res.redirect("/admin/opportunities");

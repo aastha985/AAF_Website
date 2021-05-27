@@ -26,7 +26,8 @@ var opportunitySchema = new mongoose.Schema({
 		{
 			type:Boolean,
 			default:false
-		}
+		},
+	dateApproved:Date
 });
 
 let Opportunity = mongoose.model("Opportunity",opportunitySchema);

@@ -15,6 +15,15 @@ var imageFilter = (req, file, cb) => {
     cb(null, true);
 };
 
+var getIdfromUri = (uri) => {
+	var s=uri.search("&id=");
+	return uri.slice(s+4);
+}
+
+var getUri = (data) => {
+	return data.heading.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')+"&id="+data._id
+}
+
 let upload = multer({ storage: storage, fileFilter: imageFilter});
 
 // Cloudinary setup
@@ -62,8 +71,9 @@ router.post("/",middleware.isLoggedIn,upload.single('image'), (req,res) => {
 });
 
 // Show route
-router.get("/:id", (req,res) => {
-	Post.findById(req.params.id).populate("comments likes").exec((err,foundPost) => {
+router.get("/:uri", (req,res) => {
+	id=getIdfromUri(req.params.uri);
+	Post.findById(id).populate("comments likes").exec((err,foundPost) => {
 		if(err || !foundPost){
 			console.log(err);
 			req.flash("error","Could not display the Post");
@@ -104,7 +114,7 @@ router.post("/:id/like",middleware.isLoggedIn, (req,res) => {
                 return res.redirect("/explore");
             }
 			
-            return res.redirect("/explore/" + foundPost._id);
+            return res.redirect("/explore/" + getUri(foundPost));
         });
 		}
 	});
@@ -133,7 +143,7 @@ router.put("/:id", middleware.isAdmin, (req,res) => {
 			}
 			else{
 				req.flash("success", "Post updated successfully");
-				return res.redirect(`/explore/${req.params.id}`);
+				return res.redirect(`/explore/${getUri(updatedPost)}`);
 			}
 		});
 });
@@ -166,7 +176,7 @@ router.put("/:id/image", middleware.isAdmin,upload.single('image'), (req,res) =>
 				post.imageId = result.public_id;
 				post.save();
 				req.flash("success","Image Replaced!");
-				return res.redirect("/explore/"+req.params.id);	
+				return res.redirect("/explore/"+getUri(post));	
 				});
 			}
 		}
