@@ -23,20 +23,36 @@
 					Reset Password
 				</button>
 				<a href="/login" style="float:right">Back to Login</a>
-				<button type="submit" formaction ="/forgot" style="float:left" class="resendButton" id="resend">Did not receive email?</a>
+				<button data-toggle="modal" data-target="#modalForm" style="float:left" class="resendButton" id="resend">Did not receive email?</a>
 			</form>
 		</div>
 </div>
 
+<!-- did not receive email form -->
+<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Register Complaint</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	  <div class="modal-body text-center">
+	  	<form action="/forgot/query" method="POST">
+			<div class="form-group">
+			  <input type="email" id="defaultForm-email" class="form-control validate" name="email" placeholder="Email" required>
+			</div>
+			<div class="form-group">
+			  <input type="text" id="defaultForm-pass" class="form-control validate" name="description" placeholder="Description">
+			</div>
+			<button class="btn btn-default" type="submit">Submit</button>
+		</form>
+	</div>
+     
+    </div>
+  </div>
+</div>
+
 <%- include("./partials/footer") %>
-<script>
-	let resendButton=document.getElementById("resend");
-	let reset=document.getElementById("reset");
-	resendButton.disabled=true;
-	let enableResend=()=>{
-		resendButton.disabled=false;
-	}
-	reset.addEventListener("click",()=>{
-		setTimeout(enableResend,60000);
-	});
-</script>

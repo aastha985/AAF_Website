@@ -6,8 +6,7 @@ var ModalImageSchema = new mongoose.Schema({
 		{
 			type:Boolean,
 			default:false
-		},
-	Search: String
+		}
 });
 
 let ModalImage = mongoose.model("ModalImage",ModalImageSchema);

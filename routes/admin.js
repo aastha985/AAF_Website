@@ -21,6 +21,7 @@ let upload = multer({ storage: storage, fileFilter: imageFilter});
 
 // Cloudinary setup
 const cloudinary = require('cloudinary');
+const loginIssue = require("../models/loginIssue");
 cloudinary.config({ 
   cloud_name: process.env.CLOUDINARY_NAME, 
   api_key: process.env.CLOUDINARY_API_KEY, 
@@ -53,6 +54,36 @@ router.get("/explore",middleware.isAdmin, (req, res) => {
 	});
 });
 
+router.get("/complaints",middleware.isAdmin, (req, res) => {
+	loginIssue.find({"resolved":false}, (err, Complaints) => {
+		if(err){
+			console.log(err);
+			return res.redirect("/admin");
+		}
+		else{
+			res.render("admin/complaintindex",{complaints:Complaints});
+		}
+	});
+});
+
+
+// Update route
+router.put("/complaints/:id", middleware.isAdmin, (req,res) => {
+	loginIssue.findById(req.params.id, (err,updatePost) => {
+		if(err){
+			console.log(err);
+			return res.redirect("/admin");
+		}
+		else{
+			updatePost.resolved = true;
+			updatePost.save();
+			// req.flash("success","Complaint Resolved!")
+			return res.redirect("/admin/complaints");
+		}
+	});
+});
+
+
 //show route
 router.get("/explore/:id", middleware.isAdmin, (req,res) => {
 	Post.findById(req.params.id, (err,foundPost) => {
@@ -67,7 +98,6 @@ router.get("/explore/:id", middleware.isAdmin, (req,res) => {
 
 //update url
 router.post("/", middleware.isAdmin, (req,res) => {
-	console.log("hello")
 	var isOn=false;
 	if(req.body.isOn=="on"){
 		isOn=true;

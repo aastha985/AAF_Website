@@ -1,3 +1,4 @@
+const loginIssue = require("../models/loginIssue");
 const express = require("express"),
 router = express.Router(),
 passport = require("passport"),
@@ -128,6 +129,19 @@ router.post('/forgot', (req, res, next) => {
     res.redirect('/forgot');
   });
 });
+
+router.post('/forgot/query', (req, res, next) => {
+  loginIssue.create({"email":req.body.email,"description":req.body.description},(err,newloginIssue)=>{
+		if(err){
+			console.log(err);
+			return res.redirect("/forgot");
+		}
+		else{
+			req.flash("success","Successfully registered complaint, you will hear back in 48hrs");
+			return res.redirect("/forgot");
+		}
+	})
+})
 
 router.get('/reset/:token', (req, res) => {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, (err, user) => {
