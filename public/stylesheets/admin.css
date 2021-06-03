@@ -1,34 +1,44 @@
-.navbar{
-	background-color:black;
-	margin-bottom: 4rem;
+.navbar {
+    background-color: black;
+    margin-bottom: 4rem;
 }
-.cen{
-	text-align:center;
-	margin-bottom: 15vh;
+.cen {
+    text-align: center;
+    margin-bottom: 15vh;
 }
-.c1{
-	margin-top: 20vh;
-	margin-bottom: 40vh;
+.c1 {
+    margin-top: 20vh;
+    margin-bottom: 40vh;
 }
-.btn{
-	margin-bottom: 5vh;
+.btn {
+    margin-bottom: 5vh;
 }
-.padbott{
-	padding: 5vh 2rem 5vh 2rem;
-	margin-bottom: 60vh;
+.padbott {
+    padding: 5vh 2rem 5vh 2rem;
+    margin-bottom: 60vh;
 }
-#c2{
-	margin-bottom: 8vh;
+#c2 {
+    margin-bottom: 8vh;
 }
-.card-img-top{
-	height:13rem;
-	object-fit: cover;
+.card-img-top {
+    height: 13rem;
+    object-fit: cover;
 }
-#more{
-	margin-bottom:0;
+#more {
+    margin-bottom: 0;
 }
-@media (min-width: 992px){
-	.card{
-		height: 35rem;
-	}
+
+#complaintBox {
+    height: auto;
+    min-height: 20rem;
+}
+
+#checkboxModal {
+    margin-top: 5%;
+}
+
+@media (min-width: 992px) {
+    .card {
+        height: 35rem;
+    }
 }

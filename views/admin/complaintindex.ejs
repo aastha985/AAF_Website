@@ -1,41 +1,48 @@
 <%- include("../partials/header1") %>
-<link rel="stylesheet" href="/stylesheets/Navbar.css">
-<link rel="stylesheet" href="/stylesheets/Buttons.css">
-<link rel="stylesheet" href="/stylesheets/admin.css">
-<link rel="stylesheet" href="/stylesheets/Footer.css">
-<%- include("../partials/header1b") %>
-<%- include("../partials/navbar") %>
-
+<link rel="stylesheet" href="/stylesheets/Navbar.css" />
+<link rel="stylesheet" href="/stylesheets/Buttons.css" />
+<link rel="stylesheet" href="/stylesheets/admin.css" />
+<link rel="stylesheet" href="/stylesheets/Footer.css" />
+<%- include("../partials/header1b") %> <%- include("../partials/navbar") %>
 
 <div class="container">
-	<div class="row d-flex justify-content-center">
-		<h1 id="c2">Pending complaints</h1>
-	</div>
-	<div class="container">
-		<%- include("../partials/flash") %>
-	</div>
-	<% if(complaints.length == 0){ %>
-		<div class="container">
-			<div class="alert alert-info padbott" role="alert">
-			 No pending complaints
-			</div>
-		</div>
-	<% } %>
-	<div class="row">
-	<% complaints.forEach(function(complaint){  %>
-		<div class="col-md-4">
-			<div class="card shadow p-3 mb-5 bg-white rounded">
-				  <div class="card-body">
-					<h5 class="card-title"><%= complaint.email %></h5>
-						  <p class="card-text"><%= complaint.description %></p>
-				  </div>
-			</div>
-            <form id="approve" action="/admin/complaints/<%= complaint._id %>?_method=PUT" method="POST">
-                <input type="submit" class="btn btn-success" value="Resolved">
-            </form>
-		</div>
-	<%  }); %>
-	</div>
+    <div class="row d-flex justify-content-center">
+        <h1 id="c2">Pending complaints</h1>
+    </div>
+    <div class="container"><%- include("../partials/flash") %></div>
+    <% if(complaints.length == 0){ %>
+    <div class="container">
+        <div class="alert alert-info padbott" role="alert">
+            No pending complaints
+        </div>
+    </div>
+    <% } %>
+    <div class="row">
+        <% complaints.forEach(function(complaint){ %>
+        <div class="col-md-4">
+            <div
+                class="card shadow p-3 mb-5 bg-white rounded"
+                id="complaintBox"
+            >
+                <div class="card-body">
+                    <h5 class="card-title"><%= complaint.email %></h5>
+                    <p class="card-text"><%= complaint.description %></p>
+                </div>
+                <form
+                    id="approve"
+                    action="/admin/complaints/<%= complaint._id %>?_method=PUT"
+                    method="POST"
+                >
+                    <input
+                        type="submit"
+                        class="btn btn-success"
+                        value="Resolve"
+                    />
+                </form>
+            </div>
+        </div>
+        <% }); %>
+    </div>
 </div>
 
 <%- include("../partials/footer") %>
