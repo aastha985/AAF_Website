@@ -12,6 +12,7 @@ const express = require("express"),
 	  	LocalStrategy = require("passport-local"),
 	  	methodOverride = require("method-override"),
 	  	User = require("./models/user");
+		breadcrumb=require("express-url-breadcrumb")
 
 const indexRoutes = require("./routes/index"),
 	  	opportunityRoutes = require("./routes/opportunities"),
@@ -52,7 +53,7 @@ app.use(function(req,res,next){
 	res.locals.success = req.flash("success");
 	next();
 });
-
+app.use(breadcrumb())
 app.use(indexRoutes);
 app.use("/opportunities",opportunityRoutes);
 app.use("/explore",exploreRoutes);

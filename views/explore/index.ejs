@@ -1,3 +1,4 @@
+<link rel="preload" href="https://imgur.com/13Iewor.jpg" as="image">
 <%- include("../partials/header1") %>
 <link rel="stylesheet" href="/stylesheets/Navbar.css">
 <link rel="stylesheet" href="/stylesheets/Buttons.css">
@@ -18,6 +19,8 @@
 <div class="container">
 	<div class="row">
 	<% posts.reverse().forEach(function(post){  %>
+		<%var date=new Date(post.dateApproved).toLocaleDateString().replace("Invalid Date","NA");%>
+		<%var slug=post.heading.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')+"&id="+post._id;%>
 		<div class="col-lg-4">
 			<div class="card shadow p-3 mb-5 bg-white rounded">
 				  <img src="<%= post.image %>" class="card-img-top" alt="...">
@@ -25,8 +28,9 @@
 					<h5 class="card-title"><%= post.heading.substring(0,100) %></h5>
 						  <p class="card-text"><%= post.shortDescription %></p>
 					 <div>
-						<a href="/explore/<%= post._id %>" id="more" class="btn">Read More</a>
+						<a href="/explore/<%=slug%>" id="more" class="btn">Read More</a>
 					  </div>
+					  <p class="text-muted" style="margin-top: 10;">Date approved: <%=date %></p>
 				  </div>
 			</div>
 		</div>

@@ -22,7 +22,7 @@ router.get("/business", (req,res) => {
 });
 
 // Index route
-router.get("/legal",function(req,res){
+router.get("/legal",(req,res) => {
 	Opportunity.find({"isApproved":true,"category":3}, (err, Opportunities) => {
 		if(err){
 			console.log(err);
@@ -33,7 +33,7 @@ router.get("/legal",function(req,res){
 	});
 });
 
-router.get("/media",function(req,res){
+router.get("/media",(req,res) => {
 	Opportunity.find({"isApproved":true,"category":4}, (err,Opportunities) => {
 		if (err) {
 			console.log(err);
@@ -74,7 +74,7 @@ router.get("/school", (req,res) => {
 	});
 });
 
-router.get("/other",function(req,res){
+router.get("/other",(req,res) => {
 	Opportunity.find({"isApproved":true,"category":8}, (err,Opportunities) => {
 		if (err) {
 			console.log(err);

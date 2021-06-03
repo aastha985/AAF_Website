@@ -30,7 +30,8 @@ var postSchema = new mongoose.Schema({
 		{
 			type:Boolean,
 			default:false
-		}
+		},
+	dateApproved:Date
 	
 });
 

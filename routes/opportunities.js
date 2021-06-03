@@ -9,6 +9,15 @@ let storage = multer.diskStorage({
   }
 });
 
+var getIdfromUri = (uri) => {
+	var s=uri.search("&id=");
+	return uri.slice(s+4);
+}
+
+var getUri = (data) => {
+	 return data.heading.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')+"&id="+data._id
+}
+
 let imageFilter = (req, file, cb) => {
     // Accept image files only
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/i)) {
@@ -39,7 +48,7 @@ router.get("/new", middleware.isLoggedIn, (req,res) =>
 
 // Create route
 router.post("/", middleware.isLoggedIn,upload.single('image'), (req,res) => {
-	cloudinary.uploader.upload(req.file.path, function(result) {
+	cloudinary.uploader.upload(req.file.path, (result)=> {
   		req.body.opportunity.image = result.secure_url;
 		req.body.opportunity.imageId = result.public_id;
 		Opportunity.create(req.body.opportunity, (err,newOpportunity) => {
@@ -56,8 +65,9 @@ router.post("/", middleware.isLoggedIn,upload.single('image'), (req,res) => {
 router.use(OpportunityindexRoutes);
 
 // Show route
-router.get("/:id",function(req,res){
-	Opportunity.findById(req.params.id, (err,foundOpportunity) => {
+router.get("/:uri",(req,res) => {
+	var id=getIdfromUri(req.params.uri);
+	Opportunity.findById(id, (err,foundOpportunity) => {
 		if(err){
 			console.log(err);
 			req.flash("error","Could not display the opportunity");
@@ -91,7 +101,7 @@ router.put("/:id", middleware.isAdmin, (req,res) => {
 		}
 		else{
 			req.flash("success","Opportunity updated successfully");
-			res.redirect("/opportunities/"+req.params.id);
+			res.redirect("/opportunities/"+getUri(updatedOpportunity));
 		}
 	});
 });
@@ -126,7 +136,7 @@ router.put("/:id/image", middleware.isAdmin,upload.single('image'), (req,res) =>
 						opportunity.imageId = result.public_id;
 						opportunity.save();
 						req.flash("success","Image Replaced!");
-						return res.redirect("/opportunities/"+req.params.id);
+						return res.redirect("/opportunities/"+getUri(opportunity));
 					});
 				}
 		}

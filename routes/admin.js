@@ -1,5 +1,5 @@
 const express = require("express"), router = express.Router(), Post = require("../models/post"), Opportunity = require("../models/opportunity"), middleware = require("../middleware");
-
+const ModalImage=require("../models/ModalImage")
 
 // Multer setup
 const multer = require('multer');
@@ -9,7 +9,7 @@ let storage = multer.diskStorage({
   }
 });
 
-let imageFilter = function (req, file, cb) {
+let imageFilter = (req, file, cb) => {
     // Accept image files only
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/i)) {
         return cb(new Error('Only image files are allowed!'), false);
@@ -21,6 +21,7 @@ let upload = multer({ storage: storage, fileFilter: imageFilter});
 
 // Cloudinary setup
 const cloudinary = require('cloudinary');
+const loginIssue = require("../models/loginIssue");
 cloudinary.config({ 
   cloud_name: process.env.CLOUDINARY_NAME, 
   api_key: process.env.CLOUDINARY_API_KEY, 
@@ -29,7 +30,15 @@ cloudinary.config({
 
 // Root route - Admin dashboard
 router.get("/",middleware.isAdmin, (req, res) => {
-	res.render("admin/index");
+	ModalImage.findOne({"toDisplay":true},(err,found)=>{
+		if(found==null){
+		  res.render("admin/index",{toggle:false,url:null})
+		}
+		else{
+		  res.render("admin/index",{toggle:true,url:found.Url})
+		}
+  
+	  })
 });
 
 // Explore route
@@ -45,6 +54,36 @@ router.get("/explore",middleware.isAdmin, (req, res) => {
 	});
 });
 
+router.get("/complaints",middleware.isAdmin, (req, res) => {
+	loginIssue.find({"resolved":false}, (err, Complaints) => {
+		if(err){
+			console.log(err);
+			return res.redirect("/admin");
+		}
+		else{
+			res.render("admin/complaintindex",{complaints:Complaints});
+		}
+	});
+});
+
+
+// Update route
+router.put("/complaints/:id", middleware.isAdmin, (req,res) => {
+	loginIssue.findById(req.params.id, (err,updatePost) => {
+		if(err){
+			console.log(err);
+			return res.redirect("/admin");
+		}
+		else{
+			updatePost.resolved = true;
+			updatePost.save();
+			// req.flash("success","Complaint Resolved!")
+			return res.redirect("/admin/complaints");
+		}
+	});
+});
+
+
 //show route
 router.get("/explore/:id", middleware.isAdmin, (req,res) => {
 	Post.findById(req.params.id, (err,foundPost) => {
@@ -57,6 +96,35 @@ router.get("/explore/:id", middleware.isAdmin, (req,res) => {
 	});
 });
 
+//update url
+router.post("/", middleware.isAdmin, (req,res) => {
+	var isOn=false;
+	if(req.body.isOn=="on"){
+		isOn=true;
+	}
+	ModalImage.remove({"toDisplay":!isOn},(err,result)=>{
+		if(err){
+			console.log(err)
+		}
+	})
+	ModalImage.remove({"toDisplay": isOn},(err,result)=>{
+		if(err){
+			console.log(err)
+		}
+	})
+	ModalImage.create({"toDisplay":isOn,"Url":req.body.img_url},(err,newModalImage)=>{
+		if(err){
+			console.log(err);
+			return res.redirect("/admin");
+		}
+		else{
+			req.flash("Successfully updated");
+			return res.redirect("/admin");
+		}
+	})
+});
+
+
 // Update route
 router.put("/explore/:id", middleware.isAdmin, (req,res) => {
 	Post.findById(req.params.id,req.params.post, (err,updatePost) => {
@@ -66,6 +134,7 @@ router.put("/explore/:id", middleware.isAdmin, (req,res) => {
 		}
 		else{
 			updatePost.isApproved = true;
+			updatePost.dateApproved = Date.now();
 			updatePost.save();
 			req.flash("success","Approved Post!")
 			return res.redirect("/admin/explore");
@@ -130,6 +199,7 @@ router.put("/opportunities/:id", middleware.isAdmin, (req,res) => {
 		}
 		else{
 			updateOpportunity.isApproved=true;
+			updateOpportunity.dateApproved = Date.now();
 			updateOpportunity.save();
 			req.flash("success","Approved Opportunity!")
 			return res.redirect("/admin/opportunities");

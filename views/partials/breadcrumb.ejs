@@ -1,0 +1,12 @@
+<ol class="breadcrumb">
+    <% breadcrumb.slice(0,breadcrumb.length-1).forEach((a)=>{ %>
+        <li class="breadcrumb-item"><a href=<%=a.url%>><%=a.label%></a></li>
+   <% });%>
+   <li class="breadcrumb-item active " aria-current="page"><%=breadcrumb[breadcrumb.length-1].label.slice(0,50)%></li>
+</ol>
+<style>
+    .breadcrumb{
+        margin-bottom: 3rem;
+        padding-left: 3.5rem;
+    }
+</style>
