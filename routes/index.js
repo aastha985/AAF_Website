@@ -8,10 +8,10 @@ nodemailer = require("nodemailer"),
 ModalImage=require("../models/ModalImage")
 crypto = require("crypto");
 	  
-router.get('*', (req,res,next) => { 
-	if(req.headers['x-forwarded-proto']!='https') res.redirect('https://parvaaz-parindey.aafngo.org'+req.url); 
-	else next(); 
-});	
+// router.get('*', (req,res,next) => { 
+// 	if(req.headers['x-forwarded-proto']!='https') res.redirect('https://parvaaz-parindey.aafngo.org'+req.url); 
+// 	else next(); 
+// });	
 
 // Root route
 router.get("/", (req,res) => {

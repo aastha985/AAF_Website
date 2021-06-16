@@ -1,0 +1,27 @@
+<%- include("../partials/header1") %>
+<link rel="stylesheet" href="/stylesheets/Navbar.css" />
+<link rel="stylesheet" href="/stylesheets/Buttons.css" />
+<link rel="stylesheet" href="/stylesheets/admin.css" />
+<link rel="stylesheet" href="/stylesheets/Footer.css" />
+<%- include("../partials/header1b") %> <%- include("../partials/navbar") %>
+
+<div class="container text-center">
+	<h1 id="oh1">Add blog categories</h1>
+</div>
+</div>
+<!--=======================================================-->
+<div class="container">
+	<h1 id="oh2" class="text-center">Add blog categories</h1>
+	<form action="/admin/blogcategories" method="POST">
+		<div class="form-group">
+		<label for="formGroupExampleInput">Blog Catgory</label>
+		<input type="text" class="form-control" id="formGroupExampleInput" name="category" required>
+		  <small class="form-text text-muted">This will appear as the heading of your post</small>
+	  	</div>
+		<div class="text-center">
+			<button type="submit" class="btn btn-lg" id="btn-submit">Submit</button>
+		</div>
+	</form>
+</div>
+
+<%- include("../partials/footer") %>
