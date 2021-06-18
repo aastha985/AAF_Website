@@ -36,27 +36,28 @@ cloudinary.config({
 
 // Index route
 router.get("/", (req,res) => {
-	if(!req.query.category || req.query.category=="All"){
-		Post.find({"isApproved":true},(err,Posts) => {
-			if(err){
-				console.log(err);
-			}
-			else{
-				res.render("explore/index",{posts:Posts});
-			}
-		});
-	}
-	else{
-		Post.find({"isApproved":true,"category":req.query.category},(err,Posts) => {
-			if(err){
-				console.log(err);
-			}
-			else{
-				res.render("explore/index",{posts:Posts});
-			}
-		});
-	}
-
+	blogcategories.find({},(err,categories)=>{
+		if(!req.query.category || req.query.category=="All"){
+			Post.find({"isApproved":true},(err,Posts) => {
+				if(err){
+					console.log(err);
+				}
+				else{
+					res.render("explore/index",{posts:Posts,categories:categories,selectedCategory:"All"});
+				}
+			});
+		}
+		else{
+			Post.find({"isApproved":true,"category":req.query.category},(err,Posts) => {
+				if(err){
+					console.log(err);
+				}
+				else{
+					res.render("explore/index",{posts:Posts,categories:categories,selectedCategory:req.query.category});
+				}
+			});
+		}
+	});
 });
 
 // New route
