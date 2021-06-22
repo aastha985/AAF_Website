@@ -1,0 +1,84 @@
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    $(window).on('load', function() {
+        $('#exampleModal').modal('show');
+    });
+</script>
+</script>
+  <!-- Modal -->
+<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="exampleModal">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Register for Fellowship</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 d-flex justify-content-center">
+              <p id="p1" class="text-justify">
+                We welcome you for <strong>Fellowship Program</strong> to exercise your mental machines and give a little something back to the society!<br/><br/>
+                  The applications are now open for people interested in social work from the age of 15 to 40. Fellows would be expected to participate in the events organised by our Foundation and take initiatives to plan more events. However, they would not be required to work 24*7 on all events. They will have the option to opt out of certain events if the events do not match their field of work. But, in order to get a certificate, a minimum number of hours/events would be mandatory for the year. <br/><br/>
+                  To join our organisation please complete and submit the form below.<br/>
+                  <br/>
+                  After the completion of this tenure, you can apply to work as a full-time member of our team. The best part about working with us is that you do NOT have to devote long hours. Our work requires minimal time consumption and you’ll have all the time to pursue your other endeavours. <br/>
+                  <br/>
+                  <strong>Perks (based on the level of participation throughout the year) <br/></strong>
+                    - Recognition<br/>
+                    - Certificate of Fellowship<br/>
+                    - Performance based Rewards<br/>
+                    - Letter of Recommendation<br/>
+                    - Award for contribution in society<br/>
+                    - Opportunity to be convenor and work on first-hand basis<br/>
+                    - Regular Training programmes with experienced professionals<br/>
+                </p>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+              <form action="/volunteer/new" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="volunteer[name]" required>
+                    <small class="form-text text-muted">Enter Your Full Name Here</small>
+                </div>
+                <div class="form-group">
+                    <label for="number">Phone Number</label>
+                    <input type="number" class="form-control" id="number" name="volunteer[phoneNumber]" maxlength = "100" required>
+                    <small class="form-text text-muted">Enter Your Phone Number Here</small>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="volunteer[emailAddress]" maxlength = "100" required>
+                </div>
+                <div class="form-group">
+                    <label for="reason">Why do you wish to join Asha Akanksha Foundation?</label>
+                    <textarea name="volunteer[aimToJoin]" id="reason" rows="6"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="use">In what way do you believe you can help us?</label>
+                    <textarea name="volunteer[positionDetails]" id="reason" rows="6" required></textarea>
+                </div>
+                <div class="text-center" class="white">
+                    <button type="submit" class="btn btn-lg px-5" required>Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+
+  textarea {
+      width: 100%;
+      border-color: rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+  }
+  
+  </style>

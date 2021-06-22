@@ -1,5 +1,4 @@
 const express = require("express"), router = express.Router(), Post = require("../models/post"), Opportunity = require("../models/opportunity"), middleware = require("../middleware");
-const ModalImage=require("../models/ModalImage")
 const BlogCategories=require("../models/blogcategories")
 
 // Multer setup
@@ -118,33 +117,6 @@ router.get("/explore/:id", middleware.isAdmin, (req,res) => {
 	});
 });
 
-//update url
-router.post("/", middleware.isAdmin, (req,res) => {
-	var isOn=false;
-	if(req.body.isOn=="on"){
-		isOn=true;
-	}
-	ModalImage.remove({"toDisplay":!isOn},(err,result)=>{
-		if(err){
-			console.log(err)
-		}
-	})
-	ModalImage.remove({"toDisplay": isOn},(err,result)=>{
-		if(err){
-			console.log(err)
-		}
-	})
-	ModalImage.create({"toDisplay":isOn,"Url":req.body.img_url},(err,newModalImage)=>{
-		if(err){
-			console.log(err);
-			return res.redirect("/admin");
-		}
-		else{
-			req.flash("Successfully updated");
-			return res.redirect("/admin");
-		}
-	})
-});
 
 
 // Update route

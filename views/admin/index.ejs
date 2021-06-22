@@ -19,31 +19,6 @@
 		<div class="col-md-6 d-flex justify-content-center">
 			<a href="/admin/complaints" class="btn btn-primary btn-lg btn-block" style="height: fit-content;">Login complaints</a>
 		</div>
-		<div class="col-md-6 d-flex justify-content-center">
-			<form id="approve"  method="POST">
-				<div class="custom-control custom-switch form-group">
-					<%if(toggle){%>
-						<input type="checkbox" class="custom-control-input" id="CheckboxforModal" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" name="isOn" checked=<%=toggle%> >
-						<%}else{%>
-							<input type="checkbox" class="custom-control-input" id="CheckboxforModal" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" name="isOn" >
-						<%}%>
-					
-					<label class="custom-control-label" for="CheckboxforModal">Turn on pop up image</label>
-				</div>
-				<div class="form-group">
-					<%if(toggle){%>
-					<div class="collapse show" id="collapseExample">
-					<%}else{%>
-						<div class="collapse" id="collapseExample">
-					<%}%>
-						<input type="url" class="form-control" name="img_url" placeholder="Image URL" value=<%=url%>>
-					</div>
-					<input type="submit" class="btn btn-success" value="submit" id = "checkboxModal">
-				</div>
-				
-				
-			</form>
-		</div>
 	</div>
 	
 </div>
