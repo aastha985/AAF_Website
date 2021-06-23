@@ -1,5 +1,5 @@
 const express = require("express"), router = express.Router(), Post = require("../models/post"), Comment = require("../models/comment"), middleware = require("../middleware");
-
+const blogcategories=require("../models/blogcategories")
 // Multer setup
 const multer = require('multer');
 let storage = multer.diskStorage({
@@ -36,20 +36,36 @@ cloudinary.config({
 
 // Index route
 router.get("/", (req,res) => {
-	Post.find({"isApproved":true},(err,Posts) => {
-		if(err){
-			console.log(err);
+	blogcategories.find({},(err,categories)=>{
+		if(!req.query.category || req.query.category=="All"){
+			Post.find({"isApproved":true},(err,Posts) => {
+				if(err){
+					console.log(err);
+				}
+				else{
+					res.render("explore/index",{posts:Posts,categories:categories,selectedCategory:"All"});
+				}
+			});
 		}
 		else{
-			res.render("explore/index",{posts:Posts});
+			Post.find({"isApproved":true,"category":req.query.category},(err,Posts) => {
+				if(err){
+					console.log(err);
+				}
+				else{
+					res.render("explore/index",{posts:Posts,categories:categories,selectedCategory:req.query.category});
+				}
+			});
 		}
 	});
 });
 
 // New route
-router.get("/new", middleware.isLoggedIn, (req,res) =>
-	res.render("explore/new") 
-);
+router.get("/new", middleware.isLoggedIn, (req,res) =>{
+	blogcategories.find({},(err,Categories)=>{
+		res.render("explore/new",{categories:Categories});
+	})
+});
 
 // Create route
 router.post("/",middleware.isLoggedIn,upload.single('image'), (req,res) => {

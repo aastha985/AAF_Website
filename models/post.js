@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
-
+const blogcategories = require("./blogcategories")
+const customEnum=(v)=>{
+	blogcategories.findOne({name:v},(err,blogcategory)=>{
+		if(err||!blogcategory)
+			return false
+		return true
+	})
+}
 var postSchema = new mongoose.Schema({
 	heading:String,
 	image: String,
@@ -31,7 +38,10 @@ var postSchema = new mongoose.Schema({
 			type:Boolean,
 			default:false
 		},
-	dateApproved:Date
+	dateApproved:Date,
+	category: {type:String, default:"Other",validate: (v)=>{
+		return customEnum(v)
+	}},
 	
 });
 

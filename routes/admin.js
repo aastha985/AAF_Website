@@ -1,5 +1,5 @@
 const express = require("express"), router = express.Router(), Post = require("../models/post"), Opportunity = require("../models/opportunity"), middleware = require("../middleware");
-const ModalImage=require("../models/ModalImage")
+const BlogCategories=require("../models/blogcategories")
 
 // Multer setup
 const multer = require('multer');
@@ -41,6 +41,26 @@ router.get("/",middleware.isAdmin, (req, res) => {
 	  })
 });
 
+
+// Blog categories route
+router.get("/blogcategories",middleware.isAdmin, (req, res) => {
+	res.render("admin/blogcategories");
+});
+
+//Blog categories add
+router.post("/blogcategories", middleware.isAdmin, (req,res) => {
+	BlogCategories.create({"name":req.body.category},(err,newBlogCategory)=>{
+		if(err){
+			console.log(err);
+			return res.redirect("/admin/blogcategories")
+		}
+		else{
+			req.flash("Successfully added");
+			return res.redirect("/admin/blogcategories")
+		}
+	})
+});
+
 // Explore route
 router.get("/explore",middleware.isAdmin, (req, res) => {
 	Post.find({"isApproved":false}, (err, Posts) => {
@@ -54,6 +74,7 @@ router.get("/explore",middleware.isAdmin, (req, res) => {
 	});
 });
 
+//complaints route
 router.get("/complaints",middleware.isAdmin, (req, res) => {
 	loginIssue.find({"resolved":false}, (err, Complaints) => {
 		if(err){
@@ -96,33 +117,6 @@ router.get("/explore/:id", middleware.isAdmin, (req,res) => {
 	});
 });
 
-//update url
-router.post("/", middleware.isAdmin, (req,res) => {
-	var isOn=false;
-	if(req.body.isOn=="on"){
-		isOn=true;
-	}
-	ModalImage.remove({"toDisplay":!isOn},(err,result)=>{
-		if(err){
-			console.log(err)
-		}
-	})
-	ModalImage.remove({"toDisplay": isOn},(err,result)=>{
-		if(err){
-			console.log(err)
-		}
-	})
-	ModalImage.create({"toDisplay":isOn,"Url":req.body.img_url},(err,newModalImage)=>{
-		if(err){
-			console.log(err);
-			return res.redirect("/admin");
-		}
-		else{
-			req.flash("Successfully updated");
-			return res.redirect("/admin");
-		}
-	})
-});
 
 
 // Update route
@@ -227,6 +221,8 @@ router.delete("/opportunities/:id", middleware.isAdmin, (req,res) => {
 		}
 	});
 });
+
+
 
 
 

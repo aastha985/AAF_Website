@@ -25,7 +25,18 @@
 		<label for="formGroupExampleInput">Heading</label>
 		<input type="text" class="form-control" id="formGroupExampleInput" name="post[heading]" required>
 		  <small class="form-text text-muted">This will appear as the heading of your post</small>
-	  </div>
+	  	</div>
+		<div class="col-lg-8">
+			<div class="form-group">
+			<label for="inlineFormCustomSelect">Choose Category <span class="asterisk">*</span></label>
+			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="post[category]" required>
+				<% categories.forEach((category)=>{%>
+					<option value=<%=category.name%>><%=category.name%></option>
+				<%})%>
+				<%console.log(categories)%>
+			</select>
+			</div>
+		</div>
 		<div class="form-group">
 		<label for="formGroupExampleInput">Short Description(100 Characters)</label>
 		<input type="text" class="form-control" id="formGroupExampleInput" name="post[shortDescription]" maxlength = "100" required>
