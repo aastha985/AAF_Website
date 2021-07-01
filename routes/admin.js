@@ -30,15 +30,7 @@ cloudinary.config({
 
 // Root route - Admin dashboard
 router.get("/",middleware.isAdmin, (req, res) => {
-	ModalImage.findOne({"toDisplay":true},(err,found)=>{
-		if(found==null){
-		  res.render("admin/index",{toggle:false,url:null})
-		}
-		else{
-		  res.render("admin/index",{toggle:true,url:found.Url})
-		}
-  
-	  })
+	res.render('admin/index');
 });
 
 
