@@ -29,7 +29,7 @@
 	</div>
 	<div class="row">
 	<% posts.reverse().forEach(function(post){  %>
-		<%var date=new Date(post.dateApproved).toLocaleDateString().replace("Invalid Date","NA");%>
+		<%var date=new Date(post.dateApproved).toDateString().replace("Invalid Date","");%>
 		<%var slug=post.heading.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')+"&id="+post._id;%>
 		<div class="col-lg-4">
 			<div class="card shadow p-3 mb-5 bg-white rounded">
@@ -40,7 +40,7 @@
 					 <div>
 						<a href="/explore/<%=slug%>" id="more" class="btn">Read More</a>
 					  </div>
-					  <p class="text-muted" style="margin-top: 10;">Date approved: <%=date %></p>
+					  <p class="text-muted" style="margin-top: 10;"> <%=date %></p>
 				  </div>
 			</div>
 		</div>

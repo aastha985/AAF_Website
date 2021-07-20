@@ -31,9 +31,8 @@
 			<label for="inlineFormCustomSelect">Choose Category <span class="asterisk">*</span></label>
 			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="post[category]" required>
 				<% categories.forEach((category)=>{%>
-					<option value=<%=category.name%>><%=category.name%></option>
+					<option value=<%=category._id%>><%=category.name%></option>
 				<%})%>
-				<%console.log(categories)%>
 			</select>
 			</div>
 		</div>

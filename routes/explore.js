@@ -75,14 +75,18 @@ router.post("/",middleware.isLoggedIn,upload.single('image'), (req,res) => {
 		req.body.post.imageId = result.public_id;
 		req.body.post.author = req.user;
 		req.body.post.content = req.body.content;
-		Post.create(req.body.post,(err,newPost) => {
-			if (err) {
-				console.log(err);
-			}
-			else {
-				res.redirect("/explore");
-			}
-		});
+		blogcategories.findById(req.body.post.category,(err,category)=>{
+			req.body.post.category=category.name;
+			Post.create(req.body.post,(err,newPost) => {
+				if (err) {
+					console.log(err);
+				}
+				else {
+					res.redirect("/explore");
+				}
+			});
+		})
+		
 	});
 });
 
@@ -145,15 +149,20 @@ router.get("/:id/edit", middleware.isAdmin, (req,res) => {
 			return res.redirect("/explore");
 		}
 		else{
-			res.render("explore/edit",{post:foundPost});
+			blogcategories.find({},(err,Categories)=>{
+				res.render("explore/edit",{post:foundPost,categories:Categories});
+			})
 		}
 	})
 });
 
 // Update route
 router.put("/:id", middleware.isAdmin, (req,res) => {
+	console.log(req.body.post.category)
 	req.body.post.content = req.body.content;
-	Post.findByIdAndUpdate(req.params.id, req.body.post, (err,updatedPost) => {
+	blogcategories.findById(req.body.post.category,(err,category)=>{
+		req.body.post.category=category.name;
+		Post.findByIdAndUpdate(req.params.id, req.body.post, (err,updatedPost) => {
 			if(err){
 				console.log(err);
 			}
@@ -162,6 +171,8 @@ router.put("/:id", middleware.isAdmin, (req,res) => {
 				return res.redirect(`/explore/${getUri(updatedPost)}`);
 			}
 		});
+	})
+	
 });
 
 // Image edit route
