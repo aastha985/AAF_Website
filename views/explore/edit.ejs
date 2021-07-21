@@ -45,6 +45,10 @@
 				<%})%>
 			</select>
 		  </div>
+		  <div class="form-group">  
+			<label for="Date approved">Date Approved:</label>
+			<input type="date" id="birthday" name="post[dateApproved]" value=<%=post.dateApproved.toISOString().slice(0,10) %>>
+		  </div>
 		<div class="form-group">
 			<label for="content">Content</label>
 			<div id="content"><%- post.content %></div>
