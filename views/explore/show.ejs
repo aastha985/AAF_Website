@@ -10,13 +10,14 @@
 	<%- include("../partials/flash") %>
 </div>
 <div class="container">
+	<span class="" style="background-color: purple;color: white;font-size: 1rem;padding: 5px 10px 5px 10px;border-radius: 3px;border: none;"> <%=post.category%></span>
 	<div class="row">
 		<div class="col-md-9">
 			<div class="card shadow p-3 mb-5 bg-white rounded">
 			<h2 class="text-center">
 				<%= post.heading %>
 			</h2>
-			<p class="text-muted"> Category: <%=post.category%></p>
+			<% post.category= post.category? post.category: "Others" %>
 			<img src="<%= post.image %>" class="img-fluid text-center">
 			<% if(currentUser && currentUser._id.equals(adminId)) { %>
 				<div class="row d-flex justify-content-end mx-2">
