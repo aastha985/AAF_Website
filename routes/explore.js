@@ -36,13 +36,31 @@ cloudinary.config({
 
 // Index route
 router.get("/", (req,res) => {
-	blogcategories.find({},(err,categories)=>{
+	blogcategories.find({}).sort('name').exec((err,categories)=>{
 		if(!req.query.category || req.query.category=="All"){
 			Post.find({"isApproved":true},(err,Posts) => {
 				if(err){
 					console.log(err);
 				}
+				
 				else{
+					var counts=Posts.reduce((p,c)=>{
+						var cat=c.category;
+						if(!p.hasOwnProperty(cat))
+							p[cat]=0;
+						p[cat]++;
+						return p;
+					},{})
+					var sum=0;
+					categories.forEach((category)=>{
+						if(!counts.hasOwnProperty(category.name))
+							category.count=0;
+						else{
+							sum+=counts[category.name];
+							category.count=counts[category.name];
+						}
+					})
+					categories[0].count=sum;
 					res.render("explore/index",{posts:Posts,categories:categories,selectedCategory:"All"});
 				}
 			});

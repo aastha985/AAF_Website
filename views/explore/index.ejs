@@ -24,7 +24,7 @@
 		</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<%categories.forEach((category)=>{%>
-				<a class="dropdown-item" href="/explore?category=<%=category.name%>"><%=category.name%></a>
+				<a class="dropdown-item" href="/explore?category=<%=category.name%>"><%=category.name%> <%="("+category.count+")"%></a>
 			<%})%>
 		</div>
 	</div>
