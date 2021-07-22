@@ -36,7 +36,9 @@ router.get("/",middleware.isAdmin, (req, res) => {
 
 // Blog categories route
 router.get("/blogcategories",middleware.isAdmin, (req, res) => {
-	res.render("admin/blogcategories");
+	BlogCategories.find({},(err,Categories)=>{
+		res.render("admin/blogcategories",{categories:Categories});
+	})
 });
 
 //Blog categories add

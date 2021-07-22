@@ -16,17 +16,20 @@
 <div class="container mb-5 mt-1">
 <%- include("../partials/flash") %>
 </div>
+
 <div class="container">
-	<div class="dropdown">
+	<div class="dropdown d-flex justify-content-end">
 		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		  <%=selectedCategory%>
 		</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<%categories.forEach((category)=>{%>
-				<a class="dropdown-item" href="/explore?category=<%=category.name%>"><%=category.name%></a>
+				<a class="dropdown-item" href="/explore?category=<%=category.name%>"><%=category.name%> <%="("+category.count+")"%></a>
 			<%})%>
 		</div>
 	</div>
+	
+
 	<div class="row">
 	<% posts.reverse().forEach(function(post){  %>
 		<%var date=new Date(post.dateApproved).toDateString().replace("Invalid Date","");%>
